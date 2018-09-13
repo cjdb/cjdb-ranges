@@ -22,15 +22,15 @@
 include(FindPackageHandleStandardArgs)
 
 if(TARGET MicrosoftGSL::gsl)
-	return()
+   return()
 endif()
 
 find_path(MicrosoftGSL_INCLUDE_DIRS gsl/gsl)
 
 find_package_handle_standard_args(MicrosoftGSL
-	REQUIRED_VARS MicrosoftGSL_INCLUDE_DIRS)
+   REQUIRED_VARS MicrosoftGSL_INCLUDE_DIRS)
 
 add_library(MicrosoftGSL::gsl INTERFACE IMPORTED)
 set_target_properties(MicrosoftGSL::gsl PROPERTIES
-	INTERFACE_INCLUDE_DIRECTORIES ${MicrosoftGSL_INCLUDE_DIRS}
+   INTERFACE_INCLUDE_DIRECTORIES ${MicrosoftGSL_INCLUDE_DIRS}
 INTERFACE_COMPILE_FEATURES cxx_std_11)
