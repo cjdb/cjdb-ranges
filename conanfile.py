@@ -17,24 +17,24 @@ from conans import ConanFile, CMake, RunEnvironment, tools
 import os
 
 class RangesConan(ConanFile):
-	name = "amcpp-gp2"
-	version = "1.0"
-	settings = "os", "compiler", "arch", "build_type"
-	generators = "cmake", "cmake_paths", "virtualrunenv"
-	build_requires = "catch2/[>=2.3.0]@bincrafters/stable", "google-benchmark/1.4.1@mpusz/stable"
-	requires = "gsl_microsoft/[>=1.0.0]@bincrafters/stable"
-	exports_sources = "CMakeLists.txt", ".clang*", "test/*", "src/*", "cmake/*"
-	no_copy_source = True
+   name = "amcpp-gp2"
+   version = "1.0"
+   settings = "os", "compiler", "arch", "build_type"
+   generators = "cmake", "cmake_paths", "virtualrunenv"
+   build_requires = "catch2/[>=2.3.0]@bincrafters/stable", "google-benchmark/1.4.1@mpusz/stable"
+   requires = "gsl_microsoft/[>=1.0.0]@bincrafters/stable"
+   exports_sources = "CMakeLists.txt", ".clang*", "test/*", "src/*", "cmake/*"
+   no_copy_source = True
 
-	def build(self):
-		cmake = CMake(self)
+   def build(self):
+      cmake = CMake(self)
 
-		cmake.configure(source_dir = self.source_folder)
-		cmake.build()
+      cmake.configure()
+      cmake.build()
 
-		env_build = RunEnvironment(self)
-		with tools.environment_append(env_build.vars):
-			cmake.test()
+      env_build = RunEnvironment(self)
+      with tools.environment_append(env_build.vars):
+         cmake.test()
 
-	def package_info(self):
-		self.env_info.PATH.append(os.path.join(self.package_folder, "bin"))
+   def package_info(self):
+      self.env_info.PATH.append(os.path.join(self.package_folder, "bin"))
