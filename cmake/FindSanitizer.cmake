@@ -1,6 +1,6 @@
 #
-#  Copyright 2018 Morris Hafner
-#  Copyright 2019 Christopher Di Bella
+#  Copyright Christopher Di Bella
+#  Copyright Morris Hafner
 #
 # Licensed under the Apache License, Version 2.0 (the "License");
 # you may not use this file except in compliance with the License.

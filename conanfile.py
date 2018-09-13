@@ -1,6 +1,5 @@
 #
-#  Copyright 2018 Morris Hafner
-#  Copyright 2018 Christopher Di Bella
+#  Copyright Christopher Di Bella
 #
 # Licensed under the Apache License, Version 2.0 (the "License");
 # you may not use this file except in compliance with the License.
@@ -39,7 +38,7 @@ class Project_name(ConanFile):
         "code_coverage": "Off",
         "required_sanitizers": "",
         "optional_sanitizers": "Address;Undefined;ControlFlowIntegrity",
-        "enable_clang_tidy": "On",
+        "enable_clang_tidy": "Off",
         "clang_tidy_path": "/usr/bin/clang-tidy"
     }
     requires = ("doctest/2.2.0@bincrafters/stable")
