@@ -1,5 +1,5 @@
 #
-#  Copyright 2018 Christopher Di Bella
+#  Copyright Christopher Di Bella
 #
 # Licensed under the Apache License, Version 2.0 (the "License");
 # you may not use this file except in compliance with the License.
@@ -13,6 +13,6 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 #
-add_subdirectory(concepts)
-add_subdirectory(functional)
-add_subdirectory(type_traits)
+add_cjdblib_test(FILENAME boolean.cpp)
+add_cjdblib_test(FILENAME equalitycomparable.cpp)
+add_cjdblib_test(FILENAME stricttotallyordered.cpp)

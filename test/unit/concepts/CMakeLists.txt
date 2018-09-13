@@ -1,5 +1,5 @@
 #
-#  Copyright 2018 Christopher Di Bella
+#  Copyright Christopher Di Bella
 #
 # Licensed under the Apache License, Version 2.0 (the "License");
 # you may not use this file except in compliance with the License.
@@ -13,6 +13,9 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 #
-add_subdirectory(concepts)
-add_subdirectory(functional)
-add_subdirectory(type_traits)
+add_subdirectory(core)
+add_subdirectory(comparison)
+add_subdirectory(callable)
+add_subdirectory(object)
+
+add_cjdblib_test(FILENAME concepts.cpp)
