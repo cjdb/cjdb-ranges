@@ -13,6 +13,4 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 #
-add_subdirectory(unit)
-add_subdirectory(integration)
-add_subdirectory(regression)
+build_test("${prefix}" common_type ${enable_catch2})

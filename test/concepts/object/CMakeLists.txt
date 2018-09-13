@@ -1,6 +1,5 @@
-#!/bin/bash
 #
-#  Copyright 2019 Christopher Di Bella
+#  Copyright Christopher Di Bella
 #
 # Licensed under the Apache License, Version 2.0 (the "License");
 # you may not use this file except in compliance with the License.
@@ -14,7 +13,7 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 #
-BUILD_TYPE=${1}
-
-mkdir -p build-${BUILD_TYPE}      && \
-conan config install config/conan
+build_test("${prefix}" movable ${disable_catch2})
+build_test("${prefix}" copyable ${disable_catch2})
+build_test("${prefix}" semiregular ${disable_catch2})
+build_test("${prefix}" regular ${disable_catch2})

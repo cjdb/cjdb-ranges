@@ -16,7 +16,6 @@
 from conans import ConanFile, CMake, RunEnvironment, tools
 import os
 
-
 class Project_name(ConanFile):
     name = "cjdblib"
     description = "A reference implementation for C++next features."

@@ -1,5 +1,5 @@
 #
-#  Copyright 2019 Christopher Di Bella
+#  Copyright Christopher Di Bella
 #
 # Licensed under the Apache License, Version 2.0 (the "License");
 # you may not use this file except in compliance with the License.
@@ -13,7 +13,9 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 #
-BUILD_TYPE=${1}
+add_subdirectory(core)
+add_subdirectory(comparison)
+add_subdirectory(callable)
+add_subdirectory(object)
 
-cd build-${BUILD_TYPE} && \
-conan build .. --test
+build_test("${prefix}" concepts ${disable_catch2})

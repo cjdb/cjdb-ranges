@@ -13,6 +13,7 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 #
-add_subdirectory(unit)
-add_subdirectory(integration)
-add_subdirectory(regression)
+build_test("${prefix}" invocable ${disable_catch2})
+build_test("${prefix}" regularinvocable ${disable_catch2})
+build_test("${prefix}" predicate ${disable_catch2})
+build_test("${prefix}" relation ${disable_catch2})

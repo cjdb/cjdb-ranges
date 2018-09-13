@@ -1,0 +1,2 @@
+bincrafters https://api.bintray.com/conan/bincrafters/public-conan
+conan-mpusz https://api.bintray.com/conan/mpusz/conan-mpusz
