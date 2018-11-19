@@ -111,7 +111,7 @@ requires Same<T, U>
 void f();
 
 template<class T, class U>
-requires Same<U, T> && true
+requires Same<U, T> and true // NOLINT(readability-simplify-boolean-expr)
 int f();
 
 static_assert(Same<int, decltype(f<int, int>())>);

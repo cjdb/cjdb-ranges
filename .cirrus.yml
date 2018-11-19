@@ -16,8 +16,11 @@
 task:
   env:
     matrix:
-      PROFILE: gcc
-      PROFILE: clang
+      - PROFILE: gcc
+        ENABLE_CLANG_TIDY: Off
+      - PROFILE: clang
+        ENABLE_CLANG_TIDY: On
+        PATH: "/opt/clang-concepts/bin:${PATH}"
     matrix:
       BUILD_TYPE: Debug
       BUILD_TYPE: Release
@@ -28,19 +31,22 @@ task:
     image: cjdb/clang-concepts:latest
     cpu: 16
     memory: 10G
-  tests_script:
+  preconfig_script:
     - mkdir build
+  conan_config_install_script:
     - cd build
     - conan config install ../conan
-    - conan install .. --profile=${PROFILE} -s build_type=${BUILD_TYPE} --build missing
+  conan_install_script:
+    - cd build
+    - conan install .. --profile=${PROFILE} --settings build_type=${BUILD_TYPE} --build missing
+  conan_build_configure_script:
+    - cd build
     - conan build .. --configure
-    - |
-      if [ ${PROFILE} = 'gcc' ]; then
-        cmake .. -DCMAKE_CXX_FLAGS='-Dconcept="concept bool"'
-      else
-        export PATH="/opt/clang-concepts/bin:${PATH}"
-        cmake .. -DCMAKE_PREFIX_PATH=/opt/clang-concepts -DCJDB_ENABLE_CLANG_TIDY=On
-      fi
     - cmake .. -DCJDB_AUDIT_CONTRACTS=${AUDIT_CONTACTS}
+    - cmake .. -DCJDB_ENABLE_CLANG_TIDY=${ENABLE_CLANG_TIDY}
+  build_script:
+    - cd build
     - conan build .. --build
+  tests_script:
+    - cd build
     - ctest -j 8 --output-on-failure
