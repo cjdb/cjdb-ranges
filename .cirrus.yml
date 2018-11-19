@@ -35,14 +35,14 @@ task:
   conan_install_script:
     - cd build-${BUILD_TYPE}
     - conan install ..
-    -    --profile=${PROFILE}
-    -    --settings build_type=${BUILD_TYPE}
-    -    --options code_coverage=${CODE_COVERAGE}
-    -    --options required_sanitizers=${REQUIRED_SANITIZERS}
-    -    --options optional_sanitizers=${OPTIONAL_SANITIZERS}
-    -    --options enable_clang_tidy=${ENABLE_CLANG_TIDY}
-    -    --options clang_tidy_path=${CLANG_TIDY_PATH}
-    -    --build
+        --profile=${PROFILE}
+        --settings build_type=${BUILD_TYPE}
+        --options code_coverage=${CODE_COVERAGE}
+        --options required_sanitizers=${REQUIRED_SANITIZERS}
+        --options optional_sanitizers=${OPTIONAL_SANITIZERS}
+        --options enable_clang_tidy=${ENABLE_CLANG_TIDY}
+        --options clang_tidy_path=${CLANG_TIDY_PATH}
+        --build
   conan_build_configure_script:
     - cd build-${BUILD_TYPE}
     - conan build .. --configure

@@ -106,7 +106,7 @@ namespace N {
    struct A { int m; };
    struct Proxy { 
       A* a;
-      Proxy(A& a) : a{&a} {}
+      Proxy(A& a) : a{&a} {} // NOLINT(google-explicit-constructor)
       friend void swap(Proxy&& x, Proxy&& y) {
          ranges::swap(x.a, y.a);
       }
@@ -122,10 +122,12 @@ TEST_CASE("Test cjdb::Swappable", "[concepts.swappable]") {
    { // From [concept.swappable]/5
       int i = 1, j = 2;
       lv_swap(i, j);
-      CHECK(i == 2 and j == 1);
+      CHECK(i == 2);
+      CHECK(j == 1);
       N::A a1 = { 5 }, a2 = { -5 };
       value_swap(a1, proxy(a2));
-      CHECK(a1.m == -5 and a2.m == 5);
+      CHECK(a1.m == -5);
+      CHECK(a2.m == 5);
    }
    { // From cmcstl2
       int a[2][2] = {{0, 1}, {2, 3}};
