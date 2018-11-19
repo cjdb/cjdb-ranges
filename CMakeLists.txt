@@ -32,6 +32,7 @@ list(APPEND CMAKE_MODULE_PATH "${CMAKE_CURRENT_SOURCE_DIR}/cmake")
 find_package(Catch2 2.3.0 REQUIRED)
 find_package(MicrosoftGSL REQUIRED)
 find_package(Sanitizer COMPONENTS address undefined REQUIRED)
+find_package(Concepts REQUIRED)
 find_package(benchmark)
 
 if (CJDB_ENABLE_CLANG_TIDY)

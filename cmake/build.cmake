@@ -19,12 +19,7 @@
 #
 function(build_impl target)
    target_compile_options("${target}" PUBLIC
-      -fdiagnostics-color=always
-      $<$<CXX_COMPILER_ID:GNU>:
-         -fconcepts>
-      $<$<CXX_COMPILER_ID:Clang>:
-         -Xclang
-         -fconcepts-ts>)
+      -fdiagnostics-color=always)
    target_compile_options("${target}" PRIVATE
       $<$<CXX_COMPILER_ID:GNU>:
          -Wlogical-op>
@@ -32,11 +27,11 @@ function(build_impl target)
          -fstack-protector-all>)
 
    if(CJDB_AUDIT_CONTRACTS)
-      target_compile_definitions(CJDB_AUDIT_CONTRACTS)
+      target_compile_definitions("${target}" PUBLIC CJDB_AUDIT_CONTRACTS)
    endif()
 
    target_include_directories("${target}" PUBLIC "${PROJECT_SOURCE_DIR}/include")
-   target_link_libraries("${target}" PUBLIC MicrosoftGSL::gsl)
+   target_link_libraries("${target}" PUBLIC MicrosoftGSL::gsl Concepts::concept)
 endfunction()
 
 # \brief Produces a target name for compiling a translation unit.
