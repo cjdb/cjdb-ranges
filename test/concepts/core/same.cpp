@@ -57,53 +57,64 @@ struct identity {
 };
 
 using cjdb::_t;
+using cjdb::Same;
 
 template <template <typename> typename Modifier = identity>
 void check_Same()
 {
-   static_assert(cjdb::Same<_t<Modifier<int>>,        _t<Modifier<int>>>);
-   static_assert(cjdb::Same<_t<Modifier<S1>>,         _t<Modifier<S1>>>);
-   static_assert(cjdb::Same<_t<Modifier<S2>>,         _t<Modifier<S2>>>);
-   static_assert(cjdb::Same<_t<Modifier<S3>>,         _t<Modifier<S3>>>);
-   static_assert(cjdb::Same<_t<Modifier<S4>>,         _t<Modifier<S4>>>);
-   static_assert(cjdb::Same<_t<Modifier<S5>>,         _t<Modifier<S5>>>);
-   static_assert(cjdb::Same<_t<Modifier<C1>>,         _t<Modifier<C1>>>);
-   static_assert(cjdb::Same<_t<Modifier<C2>>,         _t<Modifier<C2>>>);
-   static_assert(cjdb::Same<_t<Modifier<C3>>,         _t<Modifier<C3>>>);
-   static_assert(cjdb::Same<_t<Modifier<C4<int>>>,    _t<Modifier<C4<int>>>>);
-   static_assert(cjdb::Same<_t<Modifier<C4<int&>>>,   _t<Modifier<C4<int&>>>>);
-   static_assert(cjdb::Same<_t<Modifier<C4<int&&>>>,  _t<Modifier<C4<int&&>>>>);
-   static_assert(cjdb::Same<_t<Modifier<C5<int>>>,    _t<Modifier<C5<int>>>>);
-   static_assert(cjdb::Same<_t<Modifier<C5<int&>>>,   _t<Modifier<C5<int&>>>>);
-   static_assert(cjdb::Same<_t<Modifier<C5<int&&>>>,  _t<Modifier<C5<int&&>>>>);
-   static_assert(cjdb::Same<_t<Modifier<C6<int>>>,    _t<Modifier<C6<int>>>>);
-   static_assert(cjdb::Same<_t<Modifier<C6<int&>>>,   _t<Modifier<C6<int&>>>>);
-   static_assert(cjdb::Same<_t<Modifier<C6<int&&>>>,  _t<Modifier<C6<int&&>>>>);
+   static_assert(Same<_t<Modifier<int>>,        _t<Modifier<int>>>);
+   static_assert(Same<_t<Modifier<S1>>,         _t<Modifier<S1>>>);
+   static_assert(Same<_t<Modifier<S2>>,         _t<Modifier<S2>>>);
+   static_assert(Same<_t<Modifier<S3>>,         _t<Modifier<S3>>>);
+   static_assert(Same<_t<Modifier<S4>>,         _t<Modifier<S4>>>);
+   static_assert(Same<_t<Modifier<S5>>,         _t<Modifier<S5>>>);
+   static_assert(Same<_t<Modifier<C1>>,         _t<Modifier<C1>>>);
+   static_assert(Same<_t<Modifier<C2>>,         _t<Modifier<C2>>>);
+   static_assert(Same<_t<Modifier<C3>>,         _t<Modifier<C3>>>);
+   static_assert(Same<_t<Modifier<C4<int>>>,    _t<Modifier<C4<int>>>>);
+   static_assert(Same<_t<Modifier<C4<int&>>>,   _t<Modifier<C4<int&>>>>);
+   static_assert(Same<_t<Modifier<C4<int&&>>>,  _t<Modifier<C4<int&&>>>>);
+   static_assert(Same<_t<Modifier<C5<int>>>,    _t<Modifier<C5<int>>>>);
+   static_assert(Same<_t<Modifier<C5<int&>>>,   _t<Modifier<C5<int&>>>>);
+   static_assert(Same<_t<Modifier<C5<int&&>>>,  _t<Modifier<C5<int&&>>>>);
+   static_assert(Same<_t<Modifier<C6<int>>>,    _t<Modifier<C6<int>>>>);
+   static_assert(Same<_t<Modifier<C6<int&>>>,   _t<Modifier<C6<int&>>>>);
+   static_assert(Same<_t<Modifier<C6<int&&>>>,  _t<Modifier<C6<int&&>>>>);
 }
 
 template <template <typename> typename Modifier1,
    template <typename> typename Modifier2 = identity>
 void check_not_Same()
 {
-   static_assert(not cjdb::Same<_t<Modifier1<int>>,       _t<Modifier2<int>>>);
-   static_assert(not cjdb::Same<_t<Modifier1<S1>>,        _t<Modifier2<S1>>>);
-   static_assert(not cjdb::Same<_t<Modifier1<S2>>,        _t<Modifier2<S2>>>);
-   static_assert(not cjdb::Same<_t<Modifier1<S3>>,        _t<Modifier2<S3>>>);
-   static_assert(not cjdb::Same<_t<Modifier1<S4>>,        _t<Modifier2<S4>>>);
-   static_assert(not cjdb::Same<_t<Modifier1<S5>>,        _t<Modifier2<S5>>>);
-   static_assert(not cjdb::Same<_t<Modifier1<C1>>,        _t<Modifier2<C1>>>);
-   static_assert(not cjdb::Same<_t<Modifier1<C2>>,        _t<Modifier2<C2>>>);
-   static_assert(not cjdb::Same<_t<Modifier1<C3>>,        _t<Modifier2<C3>>>);
-   static_assert(not cjdb::Same<_t<Modifier1<C4<int>>>,   _t<Modifier2<C4<int>>>>);
-   static_assert(not cjdb::Same<_t<Modifier1<C4<int&>>>,  _t<Modifier2<C4<int&>>>>);
-   static_assert(not cjdb::Same<_t<Modifier1<C4<int&&>>>, _t<Modifier2<C4<int&&>>>>);
-   static_assert(not cjdb::Same<_t<Modifier1<C5<int>>>,   _t<Modifier2<C5<int>>>>);
-   static_assert(not cjdb::Same<_t<Modifier1<C5<int&>>>,  _t<Modifier2<C5<int&>>>>);
-   static_assert(not cjdb::Same<_t<Modifier1<C5<int&&>>>, _t<Modifier2<C5<int&&>>>>);
-   static_assert(not cjdb::Same<_t<Modifier1<C6<int>>>,   _t<Modifier2<C6<int>>>>);
-   static_assert(not cjdb::Same<_t<Modifier1<C6<int&>>>,  _t<Modifier2<C6<int&>>>>);
-   static_assert(not cjdb::Same<_t<Modifier1<C6<int&&>>>, _t<Modifier2<C6<int&&>>>>);
+   static_assert(not Same<_t<Modifier1<int>>,       _t<Modifier2<int>>>);
+   static_assert(not Same<_t<Modifier1<S1>>,        _t<Modifier2<S1>>>);
+   static_assert(not Same<_t<Modifier1<S2>>,        _t<Modifier2<S2>>>);
+   static_assert(not Same<_t<Modifier1<S3>>,        _t<Modifier2<S3>>>);
+   static_assert(not Same<_t<Modifier1<S4>>,        _t<Modifier2<S4>>>);
+   static_assert(not Same<_t<Modifier1<S5>>,        _t<Modifier2<S5>>>);
+   static_assert(not Same<_t<Modifier1<C1>>,        _t<Modifier2<C1>>>);
+   static_assert(not Same<_t<Modifier1<C2>>,        _t<Modifier2<C2>>>);
+   static_assert(not Same<_t<Modifier1<C3>>,        _t<Modifier2<C3>>>);
+   static_assert(not Same<_t<Modifier1<C4<int>>>,   _t<Modifier2<C4<int>>>>);
+   static_assert(not Same<_t<Modifier1<C4<int&>>>,  _t<Modifier2<C4<int&>>>>);
+   static_assert(not Same<_t<Modifier1<C4<int&&>>>, _t<Modifier2<C4<int&&>>>>);
+   static_assert(not Same<_t<Modifier1<C5<int>>>,   _t<Modifier2<C5<int>>>>);
+   static_assert(not Same<_t<Modifier1<C5<int&>>>,  _t<Modifier2<C5<int&>>>>);
+   static_assert(not Same<_t<Modifier1<C5<int&&>>>, _t<Modifier2<C5<int&&>>>>);
+   static_assert(not Same<_t<Modifier1<C6<int>>>,   _t<Modifier2<C6<int>>>>);
+   static_assert(not Same<_t<Modifier1<C6<int&>>>,  _t<Modifier2<C6<int&>>>>);
+   static_assert(not Same<_t<Modifier1<C6<int&&>>>, _t<Modifier2<C6<int&&>>>>);
 }
+
+template<class T, class U>
+requires Same<T, U>
+void f();
+
+template<class T, class U>
+requires Same<U, T> && true
+int f();
+
+static_assert(Same<int, decltype(f<int, int>())>);
 
 int main()
 {
@@ -144,9 +155,9 @@ int main()
    }
 
    { // Checks Same<T1, T2> is false
-      static_assert(not cjdb::Same<S1, C1>);
-      static_assert(not cjdb::Same<C4<int>, C5<int>>);
-      static_assert(not cjdb::Same<C4<int>, C5<int>>);
-      static_assert(not cjdb::Same<C5<int, double>, C5<double, int>>);
+      static_assert(not Same<S1, C1>);
+      static_assert(not Same<C4<int>, C5<int>>);
+      static_assert(not Same<C4<int>, C5<int>>);
+      static_assert(not Same<C5<int, double>, C5<double, int>>);
    }
 }

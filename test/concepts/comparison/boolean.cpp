@@ -19,30 +19,25 @@
 #include <memory>
 #include <vector>
 
-template<cjdb::Boolean>
-constexpr void models_Boolean() noexcept {}
-
-template<class B>
-requires (not cjdb::Boolean<B>)
-constexpr void not_Boolean() noexcept {}
+using cjdb::Boolean;
 
 int main()
 {
-   models_Boolean<bool>();
-   models_Boolean<int>();
-   models_Boolean<cjdb_test::boolean>();
-   models_Boolean<cjdb_test::explicitly_constructible_boolean>();
+   static_assert(Boolean<bool>);
+   static_assert(Boolean<int>);
+   static_assert(Boolean<cjdb_test::boolean>);
+   static_assert(Boolean<cjdb_test::explicitly_constructible_boolean>);
 
-   not_Boolean<std::vector<int>>();
-   not_Boolean<int*>();
-   not_Boolean<std::unique_ptr<int>>();
-   not_Boolean<cjdb_test::explicitly_convertible_boolean>();
-   not_Boolean<cjdb_test::bad_not_boolean>();
-   not_Boolean<cjdb_test::bad_and_boolean1>();
-   not_Boolean<cjdb_test::bad_and_boolean2>();
-   not_Boolean<cjdb_test::bad_and_boolean3>();
-   not_Boolean<cjdb_test::bad_or_boolean1>();
-   not_Boolean<cjdb_test::bad_or_boolean2>();
-   not_Boolean<cjdb_test::bad_or_boolean3>();
-   not_Boolean<cjdb_test::bad_equality_boolean>();
+   static_assert(not Boolean<std::vector<int>>);
+   static_assert(not Boolean<int*>);
+   static_assert(not Boolean<std::unique_ptr<int>>);
+   static_assert(not Boolean<cjdb_test::explicitly_convertible_boolean>);
+   static_assert(not Boolean<cjdb_test::bad_not_boolean>);
+   static_assert(not Boolean<cjdb_test::bad_and_boolean1>);
+   static_assert(not Boolean<cjdb_test::bad_and_boolean2>);
+   static_assert(not Boolean<cjdb_test::bad_and_boolean3>);
+   static_assert(not Boolean<cjdb_test::bad_or_boolean1>);
+   static_assert(not Boolean<cjdb_test::bad_or_boolean2>);
+   static_assert(not Boolean<cjdb_test::bad_or_boolean3>);
+   static_assert(not Boolean<cjdb_test::bad_equality_boolean>);
 }

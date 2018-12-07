@@ -22,7 +22,21 @@
 #include "cjdb/detail/type_traits/common_reference.hpp"
 
 namespace cjdb {
+   /// \brief If `T` and `U` can both be explicitly converted to some third type, `C`, then `T` and
+   ///        `U` share a _common type_, `C`.
+   ///
+   /// Let `C` be `common_­type_­t<T, U>`. Let `t` be a function whose return type is `T`, and let `u`
+   /// be a function whose return type is `U`. `Common<T, U>` is satisfied only if:
+   ///   - `C(t())` equals `C(t())` if and only if `t()` is an equality-preserving expression.
+   ///   - `C(u())` equals `C(u())` if and only if `u()` is an equality-preserving expression
+   ///
+   /// \note `C` could be the same as `T`, or `U`, or it could be a different type. `C` might not be
+   ///       unique.
+   /// \note Users can customize the behavior of `Common` by specializing the `common_­type` class
+   ///       template.
    /// \see [concept.common]
+   /// \see [concepts.equality]
+   /// \see [meta.trans.other]
    ///
    template<class T, class U>
    concept Common =

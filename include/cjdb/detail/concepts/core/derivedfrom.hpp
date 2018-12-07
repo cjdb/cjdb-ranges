@@ -19,6 +19,9 @@
 #include "cjdb/detail/type_traits/type_traits.hpp"
 
 namespace cjdb {
+   /// \brief `DerivedFrom<Derived, Base>` is satisfied if and only if `Derived` is publicly and
+   ///        unambiguously derived from `Base`, or `Derived` and `Base` are the same class type
+   ///        ignoring cv-qualifiers
    /// \see [concept.derivedfrom]
    ///
    template<class Derived, class Base>

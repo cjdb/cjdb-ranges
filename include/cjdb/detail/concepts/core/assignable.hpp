@@ -21,7 +21,25 @@
 #include "cjdb/detail/type_traits/type_traits.hpp"
 
 namespace cjdb {
+   /// Let:
+   ///    - `lhs` be an lvalue that refers to an object `lcopy` such that `decltype((lhs))` is
+   ///      `LHS`,
+   ///    - `rhs` be an expression such that `decltype((rhs))` is `RHS`, and
+   ///    - `rcopy` be a distinct object that is equal to `rhs`.
+   /// `Assignable<LHS, RHS>` is satisfied only if
+   ///    - `addressof(lhs = rhs) == addressof(lcopy)`.
+   ///    - After evaluating `lhs = rhs`:
+   ///       - `lhs` is equal to `rcopy`, unless `rhs` is a non-`const` xvalue that refers to
+   ///         `lcopy`.
+   ///       - If `rhs` is a non-`const` xvalue, the resulting state of the object to which it
+   ///         refers is valid but unspecified.
+   ///       - Otherwise, if `rhs` is a glvalue, the object to which it refers is not modified.
+   /// \note Assignment need not be a total function; in particular, if assignment to an object `x`
+   ///       can result in a modification of some other object `y`, then `x = y` is likely not in
+   ///       the domain of =.
    /// \see [concepts.assignable]
+   /// \see [structure.requirements]
+   /// \see [lib.types.movedfrom]
    ///
    template<class LHS, class RHS>
    concept Assignable =
