@@ -21,6 +21,28 @@
 #include "cjdb/detail/type_traits/type_traits.hpp"
 
 namespace cjdb {
+   /// \brief The `Boolean` concept specifies the requirements on a type that is usable in `Boolean`
+   ///        contexts.
+   ///
+   /// Let `b1` and `b2` be lvalues of type `const remove_­reference_­t<B>`. `Boolean<B>` is satisfied
+   /// only if
+   ///    - `bool(b1) == not bool(!b1)`.
+   ///    - `(b1 and b2)`, `(b1 and bool(b2))`, and `(bool(b1) and b2)` are all equal to
+   ///      `(bool(b1) and bool(b2))`, and have the same short-circuit evaluation.
+   ///    - `(b1 or b2)`, `(b1 or bool(b2))`, and `(bool(b1) or b2)` are all equal to
+   ///      `(bool(b1) or bool(b2))`, and have the same short-circuit evaluation.
+   ///    - `bool(b1 == b2)`, `bool(b1 == bool(b2))`, and `bool(bool(b1) == b2)` are all equal to
+   ///      `(bool(b1) == bool(b2))`.
+   ///    - `bool(b1 != b2)`, `bool(b1 != bool(b2))`, and `bool(bool(b1) != b2)` are all equal to
+   ///      `(bool(b1) != bool(b2))`.
+   ///
+   /// \note The types `bool`, `true_­type`, and `bitset<N>::reference` are `Boolean` types.
+   ///       Pointers, smart pointers, and types with only explicit conversions to `bool` are not
+   ///       `Boolean` types.
+   /// \see [concept.boolean]
+   /// \see [meta.type.synop]
+   /// \see [template.bitset]
+   ///
    template<class B>
    concept Boolean =
       Movable<remove_cvref_t<B>> and

@@ -20,6 +20,10 @@
 #include "cjdb/detail/concepts/core/moveconstructible.hpp"
 
 namespace cjdb {
+   /// If `T` is an object type, then let `v` be an lvalue of type (possibly `const`) `T` or an
+   /// rvalue of type `const T`. `CopyConstructible<T>` is satisfied only if
+   ///    - After the definition `T u = v;`, `u` is equal to `v`.
+   ///    - `T(v)` is equal to `v`.
    /// \see [concepts.copyconstructible]
    ///
    template<class T>
