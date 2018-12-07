@@ -18,53 +18,43 @@
 #include "equalitycomparable.hpp"
 #include "vector.hpp"
 
-template<cjdb::EqualityComparable>
-constexpr void models_EqualityComparable() noexcept {}
-
-template<class T>
-requires (not cjdb::EqualityComparable<T>)
-constexpr void not_EqualityComparable() noexcept {}
-
 constexpr void check_EqualityComparable() noexcept
 {
-   models_EqualityComparable<int>();
-   models_EqualityComparable<double>();
-   models_EqualityComparable<std::vector<int>>();
+   using cjdb::EqualityComparable;
 
-   models_EqualityComparable<cjdb_test::equality_comparable1>();
-   models_EqualityComparable<cjdb_test::equality_comparable2>();
-   models_EqualityComparable<cjdb_test::equality_comparable3>();
-   models_EqualityComparable<cjdb_test::equality_comparable4>();
+   static_assert(EqualityComparable<int>);
+   static_assert(EqualityComparable<double>);
+   static_assert(EqualityComparable<std::vector<int>>);
 
-   not_EqualityComparable<void>();
-   not_EqualityComparable<cjdb_test::not_equality_comparable1>();
-   not_EqualityComparable<cjdb_test::not_equality_comparable2>();
-   not_EqualityComparable<cjdb_test::not_equality_comparable3>();
+   static_assert(EqualityComparable<cjdb_test::equality_comparable1>);
+   static_assert(EqualityComparable<cjdb_test::equality_comparable2>);
+   static_assert(EqualityComparable<cjdb_test::equality_comparable3>);
+   static_assert(EqualityComparable<cjdb_test::equality_comparable4>);
+
+   static_assert(not EqualityComparable<void>);
+   static_assert(not EqualityComparable<cjdb_test::not_equality_comparable1>);
+   static_assert(not EqualityComparable<cjdb_test::not_equality_comparable2>);
+   static_assert(not EqualityComparable<cjdb_test::not_equality_comparable3>);
 }
-
-template<class T1, cjdb::EqualityComparableWith<T1> T2>
-constexpr void models_EqualityComparableWith() noexcept {}
-
-template<class T1, class T2>
-requires (not cjdb::EqualityComparableWith<T1, T2>)
-constexpr void not_EqualityComparableWith() noexcept {}
 
 constexpr void check_EqualityComparableWith() noexcept
 {
-   models_EqualityComparableWith<int, int&>();
-   models_EqualityComparableWith<int, long>();
-   models_EqualityComparableWith<int, long&>();
-   models_EqualityComparableWith<int, double>();
-   models_EqualityComparableWith<cjdb_test::equality_comparable1, int>();
-   models_EqualityComparableWith<cjdb_test::equality_comparable1&, cjdb_test::equality_comparable3>();
-   models_EqualityComparableWith<cjdb_test::equality_comparable1, cjdb_test::equality_comparable4>();
+   using cjdb::EqualityComparableWith;
 
-   not_EqualityComparableWith<void, int>();
-   not_EqualityComparableWith<std::vector<int>, int>();
-   not_EqualityComparableWith<std::vector<int>, std::vector<int>::size_type>();
-   not_EqualityComparableWith<cjdb_test::equality_comparable1, long>();
-   not_EqualityComparableWith<cjdb_test::equality_comparable1, cjdb_test::equality_comparable2>();
-   not_EqualityComparableWith<cjdb_test::equality_comparable2, cjdb_test::equality_comparable3>();
+   static_assert(EqualityComparableWith<int, int&>);
+   static_assert(EqualityComparableWith<int, long>);
+   static_assert(EqualityComparableWith<int, long&>);
+   static_assert(EqualityComparableWith<int, double>);
+   static_assert(EqualityComparableWith<cjdb_test::equality_comparable1, int>);
+   static_assert(EqualityComparableWith<cjdb_test::equality_comparable1&, cjdb_test::equality_comparable3>);
+   static_assert(EqualityComparableWith<cjdb_test::equality_comparable1, cjdb_test::equality_comparable4>);
+
+   static_assert(not EqualityComparableWith<void, int>);
+   static_assert(not EqualityComparableWith<std::vector<int>, int>);
+   static_assert(not EqualityComparableWith<std::vector<int>, std::vector<int>::size_type>);
+   static_assert(not EqualityComparableWith<cjdb_test::equality_comparable1, long>);
+   static_assert(not EqualityComparableWith<cjdb_test::equality_comparable1, cjdb_test::equality_comparable2>);
+   static_assert(not EqualityComparableWith<cjdb_test::equality_comparable2, cjdb_test::equality_comparable3>);
 }
 
 int main()

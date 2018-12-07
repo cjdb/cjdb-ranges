@@ -20,7 +20,14 @@
 #include "cjdb/detail/concepts/core/convertibleto.hpp"
 
 namespace cjdb {
+   /// If `T` is an object type, then let `rv` be an rvalue of type `T` and `u2` a distinct object
+   /// of type `T` equal to `rv`. `MoveConstructible<T>` is satisfied only if
+   ///    - After the definition `T u = rv;`, `u` is equal to `u2`.
+   ///    - `T(rv)` is equal to `u2`.
+   ///    - If `T` is not `const`, `rv`'s resulting state is valid but unspecified; otherwise, it is
+   ///      unchanged.
    /// \see [concepts.moveconstructible]
+   /// \see [lib.types.movedfrom]
    ///
    template<class T>
    concept MoveConstructible = Constructible<T, T> and ConvertibleTo<T, T>;

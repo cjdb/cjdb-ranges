@@ -19,10 +19,20 @@
 #include "cjdb/detail/type_traits/type_traits.hpp"
 
 namespace cjdb {
+   namespace detail_same {
+      /// \brief Concept equivalent of is_same_v to enable Same<T, U> subsuming Same<U, T> and vice
+      ///        versa.
+      ///
+      template<class T, class U>
+      concept is_same = is_same_v<T, U>;
+   }
+
+   /// \brief Checks if two types are exactly the same (including cv-qualifiers and ref-qualifiers).
+   /// \note `Same<T, U>` subsumes `Same<U, T>` and vice versa.
    /// \see [concept.same]
    ///
    template<class T, class U>
-   concept Same = is_same_v<T, U>;
+   concept Same = detail_same::is_same<T, U> and detail_same::is_same<U, T>;
 } // namespace cjdb
 
 #endif // CJDB_DETAIL_CONCEPTS_CORE_SAME_HPP
