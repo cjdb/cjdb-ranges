@@ -20,6 +20,8 @@
 #include "cjdb/detail/type_traits/type_traits.hpp"
 
 namespace cjdb {
+   /// \brief The `Constructible` concept constrains the initialization of a variable of a given
+   ///        type with a particular set of argument types.
    /// \see [concepts.constructible]
    ///
    template<class T, class... Args>

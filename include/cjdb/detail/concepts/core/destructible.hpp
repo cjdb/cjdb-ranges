@@ -19,10 +19,13 @@
 #include "cjdb/detail/type_traits/type_traits.hpp"
 
 namespace cjdb {
-   /// \see [concepts.destructible]
-   /// \note Unlike the Cpp17Destructible requirements (Table 29), this concept forbids destructors
+   /// \brief The `Destructible` concept specifies properties of all types, instances of which can
+   ///        be destroyed at the end of their lifetime, or reference types.
+   /// \note Unlike the _Cpp17Destructible_ requirements, this concept forbids destructors
    ///       that are potentially throwing, even if a particular invocation of the destructor does
    ///       not actually throw.
+   /// \see [concepts.destructible]
+   /// \see Table 29
    ///
    template<class T>
    concept Destructible = is_nothrow_destructible_v<T>;

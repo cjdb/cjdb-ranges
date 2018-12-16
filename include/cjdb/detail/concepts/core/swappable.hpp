@@ -110,7 +110,7 @@ namespace cjdb {
    ///
    template<class T, class U>
    concept SwappableWith =
-      CommonReference<const remove_reference_t<T>&, const remove_reference_t<U>&> and
+      CommonReference<T, U> and
       requires(T&& t, U&& u) {
          ranges::swap(std::forward<T>(t), std::forward<T>(t));
          ranges::swap(std::forward<U>(u), std::forward<U>(u));
