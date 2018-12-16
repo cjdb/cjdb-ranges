@@ -89,8 +89,48 @@ namespace swappable_test {
 } // namespace swappable_test
 
 
+
+namespace ranges = cjdb::ranges;
+
+template<class T, cjdb::SwappableWith<T> U>
+void value_swap(T&& t, U&& u) {
+ranges::swap(std::forward<T>(t), std::forward<U>(u));
+}
+
+template<cjdb::Swappable T>
+void lv_swap(T& t1, T& t2) {
+ranges::swap(t1, t2);
+}
+
+// From [concept.swappable]/5
+namespace N {
+   struct A { int m; };
+   struct Proxy {
+      A* a_;
+      Proxy(A& a) : a_{&a} {}
+      friend void swap(Proxy&& x, Proxy&& y) {
+         ranges::swap(x.a_, y.a_);
+      }
+   };
+   Proxy proxy(A& a) { return Proxy{ a }; }
+   void swap(A& x, Proxy p) {
+      ranges::swap(x.m, p.a_->m);
+   }
+   void swap(Proxy p, A& x) { swap(x, p); } // satisfy symmetry requirement
+}
+
 TEST_CASE("Test [concepts.swappable]") {
-   {
+   { // From [concept.swappable]/5
+      int i = 1, j = 2;
+      lv_swap(i, j);
+      CHECK(i == 2);
+      CHECK(j == 1);
+      N::A a1 = { 5 }, a2 = { -5 };
+      value_swap(a1, proxy(a2));
+      CHECK(a1.m == -5);
+      CHECK(a2.m == 5);
+   }
+   { // From cmcstl2
       int a[2][2] = {{0, 1}, {2, 3}};
       int b[2][2] = {{4, 5}, {6, 7}};
 
