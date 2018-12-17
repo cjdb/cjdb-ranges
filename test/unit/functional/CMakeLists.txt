@@ -14,3 +14,4 @@
 # limitations under the License.
 #
 add_cjdblib_test(FILENAME invoke.cpp PRIVATE_LINKAGE doctest::doctest)
+add_subdirectory(rangecmp)

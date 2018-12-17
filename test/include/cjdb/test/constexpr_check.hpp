@@ -1,5 +1,5 @@
 //
-//  Copyright Christopher Di Bella
+//  Copyright 2019 Christopher Di Bella
 //
 // Licensed under the Apache License, Version 2.0 (the "License");
 // you may not use this file except in compliance with the License.
@@ -13,12 +13,15 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 //
-#ifndef CJDB_FUNCTIONAL_HPP
-#define CJDB_FUNCTIONAL_HPP
+#ifndef CJDB_TEST_CONSTEXPR_CHECK
+#define CJDB_TEST_CONSTEXPR_CHECK
+#include <doctest.h>
+#include <type_traits>
 
-// clang-format off
-#include "cjdb/functional/invoke.hpp"
-#include "cjdb/functional/rangecmp.hpp"
-// clang-format on
+#define CJDB_CONSTEXPR_CHECK(...)                 \
+   {                                              \
+      REQUIRE(std::bool_constant<__VA_ARGS__>{}); \
+      CHECK(__VA_ARGS__);                         \
+   }                                              \
 
-#endif // CJDB_FUNCTIONAL_HPP
+#endif // CJDB_TEST_CONSTEXPR_CHECK

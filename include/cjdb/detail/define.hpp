@@ -38,23 +38,4 @@
 
 #define CJDB_ASSERT(...) CJDB_EXPECTS(__VA_ARGS__)
 
-namespace cjdb::detail_audit_mode {
-   #ifdef CJDB_AUDIT_CONTRACTS
-      inline constexpr auto audit_mode = true;
-   #else
-      inline constexpr auto audit_mode = false;
-   #endif // CJDB_AUDIT_CONTRACTS
-} // namespace cjdb::detail_audit_mode
-
-#define CJDB_EXPECTS_AUDIT(...) { \
-   if (cjdb::detail_audit_mode) { \
-      CJDB_EXPECTS(__VA_ARGS__);  \
-   }                              \
-}                                 \
-
-
-#define CJDB_ENSURES_AUDIT(...) CJDB_EXPECTS_AUDIT(__VA_ARGS__)
-
-#define CJDB_ASSERT_AUDIT(...) CJDB_EXPECTS_AUDIT(__VA_ARGS__)
-
 #endif // CJDB_DETAIL_DEFINE_HPP
