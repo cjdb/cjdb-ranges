@@ -13,6 +13,13 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 //
+#ifdef CJDB_DETAIL_DEFINE_HPP
+   #undef CJDB_DETAIL_DEFINE_HPP
+#else
+   #error "\"cjdb/detail/undef.hpp\" can only be included in a context where "
+          "\"cjdb/detail/define.hpp\" has already been included."
+#endif // CJDB_DETAIL_DEFINE_HPP
+
 #ifdef CJDB_NOEXCEPT_RETURN
    #undef CJDB_NOEXCEPT_RETURN
 #endif // CJDB_NOEXCEPT_RETURN
@@ -25,22 +32,10 @@
    #undef CJDB_EXPECTS
 #endif // CJDB_EXPECTS
 
-#ifdef CJDB_EXPECTS_AUDIT
-   #undef CJDB_EXPECTS_AUDIT
-#endif // CJDB_EXPECTS_AUDIT
-
 #ifdef CJDB_ENSURES
    #undef CJDB_ENSURES
 #endif // CJDB_ENSURES
 
-#ifdef CJDB_ENSURES_AUDIT
-   #undef CJDB_ENSURES_AUDIT
-#endif // CJDB_ENSURES_AUDIT
-
 #ifdef CJDB_ASSERT
    #undef CJDB_ASSERT
 #endif // CJDB_ASSERT
-
-#ifdef CJDB_ASSERT_AUDIT
-   #undef CJDB_ASSERT_AUDIT
-#endif // CJDB_ASSERT_AUDIT

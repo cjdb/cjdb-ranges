@@ -13,12 +13,15 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 //
-#ifndef CJDB_FUNCTIONAL_HPP
-#define CJDB_FUNCTIONAL_HPP
+#define DOCTEST_CONFIG_IMPLEMENT_WITH_MAIN
+#include "cjdb/functional/rangecmp/partial_equal_to.hpp"
 
-// clang-format off
-#include "cjdb/functional/invoke.hpp"
-#include "cjdb/functional/rangecmp.hpp"
-// clang-format on
+#include <algorithm> // FIXME(cjdb): change to "cjdb/algorithm/find_if.hpp"
+#include <doctest.h>
+#include <iterator>  // FIXME(cjdb): change to "cjdb/range/access.hpp"
+#include <numeric>   // FIXME(cjdb): change to "cjdb/range/iota_view.hpp"
+#include <vector>
 
-#endif // CJDB_FUNCTIONAL_HPP
+TEST_CASE("Test [cjdb.ext.rangecmp.less]") {
+
+}
