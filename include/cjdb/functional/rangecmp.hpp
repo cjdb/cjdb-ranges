@@ -16,11 +16,11 @@
 #ifndef CJDB_DETAIL_FUNCTIONAL_RANGECMP_HPP
 #define CJDB_DETAIL_FUNCTIONAL_RANGECMP_HPP
 
-#include "cjdb/detail/functional/rangecmp/equal_to.hpp"
-#include "cjdb/detail/functional/rangecmp/not_equal_to.hpp"
-#include "cjdb/detail/functional/rangecmp/less.hpp"
-#include "cjdb/detail/functional/rangecmp/less_equal.hpp"
-#include "cjdb/detail/functional/rangecmp/greater.hpp"
-#include "cjdb/detail/functional/rangecmp/greater_equal.hpp"
+#include "cjdb/functional/rangecmp/equal_to.hpp"
+// #include "cjdb/functional/rangecmp/not_equal_to.hpp"
+// #include "cjdb/functional/rangecmp/less.hpp"
+// #include "cjdb/functional/rangecmp/less_equal.hpp"
+// #include "cjdb/functional/rangecmp/greater.hpp"
+// #include "cjdb/functional/rangecmp/greater_equal.hpp"
 
 #endif // CJDB_DETAIL_FUNCTIONAL_RANGECMP_HPP

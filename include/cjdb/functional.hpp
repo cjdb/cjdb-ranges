@@ -18,7 +18,7 @@
 
 // clang-format off
 #include "cjdb/functional/invoke.hpp"
-#include "cjdb/functional/comparisons.hpp"
+#include "cjdb/functional/rangecmp.hpp"
 // clang-format on
 
 #endif // CJDB_FUNCTIONAL_HPP

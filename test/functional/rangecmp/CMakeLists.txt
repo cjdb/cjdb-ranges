@@ -13,6 +13,4 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 #
-build_test("${prefix}" invoke ${enable_catch2})
-
-add_subdirectory(rangecmp)
+build_test("${prefix}" equal_to ${enable_catch2})
