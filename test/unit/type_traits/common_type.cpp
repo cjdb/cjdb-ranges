@@ -14,15 +14,15 @@
 // limitations under the License.
 //
 #define DOCTEST_CONFIG_IMPLEMENT_WITH_MAIN
-#include "cjdb/detail/type_traits/common_type.hpp"
-#include "cjdb/detail/type_traits/common_reference.hpp"
+#include "cjdb/type_traits/common_type.hpp"
+#include "cjdb/type_traits/common_reference.hpp"
 
 #include <array>
 #include <doctest.h>
 #include <functional>
 #include <initializer_list>
 #include <tuple>
-#include "cjdb/detail/type_traits/type_traits.hpp"
+#include "cjdb/type_traits/type_traits.hpp"
 #include <utility>
 
 template <typename>

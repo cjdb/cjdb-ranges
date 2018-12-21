@@ -9,10 +9,10 @@
 // Project home: https://github.com/cjdb/clang-concepts-ranges
 //
 #define DOCTEST_CONFIG_IMPLEMENT_WITH_MAIN
-#include "cjdb/detail/concepts/core/swappable.hpp"
+#include "cjdb/concepts/core/swappable.hpp"
 
-#include "cjdb/detail/concepts/core/same.hpp"
-#include "cjdb/detail/type_traits/type_traits.hpp"
+#include "cjdb/concepts/core/same.hpp"
+#include "cjdb/type_traits/type_traits.hpp"
 #include <doctest.h>
 
 namespace swappable_test {

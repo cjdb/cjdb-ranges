@@ -13,7 +13,7 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 //
-#include "cjdb/detail/concepts/core/commonreference.hpp"
+#include "cjdb/concepts/core/commonreference.hpp"
 
 static_assert(cjdb::CommonReference<int, float>);
 static_assert(cjdb::CommonReference<void, void>);

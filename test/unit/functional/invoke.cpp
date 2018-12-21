@@ -10,7 +10,7 @@
 // Project home: https://github.com/caseycarter/cmcstl2
 //
 #define DOCTEST_CONFIG_IMPLEMENT_WITH_MAIN
-#include "cjdb/detail/functional/invoke.hpp"
+#include "cjdb/functional/invoke.hpp"
 
 #include <doctest.h>
 #include <memory>

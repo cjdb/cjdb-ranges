@@ -13,7 +13,7 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 //
-#include "cjdb/detail/concepts/callable/regularinvocable.hpp"
+#include "cjdb/concepts/callable/regularinvocable.hpp"
 
 #include "functions.hpp"
 #include <memory>
