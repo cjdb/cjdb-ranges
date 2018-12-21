@@ -9,7 +9,7 @@
 //
 // Project home: https://github.com/caseycarter/cmcstl2
 //
-#include "cjdb/detail/functional/invoke.hpp"
+#include "cjdb/functional/invoke.hpp"
 #include <catch2/catch.hpp>
 #include <memory>
 #include <utility>

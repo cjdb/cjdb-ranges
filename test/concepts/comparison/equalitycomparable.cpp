@@ -13,7 +13,7 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 //
-#include "cjdb/detail/concepts/comparison/equalitycomparable.hpp"
+#include "cjdb/concepts/comparison/equalitycomparable.hpp"
 
 #include "equalitycomparable.hpp"
 #include "vector.hpp"

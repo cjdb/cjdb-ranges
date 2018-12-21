@@ -17,7 +17,7 @@
 #define CJDB_TEST_CONCEPTS_COMPARISON_EQUALITYCOMPARABLE_HPP
 
 #include "boolean.hpp"
-#include "cjdb/detail/concepts/core/same.hpp"
+#include "cjdb/concepts/core/same.hpp"
 
 namespace cjdb_test {
    struct equality_comparable4;

@@ -20,7 +20,6 @@
 #include "cjdb/concepts/core/convertibleto.hpp"
 #include "cjdb/concepts/core/same.hpp"
 #include "cjdb/type_traits/common_reference.hpp"
-#include <utility>
 
 namespace cjdb {
    /// \brief If `T` and `U` can both be explicitly converted to some third type, `C`, then `T` and
@@ -42,18 +41,16 @@ namespace cjdb {
    template<class T, class U>
    concept Common =
       Same<common_type_t<T, U>, common_type_t<U, T>> and
-      requires {
-         static_cast<common_type_t<T, U>>(std::declval<T>());
-         static_cast<common_type_t<T, U>>(std::declval<U>());
-      } and
+      ConvertibleTo<T, common_type_t<T, U>> and
+      ConvertibleTo<U, common_type_t<T, U>> and
       CommonReference<
-         add_lvalue_reference_t<T const>,
-         add_lvalue_reference_t<U const>> and
+         std::add_lvalue_reference_t<const T>,
+         std::add_lvalue_reference_t<const U>> and
       CommonReference<
-         add_lvalue_reference_t<common_type_t<T, U>>,
+         std::add_lvalue_reference_t<common_type_t<T, U>>,
          common_reference_t<
-            add_lvalue_reference_t<T const>,
-            add_lvalue_reference_t<U const>>>;
+            std::add_lvalue_reference_t<const T>,
+            std::add_lvalue_reference_t<const U>>>;
 } // namespace cjdb
 
 #endif // CJDB_CONCEPTS_CORE_COMMON_HPP
