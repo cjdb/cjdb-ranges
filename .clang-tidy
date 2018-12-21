@@ -18,7 +18,7 @@ WarningsAsErrors: 'cert-dcl50-cpp,cert-dcl58-cpp,cert-env33-c,cert-err34-c,cert-
 
 CheckOptions:
   - key: bugprone-assert-side-effect
-    value: CJDB_EXPECTS,CJDB_EXPECTS_AUDIT,CJDB_ENSURES,CJDB_ENSURES_AUDIT,CJDB_ASSERT,CJDB_ASSERT_AUDIT
+    value: CJDB_EXPECTS,CJDB_ENSURES,CJDB_ASSERT
   - key: bugprone-dangling-handle.HandleClasses
     value: 'std::basic_string_view;cjdb::ranges::subrange;cjdb::ranges::all_view;cjdb::ranges::common_view;cjdb::ranges::keys_view;cjdb::ranges::values_view;cjdb::ranges::zip_view'
   - key: bugprone-exception-escape.FunctionsThatShouldNotThrow

@@ -26,10 +26,6 @@ function(build_impl target)
       $<$<CONFIG:Debug>:
          -fstack-protector-all>)
 
-   if(CJDB_AUDIT_CONTRACTS)
-      target_compile_definitions("${target}" PUBLIC CJDB_AUDIT_CONTRACTS)
-   endif()
-
    target_include_directories("${target}" PUBLIC "${PROJECT_SOURCE_DIR}/include")
    target_link_libraries("${target}" PUBLIC MicrosoftGSL::gsl Concepts::concept)
 endfunction()

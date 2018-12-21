@@ -21,7 +21,7 @@ class RangesConan(ConanFile):
    version = "1.0"
    settings = "os", "compiler", "arch", "build_type"
    generators = "cmake", "cmake_paths", "virtualrunenv"
-   build_requires = "catch2/[>=2.3.0]@bincrafters/stable", "google-benchmark/1.4.1@mpusz/stable"
+   build_requires = "catch2/[>=2.3.0]@bincrafters/stable"
    requires = "gsl_microsoft/[>=1.0.0]@bincrafters/stable"
    exports_sources = "CMakeLists.txt", ".clang*", "test/*", "src/*", "cmake/*"
    no_copy_source = True
