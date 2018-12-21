@@ -13,7 +13,7 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 //
-#include "cjdb/detail/concepts/callable/predicate.hpp"
+#include "cjdb/concepts/callable/predicate.hpp"
 
 #include "functions.hpp"
 

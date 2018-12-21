@@ -13,7 +13,7 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 //
-#include "cjdb/detail/concepts/core/assignable.hpp"
+#include "cjdb/concepts/core/assignable.hpp"
 
 #include <memory>
 #include <mutex>

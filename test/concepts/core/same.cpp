@@ -13,9 +13,9 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 //
-#include "cjdb/detail/concepts/core/same.hpp"
+#include "cjdb/concepts/core/same.hpp"
 
-#include "cjdb/detail/type_traits/expose_type.hpp"
+#include "cjdb/type_traits/expose_type.hpp"
 
 struct S1 {};
 struct S2 { int i; };

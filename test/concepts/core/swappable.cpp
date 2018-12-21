@@ -8,11 +8,11 @@
 // Derived from: https://github.com/caseycarter/cmcstl2
 // Project home: https://github.com/cjdb/clang-concepts-ranges
 //
-#include "cjdb/detail/concepts/core/swappable.hpp"
+#include "cjdb/concepts/core/swappable.hpp"
 
-#include "cjdb/detail/concepts/core/same.hpp"
+#include "cjdb/concepts/core/same.hpp"
 #include <catch2/catch.hpp>
-#include "cjdb/detail/type_traits/type_traits.hpp"
+#include "cjdb/type_traits/type_traits.hpp"
 
 namespace swappable_test {
    static_assert(cjdb::Swappable<int>);

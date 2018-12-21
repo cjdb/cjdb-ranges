@@ -17,10 +17,10 @@
 #define CJDB_CONCEPTS_HPP
 
 // clang-format off
-#include "cjdb/detail/concepts/core.hpp"
-#include "cjdb/detail/concepts/compare.hpp"
-#include "cjdb/detail/concepts/object.hpp"
-#include "cjdb/detail/concepts/callable.hpp"
+#include "cjdb/concepts/core.hpp"
+#include "cjdb/concepts/compare.hpp"
+#include "cjdb/concepts/object.hpp"
+#include "cjdb/concepts/callable.hpp"
 // clang-format on
 
 #endif // CJDB_CONCEPTS_HPP

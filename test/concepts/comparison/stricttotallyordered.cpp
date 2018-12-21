@@ -13,7 +13,7 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 //
-#include "cjdb/detail/concepts/comparison/stricttotallyordered.hpp"
+#include "cjdb/concepts/comparison/stricttotallyordered.hpp"
 
 #include "equalitycomparable.hpp"
 #include "strict_totally_ordered.hpp"

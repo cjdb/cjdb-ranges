@@ -17,8 +17,8 @@
 #define CJDB_FUNCTIONAL_HPP
 
 // clang-format off
-#include "cjdb/detail/functional/invoke.hpp"
-#include "cjdb/detail/functional/comparisons.hpp"
+#include "cjdb/functional/invoke.hpp"
+#include "cjdb/functional/comparisons.hpp"
 // clang-format on
 
 #endif // CJDB_FUNCTIONAL_HPP

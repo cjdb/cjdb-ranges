@@ -13,9 +13,9 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 //
-#include "cjdb/detail/concepts/core/convertibleto.hpp"
+#include "cjdb/concepts/core/convertibleto.hpp"
 
-#include "cjdb/detail/type_traits/expose_type.hpp"
+#include "cjdb/type_traits/expose_type.hpp"
 
 template<typename From, typename To>
 constexpr void models_ConvertibleTo()
