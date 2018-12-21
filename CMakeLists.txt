@@ -24,7 +24,6 @@ set(CMAKE_CXX_EXTENSIONS OFF)
 set(CMAKE_INTERPROCEDURAL_OPTIMIZATION_RELEASE ON)
 
 option(CJDB_ENABLE_CLANG_TIDY "" OFF)
-option(CJDB_AUDIT_CONTRACTS "" OFF)
 
 include("${CMAKE_BINARY_DIR}/conan_paths.cmake" OPTIONAL)
 
@@ -33,7 +32,6 @@ find_package(Catch2 2.3.0 REQUIRED)
 find_package(MicrosoftGSL REQUIRED)
 find_package(Sanitizer COMPONENTS address undefined REQUIRED)
 find_package(Concepts REQUIRED)
-find_package(benchmark)
 
 if (CJDB_ENABLE_CLANG_TIDY)
    find_package(Clang REQUIRED)
