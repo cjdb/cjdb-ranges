@@ -13,7 +13,7 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 //
-#include "cjdb/detail/concepts/core/derivedfrom.hpp"
+#include "cjdb/concepts/core/derivedfrom.hpp"
 
 struct Base1 {};
 struct Derived1 : Base1 {};

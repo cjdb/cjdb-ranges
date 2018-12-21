@@ -8,7 +8,7 @@
 // Derived from: https://github.com/caseycarter/cmcstl2
 // Project home: https://github.com/cjdb/clang-concepts-ranges
 //
-#include "cjdb/detail/concepts/object/copyable.hpp"
+#include "cjdb/concepts/object/copyable.hpp"
 
 #include "../object.hpp"
 

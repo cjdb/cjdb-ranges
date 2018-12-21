@@ -13,14 +13,14 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 //
-#include "cjdb/detail/type_traits/common_type.hpp"
-#include "cjdb/detail/type_traits/common_reference.hpp"
+#include "cjdb/type_traits/common_type.hpp"
+#include "cjdb/type_traits/common_reference.hpp"
 
 #include <array>
 #include <catch2/catch.hpp>
 #include <initializer_list>
 #include <tuple>
-#include "cjdb/detail/type_traits/type_traits.hpp"
+#include "cjdb/type_traits/type_traits.hpp"
 #include <utility>
 
 template <typename>

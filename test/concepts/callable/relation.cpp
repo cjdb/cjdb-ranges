@@ -13,8 +13,8 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 //
-#include "cjdb/detail/concepts/callable/relation.hpp"
-#include "cjdb/detail/concepts/callable/strictweakorder.hpp"
+#include "cjdb/concepts/callable/relation.hpp"
+#include "cjdb/concepts/callable/strictweakorder.hpp"
 
 #include "functions.hpp"
 
