@@ -14,3 +14,14 @@
 # limitations under the License.
 #
 build_test("${prefix}" equal_to ${enable_catch2})
+build_test("${prefix}" not_equal_to ${enable_catch2})
+build_test("${prefix}" less ${enable_catch2})
+# build_test("${prefix}" less_equal ${enable_catch2})
+# build_test("${prefix}" greater_equal ${enable_catch2})
+# build_test("${prefix}" greater ${enable_catch2})
+
+build_test("${prefix}" partial_equal_to ${enable_catch2})
+# build_test("${prefix}" partial_less ${enable_catch2})
+# build_test("${prefix}" partial_less_equal ${enable_catch2})
+# build_test("${prefix}" partial_greater_equal ${enable_catch2})
+# build_test("${prefix}" partial_greater ${enable_catch2})

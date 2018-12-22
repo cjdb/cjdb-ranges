@@ -13,34 +13,31 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 //
-#ifndef CJDB_DETAIL_FUNCTIONAL_RANGECMP_GREATER_HPP
-#define CJDB_DETAIL_FUNCTIONAL_RANGECMP_GREATER_HPP
+#ifndef CJDB_DETAIL_FUNCTIONAL_RANGECMP_LESS_HPP
+#define CJDB_DETAIL_FUNCTIONAL_RANGECMP_LESS_HPP
 
-#include "cjdb/detail/concepts/comparison/strictotallyordered.hpp"
-#include "cjdb/detail/functional/rangecmp/less.hpp"
-#include "cjdb/detail/type_traits/type_traits.hpp"
+#include "cjdb/concepts/comparison/stricttotallyordered.hpp"
+#include "cjdb/type_traits/type_traits.hpp"
 #include <utility>
 
+#include "cjdb/detail/define.hpp"
+
 namespace cjdb::ranges {
-   /// \brief Function object for performing comparisons. Applies operator>.
+   /// \brief Function object for performing comparisons. Applies operator<.
    ///
-   struct greater {
-      /// \returns `true` if `u` is less than `t`, `false` otherwise.
+   struct less {
+      /// \returns `true` if `t` is less than `u`, `false` otherwise.
       ///
       template<class T, StrictTotallyOrderedWith<T> U>
       constexpr bool operator()(T&& t, U&& u) const
       CJDB_NOEXCEPT_RETURN(
-         less{}(std::forward<U>(u), std::forward<T>(t))
+         static_cast<bool>(std::forward<T>(t) < std::forward<U>(u))
       )
 
       using is_transparent = true_type;
    };
-
-   /// \brief
-   /// \note This is an extension.
-   ///
-   template<StrictTotallyOrdered T>
-   using greater_unary = detail_inequality_unary::inequality_unary<T, greater>{};
 } // namespace cjdb::ranges
 
-#endif // CJDB_DETAIL_FUNCTIONAL_RANGECMP_GREATER_HPP
+#include "cjdb/detail/undef.hpp"
+
+#endif // CJDB_DETAIL_FUNCTIONAL_RANGECMP_LESS_HPP

@@ -18,19 +18,38 @@
 #include <catch2/catch.hpp>
 #include "cjdb/concepts/comparison/equalitycomparable.hpp"
 #include <utility>
+#include <vector>
 
 static_assert(cjdb::ranges::equal_to::is_transparent{});
 
 template<class T1, cjdb::EqualityComparableWith<T1> T2>
-void check_equal_to(T1 x, T2 y, T1 not_equal) noexcept
+void check_equal_to(T1 x, T2 y, T1 not_equal)
 {
    REQUIRE(x == y);
    REQUIRE(x != not_equal);
 
-   CHECK(cjdb::ranges::equal_to{}(x, y));
-   CHECK(cjdb::ranges::equal_to{}(y, x));
-   CHECK(not cjdb::ranges::equal_to{}(x, not_equal));
-   CHECK(not cjdb::ranges::equal_to{}(not_equal, x));
+   constexpr auto equal_to = cjdb::ranges::equal_to{};
+   // reflexivity
+   CHECK(equal_to(x, x));
+   CHECK(equal_to(y, y));
+
+   // symmetry
+   CHECK(equal_to(x, y));
+   CHECK(equal_to(y, x));
+
+   // transitivity
+   auto check_transitivity = [equal_to](auto const& a, auto const& b) {
+      auto const copy = a;
+      CHECK(equal_to(a, copy));
+      CHECK(equal_to(b, copy));
+   };
+   check_transitivity(x, y);
+   check_transitivity(y, x);
+
+   CHECK(not equal_to(x, not_equal));
+   CHECK(not equal_to(not_equal, x));
+   CHECK(not equal_to(y, not_equal));
+   CHECK(not equal_to(not_equal, y));
 }
 
 TEST_CASE("Test ranges::equal_to", "[rangecmp.equal_to]") {
