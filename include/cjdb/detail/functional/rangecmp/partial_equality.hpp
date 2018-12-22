@@ -18,6 +18,7 @@
 
 #include "cjdb/concepts/comparison/equalitycomparable.hpp"
 #include "cjdb/detail/functional/rangecmp/partial_storage.hpp"
+#include "cjdb/functional/invoke.hpp"
 #include "cjdb/type_traits/expose_type.hpp"
 #include "cjdb/type_traits/type_traits.hpp"
 #include <utility>
@@ -44,12 +45,12 @@ namespace cjdb::detail_partial_equality {
       /// \breif Applies the equality operation.
       /// \tparam U A type that is equality-comparable with T.
       /// \param other The object to be compared with.
-      /// \returns `Op{}(value(), other)`
+      /// \returns `invoke(Op{}, value(), other)`
       ///
       template<EqualityComparableWith<T> U>
       constexpr bool operator()(U&& other) const noexcept
       {
-         return Op{}(value(), std::forward<U>(other));
+         return invoke(Op{}, value(), std::forward<U>(other));
       }
 
       using is_transparent = bool_constant<is_lvalue_reference_v<T>>;
