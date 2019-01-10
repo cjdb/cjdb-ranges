@@ -17,8 +17,13 @@ from conans import ConanFile, CMake, RunEnvironment, tools
 import os
 
 class RangesConan(ConanFile):
-   name = "amcpp-gp2"
-   version = "1.0"
+   name = "cjdb"
+   version = "0.1"
+   license = "Apache Licence, Version 2.0"
+   author = "Christopher Di Bella <cjdb.ns@gmail.com>"
+   url = "https://github.com/cjdb/clang-concepts-ranges"
+   description = "A GCC and Clang-compatible implementation of Ranges, using C++20 concepts."
+   topics = ("cplusplus", "cpp", "c++20", "ranges")
    settings = "os", "compiler", "arch", "build_type"
    generators = "cmake", "cmake_paths", "virtualrunenv"
    build_requires = "catch2/[>=2.3.0]@bincrafters/stable"
@@ -34,7 +39,8 @@ class RangesConan(ConanFile):
 
       env_build = RunEnvironment(self)
       with tools.environment_append(env_build.vars):
-         cmake.test()
+         if self.should_test:
+            self.run("ctest -j %s --output-on-failure" % tools.cpu_count())
 
    def package_info(self):
       self.env_info.PATH.append(os.path.join(self.package_folder, "bin"))

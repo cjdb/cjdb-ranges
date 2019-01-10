@@ -27,7 +27,7 @@ function(build_impl target)
          -fstack-protector-all>)
 
    target_include_directories("${target}" PUBLIC "${PROJECT_SOURCE_DIR}/include")
-   target_link_libraries("${target}" PUBLIC MicrosoftGSL::gsl Concepts::concept)
+   target_link_libraries("${target}" PUBLIC Concepts::concept)
 endfunction()
 
 # \brief Produces a target name for compiling a translation unit.
