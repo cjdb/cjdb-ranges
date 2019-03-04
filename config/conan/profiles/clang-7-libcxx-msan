@@ -1,0 +1,17 @@
+[settings]
+os=Linux
+os_build=Linux
+arch=x86_64
+arch_build=x86_64
+compiler=clang
+compiler.version=7.0
+compiler.libcxx=libc++
+build_type=Release
+[options]
+[build_requires]
+[env]
+CC=/usr/bin/clang-7
+CXX=/usr/bin/clang++-7
+CXXFLAGS=-fsanitize=memory -fsanitize-memory-track-origins -fno-omit-frame-pointer -stdlib=libc++ -nostdinc++ -cxx-isystem /opt/llvm-7.0-msan/include/c++/v1
+LDFLAGS=-fuse-ld=lld -L /opt/llvm-7.0-msan/lib/ -Wl,-rpath,/opt/llvm-7.0-msan/lib/ -lc++abi
+CONAN_CMAKE_GENERATOR=Ninja
