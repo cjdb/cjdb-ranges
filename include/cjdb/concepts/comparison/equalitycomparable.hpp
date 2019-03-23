@@ -31,9 +31,7 @@ namespace cjdb {
       EqualityComparable<
          common_reference_t<
             remove_reference_t<T> const&,
-            remove_reference_t<U> const&
-         >
-      > and
+            remove_reference_t<U> const&>> and
       detail_weakly_equality_comparable::weakly_equality_comparable_with<T, U>;
       // axiom(remove_reference_t<T> const t, remove_reference_t<U> const u) {
       //    using C = common_reference_t<remove_reference_t<T> const&, remove_reference_t<U> const&>;

@@ -28,17 +28,8 @@ namespace cjdb {
    concept Relation =
       Predicate<R, T, T> and
       Predicate<R, U, U> and
-      CommonReference<remove_reference_t<T> const&, remove_reference_t<U> const&> and
-      Predicate<R,
-         common_reference_t<remove_reference_t<T> const&, remove_reference_t<U> const&>,
-         common_reference_t<remove_reference_t<T> const&, remove_reference_t<U> const&>> and
       Predicate<R, T, U> and
       Predicate<R, U, T>;
-      // axiom(R&& r, T&& t, U&& u) {
-      //    using C = common_reference_t<remove_reference_t<T> const&, remove_reference_t<U> const&>;
-      //    bool(r(t, u)) == bool(r(C(t), C(u)));
-      //    bool(r(u, t)) == bool(r(C(u), C(t)));
-      // }
 } // namespace cjdb
 
 #endif // CJDB_CONCEPTS_CALLABLE_RELATION_HPP
