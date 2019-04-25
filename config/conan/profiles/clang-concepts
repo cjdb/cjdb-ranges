@@ -1,0 +1,16 @@
+[settings]
+os=Linux
+os_build=Linux
+arch=x86_64
+arch_build=x86_64
+compiler=clang
+compiler.version=6.0
+compiler.libcxx=libstdc++11
+build_type=Release
+[options]
+[build_requires]
+[env]
+CC=/opt/clang-concepts/bin/clang
+CXX=/opt/clang-concepts/bin/clang++
+LDFLAGS=-std=c++2a -Xclang -fconcepts-ts
+CONAN_CMAKE_GENERATOR=Ninja

@@ -208,10 +208,12 @@ function(add_impl)
       $<$<OR:$<CXX_COMPILER_ID:Clang>,$<CXX_COMPILER_ID:AppleClang>>:
          -Weverything
          -Wno-unused-command-line-argument
-         -Wno-missing-prototypes
          -Wno-c++98-compat
          -Wno-c++98-compat-pedantic
-         -Wno-padded>)
+         -Wno-missing-prototypes
+         -Wno-missing-variable-declarations
+         -Wno-padded
+         -Wno-redundant-parens>)
    # Warnings as errors
    target_compile_options("${add_target_args_TARGET}" PRIVATE
       $<$<CXX_COMPILER_ID:MSVC>:
