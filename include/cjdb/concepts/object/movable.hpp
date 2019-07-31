@@ -16,18 +16,18 @@
 #ifndef CJDB_CONCEPTS_OBJECT_MOVABLE_HPP
 #define CJDB_CONCEPTS_OBJECT_MOVABLE_HPP
 
-#include "cjdb/concepts/core/assignable.hpp"
-#include "cjdb/concepts/core/moveconstructible.hpp"
+#include "cjdb/concepts/core/assignable_from.hpp"
+#include "cjdb/concepts/core/move_constructible.hpp"
 #include "cjdb/concepts/core/swappable.hpp"
 #include "cjdb/type_traits/type_traits.hpp"
 
 namespace cjdb {
    template<class T>
-   concept Movable =
+   concept movable =
       is_object_v<T> and
-      MoveConstructible<T> and
-      Assignable<T&, T> and
-      Swappable<T>;
+      move_constructible<T> and
+      assignable_from<T&, T> and
+      swappable<T>;
 } // namespace cjdb
 
 #endif // CJDB_CONCEPTS_OBJECT_MOVABLE_HPP

@@ -17,7 +17,7 @@
 #define CJDB_TEST_CONCEPTS_COMPARISON_EQUALITYCOMPARABLE_HPP
 
 #include "boolean.hpp"
-#include "cjdb/concepts/core/same.hpp"
+#include "cjdb/concepts/core/same_as.hpp"
 
 namespace cjdb_test {
    struct equality_comparable4;
@@ -26,7 +26,7 @@ namespace cjdb_test {
    struct equality_comparable1 {
       equality_comparable1() = default;
 
-      template<cjdb::Same<int> T>
+      template<cjdb::same_as<int> T>
       equality_comparable1(T) {}
 
       constexpr friend bool operator==(equality_comparable1, equality_comparable1) noexcept

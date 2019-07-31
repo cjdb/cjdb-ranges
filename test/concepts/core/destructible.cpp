@@ -12,20 +12,20 @@
 
 #include "../object.hpp"
 
-static_assert(cjdb::Destructible<int>);
-static_assert(cjdb::Destructible<const int>);
-static_assert(not cjdb::Destructible<void>);
-static_assert(cjdb::Destructible<int&>);
-static_assert(not cjdb::Destructible<void()>);
-static_assert(cjdb::Destructible<void(*)()>);
-static_assert(cjdb::Destructible<void(&)()>);
-static_assert(not cjdb::Destructible<int[]>);
-static_assert(cjdb::Destructible<int[2]>);
-static_assert(cjdb::Destructible<int(*)[2]>);
-static_assert(cjdb::Destructible<int(&)[2]>);
-static_assert(cjdb::Destructible<moveonly>);
-static_assert(cjdb::Destructible<nonmovable>);
-static_assert(not cjdb::Destructible<indestructible>);
-static_assert(not cjdb::Destructible<throwing_destructor>);
+static_assert(cjdb::destructible<int>);
+static_assert(cjdb::destructible<const int>);
+static_assert(not cjdb::destructible<void>);
+static_assert(cjdb::destructible<int&>);
+static_assert(not cjdb::destructible<void()>);
+static_assert(cjdb::destructible<void(*)()>);
+static_assert(cjdb::destructible<void(&)()>);
+static_assert(not cjdb::destructible<int[]>);
+static_assert(cjdb::destructible<int[2]>);
+static_assert(cjdb::destructible<int(*)[2]>);
+static_assert(cjdb::destructible<int(&)[2]>);
+static_assert(cjdb::destructible<moveonly>);
+static_assert(cjdb::destructible<nonmovable>);
+static_assert(not cjdb::destructible<indestructible>);
+static_assert(not cjdb::destructible<throwing_destructor>);
 
 int main() {}

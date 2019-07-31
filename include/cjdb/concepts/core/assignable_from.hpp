@@ -16,8 +16,8 @@
 #ifndef CJDB_CONCEPTS_CORE_ASSIGNABLE_HPP
 #define CJDB_CONCEPTS_CORE_ASSIGNABLE_HPP
 
-#include "cjdb/concepts/core/commonreference.hpp"
-#include "cjdb/concepts/core/same.hpp"
+#include "cjdb/concepts/core/common_reference_with.hpp"
+#include "cjdb/concepts/core/same_as.hpp"
 #include "cjdb/type_traits/type_traits.hpp"
 
 namespace cjdb {
@@ -26,7 +26,7 @@ namespace cjdb {
    ///      `LHS`,
    ///    - `rhs` be an expression such that `decltype((rhs))` is `RHS`, and
    ///    - `rcopy` be a distinct object that is equal to `rhs`.
-   /// `Assignable<LHS, RHS>` is satisfied only if
+   /// `assignable_from<LHS, RHS>` is satisfied only if
    ///    - `addressof(lhs = rhs) == addressof(lcopy)`.
    ///    - After evaluating `lhs = rhs`:
    ///       - `lhs` is equal to `rcopy`, unless `rhs` is a non-`const` xvalue that refers to
@@ -42,12 +42,12 @@ namespace cjdb {
    /// \see [lib.types.movedfrom]
    ///
    template<class LHS, class RHS>
-   concept Assignable =
+   concept assignable_from =
       is_lvalue_reference_v<LHS> and
-      CommonReference<const remove_reference_t<LHS>&, const remove_reference_t<RHS>&> and
+      common_reference_with<const remove_reference_t<LHS>&, const remove_reference_t<RHS>&> and
       requires(LHS lhs, RHS&& rhs) {
          lhs = std::forward<RHS>(rhs);
-         requires Same<decltype(lhs = std::forward<RHS>(rhs)), LHS>;
+         requires same_as<decltype(lhs = std::forward<RHS>(rhs)), LHS>;
       };
 } // namespace cjdb
 

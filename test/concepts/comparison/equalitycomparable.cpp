@@ -13,48 +13,48 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 //
-#include "cjdb/concepts/comparison/equalitycomparable.hpp"
+#include "cjdb/concepts/comparison/equality_comparable.hpp"
 
 #include "equalitycomparable.hpp"
 #include "vector.hpp"
 
 constexpr void check_EqualityComparable() noexcept
 {
-   using cjdb::EqualityComparable;
+   using cjdb::equality_comparable;
 
-   static_assert(EqualityComparable<int>);
-   static_assert(EqualityComparable<double>);
-   static_assert(EqualityComparable<std::vector<int>>);
+   static_assert(equality_comparable<int>);
+   static_assert(equality_comparable<double>);
+   static_assert(equality_comparable<std::vector<int>>);
 
-   static_assert(EqualityComparable<cjdb_test::equality_comparable1>);
-   static_assert(EqualityComparable<cjdb_test::equality_comparable2>);
-   static_assert(EqualityComparable<cjdb_test::equality_comparable3>);
-   static_assert(EqualityComparable<cjdb_test::equality_comparable4>);
+   static_assert(equality_comparable<cjdb_test::equality_comparable1>);
+   static_assert(equality_comparable<cjdb_test::equality_comparable2>);
+   static_assert(equality_comparable<cjdb_test::equality_comparable3>);
+   static_assert(equality_comparable<cjdb_test::equality_comparable4>);
 
-   static_assert(not EqualityComparable<void>);
-   static_assert(not EqualityComparable<cjdb_test::not_equality_comparable1>);
-   static_assert(not EqualityComparable<cjdb_test::not_equality_comparable2>);
-   static_assert(not EqualityComparable<cjdb_test::not_equality_comparable3>);
+   static_assert(not equality_comparable<void>);
+   static_assert(not equality_comparable<cjdb_test::not_equality_comparable1>);
+   static_assert(not equality_comparable<cjdb_test::not_equality_comparable2>);
+   static_assert(equality_comparable<cjdb_test::not_equality_comparable3>);
 }
 
 constexpr void check_EqualityComparableWith() noexcept
 {
-   using cjdb::EqualityComparableWith;
+   using cjdb::equality_comparable_with;
 
-   static_assert(EqualityComparableWith<int, int&>);
-   static_assert(EqualityComparableWith<int, long>);
-   static_assert(EqualityComparableWith<int, long&>);
-   static_assert(EqualityComparableWith<int, double>);
-   static_assert(EqualityComparableWith<cjdb_test::equality_comparable1, int>);
-   static_assert(EqualityComparableWith<cjdb_test::equality_comparable1&, cjdb_test::equality_comparable3>);
-   static_assert(EqualityComparableWith<cjdb_test::equality_comparable1, cjdb_test::equality_comparable4>);
+   static_assert(equality_comparable_with<int, int&>);
+   static_assert(equality_comparable_with<int, long>);
+   static_assert(equality_comparable_with<int, long&>);
+   static_assert(equality_comparable_with<int, double>);
+   static_assert(equality_comparable_with<cjdb_test::equality_comparable1, int>);
+   static_assert(equality_comparable_with<cjdb_test::equality_comparable1&, cjdb_test::equality_comparable3>);
+   static_assert(equality_comparable_with<cjdb_test::equality_comparable1, cjdb_test::equality_comparable4>);
 
-   static_assert(not EqualityComparableWith<void, int>);
-   static_assert(not EqualityComparableWith<std::vector<int>, int>);
-   static_assert(not EqualityComparableWith<std::vector<int>, std::vector<int>::size_type>);
-   static_assert(not EqualityComparableWith<cjdb_test::equality_comparable1, long>);
-   static_assert(not EqualityComparableWith<cjdb_test::equality_comparable1, cjdb_test::equality_comparable2>);
-   static_assert(not EqualityComparableWith<cjdb_test::equality_comparable2, cjdb_test::equality_comparable3>);
+   static_assert(not equality_comparable_with<void, int>);
+   static_assert(not equality_comparable_with<std::vector<int>, int>);
+   static_assert(not equality_comparable_with<std::vector<int>, std::vector<int>::size_type>);
+   static_assert(not equality_comparable_with<cjdb_test::equality_comparable1, long>);
+   static_assert(not equality_comparable_with<cjdb_test::equality_comparable1, cjdb_test::equality_comparable2>);
+   static_assert(not equality_comparable_with<cjdb_test::equality_comparable2, cjdb_test::equality_comparable3>);
 }
 
 int main()

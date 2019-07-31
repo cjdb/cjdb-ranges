@@ -20,12 +20,12 @@
 #include "cjdb/type_traits/type_traits.hpp"
 
 namespace cjdb {
-   /// \brief The `Constructible` concept constrains the initialization of a variable of a given
+   /// \brief The `constructible_from` concept constrains the initialization of a variable of a given
    ///        type with a particular set of argument types.
    /// \see [concepts.constructible]
    ///
    template<class T, class... Args>
-   concept Constructible = Destructible<T> and is_constructible_v<T, Args...>;
+   concept constructible_from = destructible<T> and is_constructible_v<T, Args...>;
 } // namespace cjdb
 
 #endif // CJDB_CONCEPTS_CORE_CONSTRUCTIBLE_HPP

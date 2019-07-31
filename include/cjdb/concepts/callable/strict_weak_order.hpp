@@ -19,7 +19,7 @@
 #include "cjdb/concepts/callable/relation.hpp"
 
 namespace cjdb {
-   /// \brief A `Relation` satisfies `StrictWeakOrder` only if it imposes a strict weak ordering on
+   /// \brief A `relation` satisfies `strict_weak_order` only if it imposes a strict weak ordering on
    ///        its arguments.
    ///
    /// The term _strict_ refers to the requirement of an irreflexive relation (`!comp(x, x)` for all
@@ -39,10 +39,10 @@ namespace cjdb {
    /// \see [concept.strictweakorder]
    ///
    template<class R, class T, class U>
-   concept StrictWeakOrder = Relation<R, T, U>;
+   concept strict_weak_order = relation<R, T, U>;
    // axiom(R&& r, T&& a, U&& b) {
    //    common_reference_t<remove_reference_t<T> const&, remove_reference_t<U> const&> c;
-   //    Relation<T, U> comp;
+   //    relation<T, U> comp;
    //
    //    not comp(a, a);
    //    not comp(b, b);

@@ -16,7 +16,7 @@
 #ifndef CJDB_CONCEPTS_CALLABLE_RELATION_HPP
 #define CJDB_CONCEPTS_CALLABLE_RELATION_HPP
 
-#include "cjdb/concepts/core/commonreference.hpp"
+#include "cjdb/concepts/core/common_reference_with.hpp"
 #include "cjdb/concepts/callable/predicate.hpp"
 #include "cjdb/type_traits/common_reference.hpp"
 #include "cjdb/type_traits/type_traits.hpp"
@@ -25,20 +25,11 @@ namespace cjdb {
    /// \see [concept.relation]
    ///
    template<class R, class T, class U>
-   concept Relation =
-      Predicate<R, T, T> and
-      Predicate<R, U, U> and
-      CommonReference<remove_reference_t<T> const&, remove_reference_t<U> const&> and
-      Predicate<R,
-         common_reference_t<remove_reference_t<T> const&, remove_reference_t<U> const&>,
-         common_reference_t<remove_reference_t<T> const&, remove_reference_t<U> const&>> and
-      Predicate<R, T, U> and
-      Predicate<R, U, T>;
-      // axiom(R&& r, T&& t, U&& u) {
-      //    using C = common_reference_t<remove_reference_t<T> const&, remove_reference_t<U> const&>;
-      //    bool(r(t, u)) == bool(r(C(t), C(u)));
-      //    bool(r(u, t)) == bool(r(C(u), C(t)));
-      // }
+   concept relation =
+      predicate<R, T, T> and
+      predicate<R, U, U> and
+      predicate<R, T, U> and
+      predicate<R, U, T>;
 } // namespace cjdb
 
 #endif // CJDB_CONCEPTS_CALLABLE_RELATION_HPP

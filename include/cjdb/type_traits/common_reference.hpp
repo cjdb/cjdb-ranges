@@ -16,7 +16,7 @@
 #ifndef CJDB_TYPE_TRAITS_COMMON_REFERENCE_HPP
 #define CJDB_TYPE_TRAITS_COMMON_REFERENCE_HPP
 
-#include "cjdb/concepts/core/same.hpp"
+#include "cjdb/concepts/core/same_as.hpp"
 #include "cjdb/type_traits/common_type.hpp"
 #include "cjdb/type_traits/expose_type.hpp"
 

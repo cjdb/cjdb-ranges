@@ -20,14 +20,14 @@
 #include <utility>
 
 namespace cjdb {
-   /// \brief The `Invocable` concept specifies a relationship between a callable type `F` and a set
+   /// \brief The `invocable` concept specifies a relationship between a callable type `F` and a set
    ///        of argument types `Args...` which can be evaluated by the library function `invoke`.
-   /// \note  A function that generates random numbers can satisfy `Invocable`, since the `invoke`
+   /// \note  A function that generates random numbers can satisfy `invocable`, since the `invoke`
    ///        function call expression is not required to be equality-preserving.
    /// \see [concept.invocable]
    ///
    template<class F, class... Args>
-   concept Invocable = requires(F&& f, Args&&... args) {
+   concept invocable = requires(F&& f, Args&&... args) {
       invoke(std::forward<F>(f), std::forward<Args>(args)...); // not required to be equality-preserving
    };
 } // namespace cjdb

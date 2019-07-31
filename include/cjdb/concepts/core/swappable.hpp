@@ -26,13 +26,13 @@ namespace cjdb {
    /// \see [concept.swappable]
    ///
    template<class T>
-   concept Swappable = requires(T& a, T& b) { ranges::swap(a, b); };
+   concept swappable = requires(T& a, T& b) { ranges::swap(a, b); };
 
    /// \see [concept.swappable]
    ///
    template<class T, class U>
-   concept SwappableWith =
-      CommonReference<T, U> and
+   concept swappable_with =
+      common_reference_with<T, U> and
       requires(T&& t, U&& u) {
          ranges::swap(std::forward<T>(t), std::forward<T>(t));
          ranges::swap(std::forward<U>(u), std::forward<U>(u));

@@ -13,18 +13,18 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 //
-#include "cjdb/concepts/callable/regularinvocable.hpp"
+#include "cjdb/concepts/callable/regular_invocable.hpp"
 
 #include "functions.hpp"
 #include <memory>
 #include <utility>
 
 template<class F, class... Args>
-requires cjdb::RegularInvocable<F, Args...>
+requires cjdb::regular_invocable<F, Args...>
 constexpr void models_RegularInvocable(F, Args&&...) noexcept {}
 
 template<class F, class... Args>
-requires (not cjdb::RegularInvocable<F, Args...>)
+requires (not cjdb::regular_invocable<F, Args...>)
 constexpr void not_RegularInvocable(F, Args&&...) noexcept {}
 
 int main()

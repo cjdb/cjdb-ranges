@@ -13,39 +13,39 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 //
-#include "cjdb/concepts/core/convertibleto.hpp"
+#include "cjdb/concepts/core/convertible_to.hpp"
 
 #include "cjdb/type_traits/expose_type.hpp"
 
 template<typename From, typename To>
 constexpr void models_ConvertibleTo()
 {
-   static_assert(cjdb::ConvertibleTo<From, To>);
-   static_assert(cjdb::ConvertibleTo<From, To const>);
-   static_assert(cjdb::ConvertibleTo<From, To const&>);
+   static_assert(cjdb::convertible_to<From, To>);
+   static_assert(cjdb::convertible_to<From, To const>);
+   static_assert(cjdb::convertible_to<From, To const&>);
 
-   static_assert(cjdb::ConvertibleTo<From const, To>);
-   static_assert(cjdb::ConvertibleTo<From const, To const>);
-   static_assert(cjdb::ConvertibleTo<From const, To const&>);
+   static_assert(cjdb::convertible_to<From const, To>);
+   static_assert(cjdb::convertible_to<From const, To const>);
+   static_assert(cjdb::convertible_to<From const, To const&>);
 
-   static_assert(cjdb::ConvertibleTo<From&, To>);
-   static_assert(cjdb::ConvertibleTo<From&, To const>);
+   static_assert(cjdb::convertible_to<From&, To>);
+   static_assert(cjdb::convertible_to<From&, To const>);
 
    if constexpr (std::is_base_of_v<To, From>) { // NOLINT(readability-braces-around-statements)
-      static_assert(cjdb::ConvertibleTo<From&, To&>);
+      static_assert(cjdb::convertible_to<From&, To&>);
    }
 
-   static_assert(cjdb::ConvertibleTo<From&, To const&>);
+   static_assert(cjdb::convertible_to<From&, To const&>);
 
-   static_assert(cjdb::ConvertibleTo<From const&, To>);
-   static_assert(cjdb::ConvertibleTo<From const&, To const>);
-   static_assert(cjdb::ConvertibleTo<From const&, To const&>);
+   static_assert(cjdb::convertible_to<From const&, To>);
+   static_assert(cjdb::convertible_to<From const&, To const>);
+   static_assert(cjdb::convertible_to<From const&, To const&>);
 }
 
 int main()
 {
    {
-      static_assert(cjdb::ConvertibleTo<void, void>);
+      static_assert(cjdb::convertible_to<void, void>);
       models_ConvertibleTo<int, int>();
    }
    {
@@ -78,17 +78,17 @@ int main()
 
       struct public_derived : public base {};
       models_ConvertibleTo<public_derived, base>();
-      static_assert(not cjdb::ConvertibleTo<base, public_derived>);
+      static_assert(not cjdb::convertible_to<base, public_derived>);
 
       struct protected_derived : protected base {};
-      static_assert(not cjdb::ConvertibleTo<protected_derived, base>);
-      static_assert(not cjdb::ConvertibleTo<protected_derived, public_derived>);
-      static_assert(not cjdb::ConvertibleTo<base, protected_derived>);
+      static_assert(not cjdb::convertible_to<protected_derived, base>);
+      static_assert(not cjdb::convertible_to<protected_derived, public_derived>);
+      static_assert(not cjdb::convertible_to<base, protected_derived>);
 
       struct private_derived : private base {};
-      static_assert(not cjdb::ConvertibleTo<private_derived, base>);
-      static_assert(not cjdb::ConvertibleTo<private_derived, protected_derived>);
-      static_assert(not cjdb::ConvertibleTo<private_derived, public_derived>);
-      static_assert(not cjdb::ConvertibleTo<base, private_derived>);
+      static_assert(not cjdb::convertible_to<private_derived, base>);
+      static_assert(not cjdb::convertible_to<private_derived, protected_derived>);
+      static_assert(not cjdb::convertible_to<private_derived, public_derived>);
+      static_assert(not cjdb::convertible_to<base, private_derived>);
    }
 }

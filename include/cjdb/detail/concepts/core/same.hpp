@@ -19,7 +19,7 @@
 #include "cjdb/type_traits/type_traits.hpp"
 
 namespace cjdb::detail_same {
-   /// \brief Concept equivalent of is_same_v to enable Same<T, U> subsuming Same<U, T> and vice
+   /// \brief Concept equivalent of is_same_v to enable same_as<T, U> subsuming same_as<U, T> and vice
    ///        versa.
    ///
    template<class T, class U>

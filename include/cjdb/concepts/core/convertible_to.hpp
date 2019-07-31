@@ -19,7 +19,7 @@
 #include "cjdb/type_traits/type_traits.hpp"
 
 namespace cjdb {
-   /// \brief The `ConvertibleTo` concept requires an expression of a particular type and value
+   /// \brief The `convertible_to` concept requires an expression of a particular type and value
    ///        category to be both implicitly and explicitly convertible to some other type.
    ///
    /// The implicit and explicit conversions are required to produce equal results.
@@ -33,7 +33,7 @@ namespace cjdb {
    /// ```
    /// and let `f` be a function with no arguments and return type `From` such that `f()` is
    /// equality-preserving.
-   /// `ConvertibleTo<From, To>` is satisfied only if:
+   /// `convertible_to<From, To>` is satisfied only if:
    ///     - `To` is not an object or reference-to-object type, or `static_­cast<To>(f())` is equal
    ///       to `test(f)`.
    ///     - `From` is not a reference-to-object type, or
@@ -46,7 +46,7 @@ namespace cjdb {
    /// \see [lib.types.movedfrom]
    ///
    template<class From, class To>
-   concept ConvertibleTo =
+   concept convertible_to =
       is_convertible_v<From, To> and
       requires(From (&f)()) {
          static_cast<To>(f());

@@ -17,18 +17,18 @@
 #define CJDB_CONCEPTS_COMPARISON_STRICTTOTALLYORDERED_HPP
 
 #include "cjdb/concepts/comparison/boolean.hpp"
-#include "cjdb/concepts/comparison/equalitycomparable.hpp"
+#include "cjdb/concepts/comparison/equality_comparable.hpp"
 #include "cjdb/type_traits/type_traits.hpp"
 
 namespace cjdb {
    template<class T>
-   concept StrictTotallyOrdered =
-      EqualityComparable<T> and
+   concept totally_ordered =
+      equality_comparable<T> and
       requires(remove_reference_t<T> const& a, remove_reference_t<T> const& b) {
-         a < b;   requires Boolean<decltype(a < b)>;
-         a > b;   requires Boolean<decltype(a > b)>;
-         a <= b;  requires Boolean<decltype(a <= b)>;
-         a >= b;  requires Boolean<decltype(a >= b)>;
+         { a <  b } -> convertible_to<bool>;
+         { a >  b } -> convertible_to<bool>;
+         { a <= b } -> convertible_to<bool>;
+         { a >= b } -> convertible_to<bool>;
 
          // axiom(remove_reference_t<T> const c) {
          //    {bool(a < b)}   -> not bool(a > b)
@@ -48,25 +48,22 @@ namespace cjdb {
       };
 
    template<class T, class U>
-   concept StrictTotallyOrderedWith =
-      StrictTotallyOrdered<T> and
-      StrictTotallyOrdered<U> and
-      CommonReference<remove_reference_t<T> const&, remove_reference_t<U> const&> and
-      StrictTotallyOrdered<
-         common_reference_t<
-            remove_reference_t<T> const&,
-            remove_reference_t<U> const&>
-         > and
-      EqualityComparableWith<T, U> and
+   concept totally_ordered_with =
+      totally_ordered<T> and
+      totally_ordered<U> and
+      common_reference_with<remove_reference_t<T> const&, remove_reference_t<U> const&> and
+      totally_ordered<
+         common_reference_t<remove_reference_t<T> const&, remove_reference_t<U> const&>> and
+      equality_comparable_with<T, U> and
       requires(remove_reference_t<T> const& t, remove_reference_t<U> const& u) {
-         t < u;   requires Boolean<decltype(t < u)>;
-         t > u;   requires Boolean<decltype(t > u)>;
-         t <= u;  requires Boolean<decltype(t <= u)>;
-         t >= u;  requires Boolean<decltype(t >= u)>;
-         u < t;   requires Boolean<decltype(u < t)>;
-         u > t;   requires Boolean<decltype(u > t)>;
-         u <= t;  requires Boolean<decltype(u <= t)>;
-         u >= t;  requires Boolean<decltype(u >= t)>;
+         { t <  u } -> convertible_to<bool>;
+         { t >  u } -> convertible_to<bool>;
+         { t <= u } -> convertible_to<bool>;
+         { t >= u } -> convertible_to<bool>;
+         { u <  t } -> convertible_to<bool>;
+         { u >  t } -> convertible_to<bool>;
+         { u <= t } -> convertible_to<bool>;
+         { u >= t } -> convertible_to<bool>;
 
          // axiom {
          //    using C = common_reference_t<remove_reference_t<T> const&, remove_reference_t<U> const&>>;

@@ -19,25 +19,25 @@
 #include <memory>
 #include <vector>
 
-using cjdb::Boolean;
+using cjdb::boolean;
 
 int main()
 {
-   static_assert(Boolean<bool>);
-   static_assert(Boolean<int>);
-   static_assert(Boolean<cjdb_test::boolean>);
-   static_assert(Boolean<cjdb_test::explicitly_constructible_boolean>);
+   static_assert(boolean<bool>);
+   static_assert(boolean<int>);
+   static_assert(boolean<cjdb_test::boolean>);
+   static_assert(boolean<cjdb_test::explicitly_constructible_boolean>);
 
-   static_assert(not Boolean<std::vector<int>>);
-   static_assert(not Boolean<int*>);
-   static_assert(not Boolean<std::unique_ptr<int>>);
-   static_assert(not Boolean<cjdb_test::explicitly_convertible_boolean>);
-   static_assert(not Boolean<cjdb_test::bad_not_boolean>);
-   static_assert(not Boolean<cjdb_test::bad_and_boolean1>);
-   static_assert(not Boolean<cjdb_test::bad_and_boolean2>);
-   static_assert(not Boolean<cjdb_test::bad_and_boolean3>);
-   static_assert(not Boolean<cjdb_test::bad_or_boolean1>);
-   static_assert(not Boolean<cjdb_test::bad_or_boolean2>);
-   static_assert(not Boolean<cjdb_test::bad_or_boolean3>);
-   static_assert(not Boolean<cjdb_test::bad_equality_boolean>);
+   static_assert(not boolean<std::vector<int>>);
+   static_assert(not boolean<int*>);
+   static_assert(not boolean<std::unique_ptr<int>>);
+   static_assert(not boolean<cjdb_test::explicitly_convertible_boolean>);
+   static_assert(not boolean<cjdb_test::bad_not_boolean>);
+   static_assert(not boolean<cjdb_test::bad_and_boolean1>);
+   static_assert(not boolean<cjdb_test::bad_and_boolean2>);
+   static_assert(not boolean<cjdb_test::bad_and_boolean3>);
+   static_assert(not boolean<cjdb_test::bad_or_boolean1>);
+   static_assert(not boolean<cjdb_test::bad_or_boolean2>);
+   static_assert(not boolean<cjdb_test::bad_or_boolean3>);
+   static_assert(not boolean<cjdb_test::bad_equality_boolean>);
 }

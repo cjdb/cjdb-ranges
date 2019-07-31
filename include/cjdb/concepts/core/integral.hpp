@@ -22,21 +22,21 @@ namespace cjdb {
    /// \see [concepts.integral]
    ///
    template<class T>
-   concept Integral = is_integral_v<T>;
+   concept integral = is_integral_v<T>;
 
    /// \see [concepts.integral]
-   /// \note SignedIntegral<T> can be satisfied even by types that are not signed integral types
+   /// \note signed_integral<T> can be satisfied even by types that are not signed integral types
    ///       (6.7.1); for example, char.
    ///
    template<class T>
-   concept SignedIntegral = Integral<T> and is_signed_v<T>;
+   concept signed_integral = integral<T> and is_signed_v<T>;
 
    /// \see [concepts.integral]
-   /// \note UnsignedIntegral<T> can be satisfied even by types that are not unsigned integral types
+   /// \note unsigned_integral<T> can be satisfied even by types that are not unsigned integral types
    ///       (6.7.1); for example, bool.
    ///
    template<class T>
-   concept UnsignedIntegral = Integral<T> and !SignedIntegral<T>;
+   concept unsigned_integral = integral<T> and !signed_integral<T>;
 } // namespace cjdb
 
 #endif // CJDB_CONCEPTS_CORE_INTEGRAL_HPP

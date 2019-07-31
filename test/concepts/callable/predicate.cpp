@@ -18,11 +18,11 @@
 #include "functions.hpp"
 
 template<class F, class... Args>
-requires cjdb::Predicate<F, Args...>
+requires cjdb::predicate<F, Args...>
 constexpr void models_Predicate(F, Args&&...) noexcept {}
 
 template<class F, class... Args>
-requires (not cjdb::Predicate<F, Args...>)
+requires (not cjdb::predicate<F, Args...>)
 constexpr void not_Predicate(F, Args&&...) noexcept {}
 
 int main()

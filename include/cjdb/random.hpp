@@ -29,12 +29,12 @@ namespace cjdb {
    /// \see [rand.req.urng]
    ///
    template <class G>
-   concept UniformRandomBitGenerator =
-      Invocable<G&> and
-      UnsignedIntegral<invoke_result_t<G&>> and
+   concept uniform_random_bit_generator =
+      invocable<G&> and
+      unsigned_integral<invoke_result_t<G&>> and
       requires {
-         G::min(); requires Same<decltype(G::min()), invoke_result_t<G&>>;
-         G::max(); requires Same<decltype(G::max()), invoke_result_t<G&>>;
+         G::min(); requires same_as<decltype(G::min()), invoke_result_t<G&>>;
+         G::max(); requires same_as<decltype(G::max()), invoke_result_t<G&>>;
       };
 } // namespace cjdb
 

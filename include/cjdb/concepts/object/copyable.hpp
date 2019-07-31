@@ -16,13 +16,13 @@
 #ifndef CJDB_CONCEPTS_OBJECT_COPYABLE_HPP
 #define CJDB_CONCEPTS_OBJECT_COPYABLE_HPP
 
-#include "cjdb/concepts/core/assignable.hpp"
-#include "cjdb/concepts/core/copyconstructible.hpp"
+#include "cjdb/concepts/core/assignable_from.hpp"
+#include "cjdb/concepts/core/copy_constructible.hpp"
 #include "cjdb/concepts/object/movable.hpp"
 
 namespace cjdb {
    template<class T>
-   concept Copyable = CopyConstructible<T> and Movable<T> and Assignable<T&, const T&>;
+   concept copyable = copy_constructible<T> and movable<T> and assignable_from<T&, const T&>;
 } // namespace cjdb
 
 #endif // CJDB_CONCEPTS_OBJECT_COPYABLE_HPP

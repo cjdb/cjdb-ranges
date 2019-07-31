@@ -20,10 +20,10 @@
 // Note that header inclusion order reflects how concepts are laid out in the Standard.
 //
 #include "cjdb/concepts/callable/invocable.hpp"
-#include "cjdb/concepts/callable/regularinvocable.hpp"
+#include "cjdb/concepts/callable/regular_invocable.hpp"
 #include "cjdb/concepts/callable/predicate.hpp"
 #include "cjdb/concepts/callable/relation.hpp"
-#include "cjdb/concepts/callable/strictweakorder.hpp"
+#include "cjdb/concepts/callable/strict_weak_order.hpp"
 // clang-format on
 
 #endif // CJDB_CONCEPTS_CALLABLE_HPP

@@ -10,30 +10,30 @@
 //
 #include "cjdb/concepts/core/swappable.hpp"
 
-#include "cjdb/concepts/core/same.hpp"
+#include "cjdb/concepts/core/same_as.hpp"
 #include <catch2/catch.hpp>
 #include "cjdb/type_traits/type_traits.hpp"
 
 namespace swappable_test {
-   static_assert(cjdb::Swappable<int>);
-   static_assert(cjdb::SwappableWith<int&, int&>);
-   static_assert(cjdb::Swappable<int[4]>);
-   static_assert(cjdb::SwappableWith<int(&)[4], int(&)[4]>);
-   static_assert(not cjdb::SwappableWith<int, int>);
-   static_assert(not cjdb::SwappableWith<int&, double&>);
-   static_assert(not cjdb::SwappableWith<int(&)[4], bool(&)[4]>);
-   static_assert(not cjdb::Swappable<int[]>);
-   static_assert(not cjdb::Swappable<int[][4]>);
+   static_assert(cjdb::swappable<int>);
+   static_assert(cjdb::swappable_with<int&, int&>);
+   static_assert(cjdb::swappable<int[4]>);
+   static_assert(cjdb::swappable_with<int(&)[4], int(&)[4]>);
+   static_assert(not cjdb::swappable_with<int, int>);
+   static_assert(not cjdb::swappable_with<int&, double&>);
+   static_assert(not cjdb::swappable_with<int(&)[4], bool(&)[4]>);
+   static_assert(not cjdb::swappable<int[]>);
+   static_assert(not cjdb::swappable<int[][4]>);
 
    static_assert(noexcept(cjdb::ranges::swap(std::declval<int&>(), std::declval<int&>())));
    static_assert(std::is_nothrow_swappable_with_v<int&, int&>);
    static_assert(std::is_nothrow_swappable_with_v<int(&)[42], int(&)[42]>);
 
-   static_assert(cjdb::Swappable<int[3][4]>);
-   static_assert(cjdb::SwappableWith<int(&)[3][4], int(&)[3][4]>);
-   static_assert(cjdb::Swappable<int[3][4][1][2]>);
-   static_assert(cjdb::SwappableWith<int(&)[3][4][1][2], int(&)[3][4][1][2]>);
-   static_assert(not cjdb::SwappableWith<int(&)[3][4][1][2], int(&)[4][4][1][2]>);
+   static_assert(cjdb::swappable<int[3][4]>);
+   static_assert(cjdb::swappable_with<int(&)[3][4], int(&)[3][4]>);
+   static_assert(cjdb::swappable<int[3][4][1][2]>);
+   static_assert(cjdb::swappable_with<int(&)[3][4][1][2], int(&)[3][4][1][2]>);
+   static_assert(not cjdb::swappable_with<int(&)[3][4][1][2], int(&)[4][4][1][2]>);
    static_assert(std::is_nothrow_swappable_with_v<int(&)[6][7], int(&)[6][7]>);
 
    // Has std:: as an associated namespace
@@ -42,7 +42,7 @@ namespace swappable_test {
       unswappable(const unswappable&) = delete;
       unswappable(unswappable&&) = delete;
    };
-   static_assert(not cjdb::SwappableWith<unswappable&, unswappable&>);
+   static_assert(not cjdb::swappable_with<unswappable&, unswappable&>);
 
    namespace detail::constrained_swappable {
       // Has a constrained swap findable via ADL:
@@ -53,15 +53,15 @@ namespace swappable_test {
       };
       template <class T>
       concept ConstrainedSwappable =
-         cjdb::Same<T, constrained_swappable>;
+         cjdb::same_as<T, constrained_swappable>;
       template <ConstrainedSwappable T, ConstrainedSwappable U>
       void swap(T&, U&) {}
       template <ConstrainedSwappable T>
       void swap(T &, T &) {}
    } // namespace detail::constrained_swappable
    using detail::constrained_swappable::constrained_swappable;
-   static_assert(cjdb::SwappableWith<constrained_swappable&, constrained_swappable&>);
-   static_assert(not cjdb::SwappableWith<const volatile constrained_swappable&, const volatile constrained_swappable&>);
+   static_assert(cjdb::swappable_with<constrained_swappable&, constrained_swappable&>);
+   static_assert(not cjdb::swappable_with<const volatile constrained_swappable&, const volatile constrained_swappable&>);
 
    namespace {
       struct A { // NOLINT(cppcoreguidelines-special-member-functions)
@@ -71,7 +71,7 @@ namespace swappable_test {
          [[maybe_unused]] friend void swap(A&, A&) noexcept {}
       };
 
-      static_assert(cjdb::Swappable<A>);
+      static_assert(cjdb::swappable<A>);
       static_assert(noexcept(cjdb::ranges::swap(std::declval<A&>(), std::declval<A&>())));
       static_assert(std::is_nothrow_swappable_with_v<A&, A&>);
    } // namespace
@@ -81,7 +81,7 @@ namespace swappable_test {
          [[maybe_unused]] friend void swap(B&, B&) {}
       };
 
-      static_assert(cjdb::Swappable<B>);
+      static_assert(cjdb::swappable<B>);
       static_assert(not noexcept(cjdb::ranges::swap(std::declval<B&>(), std::declval<B&>())));
       static_assert(not std::is_nothrow_swappable_with_v<B&, B&>);
    } // namespace
@@ -91,12 +91,12 @@ namespace swappable_test {
 
 namespace ranges = cjdb::ranges;
 
-template<class T, cjdb::SwappableWith<T> U>
+template<class T, cjdb::swappable_with<T> U>
 void value_swap(T&& t, U&& u) {
 ranges::swap(std::forward<T>(t), std::forward<U>(u));
 }
 
-template<cjdb::Swappable T>
+template<cjdb::swappable T>
 void lv_swap(T& t1, T& t2) {
 ranges::swap(t1, t2);
 }
@@ -104,7 +104,7 @@ ranges::swap(t1, t2);
 // From [concept.swappable]/5
 namespace N {
    struct A { int m; };
-   struct Proxy { 
+   struct Proxy {
       A* a;
       Proxy(A& a) : a{&a} {} // NOLINT(google-explicit-constructor)
       friend void swap(Proxy&& x, Proxy&& y) {
@@ -118,7 +118,7 @@ namespace N {
    void swap(Proxy p, A& x) { swap(x, p); } // satisfy symmetry requirement
 }
 
-TEST_CASE("Test cjdb::Swappable", "[concepts.swappable]") {
+TEST_CASE("Test cjdb::swappable", "[concepts.swappable]") {
    { // From [concept.swappable]/5
       int i = 1, j = 2;
       lv_swap(i, j);
@@ -133,7 +133,7 @@ TEST_CASE("Test cjdb::Swappable", "[concepts.swappable]") {
       int a[2][2] = {{0, 1}, {2, 3}};
       int b[2][2] = {{4, 5}, {6, 7}};
 
-      static_assert(cjdb::SwappableWith<decltype((a)),decltype((b))>);
+      static_assert(cjdb::swappable_with<decltype((a)),decltype((b))>);
       cjdb::ranges::swap(a, b);
       static_assert(noexcept(cjdb::ranges::swap(a, b)));
 

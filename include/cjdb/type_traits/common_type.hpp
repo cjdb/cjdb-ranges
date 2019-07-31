@@ -17,8 +17,8 @@
 #define CJDB_TYPE_TRAITS_COMMON_TYPE_HPP
 
 #include "cjdb/type_traits/expose_type.hpp"
-#include "cjdb/concepts/core/convertibleto.hpp"
-#include "cjdb/concepts/core/same.hpp"
+#include "cjdb/concepts/core/convertible_to.hpp"
+#include "cjdb/concepts/core/same_as.hpp"
 #include "cjdb/type_traits/type_traits.hpp"
 #include <utility>
 
@@ -98,8 +98,8 @@ namespace cjdb {
 
    template<class T1, class T2>
    requires
-      (not Same<T1, decay_t<T1>>) or
-      (not Same<T2, decay_t<T2>>)
+      (not same_as<T1, decay_t<T1>>) or
+      (not same_as<T2, decay_t<T2>>)
    struct common_type<T1, T2> : detail_common_type::common_type2<decay_t<T1>, decay_t<T2>>
    {};
 

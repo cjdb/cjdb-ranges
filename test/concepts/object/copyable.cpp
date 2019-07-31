@@ -12,13 +12,13 @@
 
 #include "../object.hpp"
 
-static_assert(cjdb::Copyable<int>);
-static_assert(not cjdb::Copyable<const int>);
-static_assert(cjdb::Copyable<double>);
-static_assert(not cjdb::Copyable<void>);
-static_assert(cjdb::Copyable<copyable>);
-static_assert(not cjdb::Copyable<moveonly>);
-static_assert(not cjdb::Copyable<nonmovable>);
-static_assert(not cjdb::Copyable<copyonly>);
+static_assert(cjdb::copyable<int>);
+static_assert(not cjdb::copyable<const int>);
+static_assert(cjdb::copyable<double>);
+static_assert(not cjdb::copyable<void>);
+static_assert(cjdb::copyable<copyable>);
+static_assert(not cjdb::copyable<moveonly>);
+static_assert(not cjdb::copyable<nonmovable>);
+static_assert(not cjdb::copyable<copyonly>);
 
 int main() {}

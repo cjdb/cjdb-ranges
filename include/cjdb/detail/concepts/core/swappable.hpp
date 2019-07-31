@@ -16,10 +16,10 @@
 #ifndef CJDB_DETAIL_CONCEPTS_CORE_SWAPPABLE_HPP
 #define CJDB_DETAIL_CONCEPTS_CORE_SWAPPABLE_HPP
 
-#include "cjdb/concepts/core/assignable.hpp"
-#include "cjdb/concepts/core/commonreference.hpp"
-#include "cjdb/concepts/core/moveconstructible.hpp"
-#include "cjdb/concepts/core/same.hpp"
+#include "cjdb/concepts/core/assignable_from.hpp"
+#include "cjdb/concepts/core/common_reference_with.hpp"
+#include "cjdb/concepts/core/move_constructible.hpp"
+#include "cjdb/concepts/core/same_as.hpp"
 #include "cjdb/type_traits/type_traits.hpp"
 #include <utility>
 
@@ -87,8 +87,8 @@ namespace cjdb::ranges::detail_swap {
       template<class T>
       requires
          (not is_customised<T&, T&>) and
-         MoveConstructible<T> and
-         Assignable<T&, T>
+         move_constructible<T> and
+         assignable_from<T&, T>
       constexpr void operator()(T& x, T& y) const
       CJDB_NOEXCEPT_RETURN(
          (void)(y = swap_fn::exachange(x, std::move(y)))

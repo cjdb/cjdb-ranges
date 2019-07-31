@@ -17,14 +17,14 @@
 #define CJDB_TEST_CONCEPTS_COMPARISON_STRICT_TOTALLY_ORDERED_HPP
 
 #include "boolean.hpp"
-#include "cjdb/concepts/core/same.hpp"
+#include "cjdb/concepts/core/same_as.hpp"
 
 namespace cjdb_test {
    class strict_totally_ordered1 {
    public:
       strict_totally_ordered1() = default;
 
-      template<cjdb::Same<int> T>
+      template<cjdb::same_as<int> T>
       constexpr strict_totally_ordered1(T x)
          : x{x}
       {}

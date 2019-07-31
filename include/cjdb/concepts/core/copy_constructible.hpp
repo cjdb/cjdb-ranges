@@ -16,25 +16,25 @@
 #ifndef CJDB_CONCEPTS_CORE_COPYCONSTRUCTIBLE_HPP
 #define CJDB_CONCEPTS_CORE_COPYCONSTRUCTIBLE_HPP
 
-#include "cjdb/concepts/core/constructible.hpp"
-#include "cjdb/concepts/core/moveconstructible.hpp"
+#include "cjdb/concepts/core/constructible_from.hpp"
+#include "cjdb/concepts/core/move_constructible.hpp"
 
 namespace cjdb {
    /// If `T` is an object type, then let `v` be an lvalue of type (possibly `const`) `T` or an
-   /// rvalue of type `const T`. `CopyConstructible<T>` is satisfied only if
+   /// rvalue of type `const T`. `copy_constructible<T>` is satisfied only if
    ///    - After the definition `T u = v;`, `u` is equal to `v`.
    ///    - `T(v)` is equal to `v`.
    /// \see [concepts.copyconstructible]
    ///
    template<class T>
-   concept CopyConstructible =
-      MoveConstructible<T> and
-      Constructible<T, T&> and
-      ConvertibleTo<T&, T> and
-      Constructible<T, const T&> and
-      ConvertibleTo<const T&, T> and
-      Constructible<T, const T> and
-      ConvertibleTo<const T, T>;
+   concept copy_constructible =
+      move_constructible<T> and
+      constructible_from<T, T&> and
+      convertible_to<T&, T> and
+      constructible_from<T, const T&> and
+      convertible_to<const T&, T> and
+      constructible_from<T, const T> and
+      convertible_to<const T, T>;
 } // namespace cjdb
 
 #endif // CJDB_CONCEPTS_CORE_COPYCONSTRUCTIBLE_HPP

@@ -16,12 +16,12 @@
 #ifndef CJDB_CONCEPTS_OBJECT_SEMIREGULAR_HPP
 #define CJDB_CONCEPTS_OBJECT_SEMIREGULAR_HPP
 
-#include "cjdb/concepts/core/defaultconstructible.hpp"
+#include "cjdb/concepts/core/default_initializable.hpp"
 #include "cjdb/concepts/object/copyable.hpp"
 
 namespace cjdb {
    template<class T>
-   concept Semiregular = Copyable<T> and DefaultConstructible<T>;
+   concept semiregular = copyable<T> and default_initializable<T>;
 } // namespace cjdb
 
 #endif // CJDB_CONCEPTS_OBJECT_SEMIREGULAR_HPP

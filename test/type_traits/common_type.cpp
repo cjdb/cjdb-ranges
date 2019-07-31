@@ -539,7 +539,7 @@ namespace libstdcpp_tests {
    constexpr auto is_type = false;
 
    template<Trait T, typename Expected>
-      requires cjdb::Same<cjdb::_t<T>, Expected>
+      requires cjdb::same_as<cjdb::_t<T>, Expected>
    constexpr auto is_type<T, Expected> = true;
 
    // Inspection types:

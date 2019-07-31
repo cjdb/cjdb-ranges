@@ -13,21 +13,18 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 //
-#ifndef CJDB_CONCEPTS_CORE_DERIVEDFROM_HPP
-#define CJDB_CONCEPTS_CORE_DERIVEDFROM_HPP
+#ifndef CJDB_CONCEPTS_CORE_SAME_HPP
+#define CJDB_CONCEPTS_CORE_SAME_HPP
 
-#include "cjdb/type_traits/type_traits.hpp"
+#include "cjdb/detail/concepts/core/same.hpp"
 
 namespace cjdb {
-   /// \brief `DerivedFrom<Derived, Base>` is satisfied if and only if `Derived` is publicly and
-   ///        unambiguously derived from `Base`, or `Derived` and `Base` are the same class type
-   ///        ignoring cv-qualifiers
-   /// \see [concept.derivedfrom]
+   /// \brief Checks if two types are exactly the same (including cv-qualifiers and ref-qualifiers).
+   /// \note `same_as<T, U>` subsumes `same_as<U, T>` and vice versa.
+   /// \see [concept.same]
    ///
-   template<class Derived, class Base>
-   concept DerivedFrom =
-      is_base_of_v<Base, Derived> and
-      is_convertible_v<const volatile Derived*, const volatile Base*>;
+   template<class T, class U>
+   concept same_as = detail_same::is_same<T, U> and detail_same::is_same<U, T>;
 } // namespace cjdb
 
-#endif // CJDB_CONCEPTS_CORE_DERIVEDFROM_HPP
+#endif // CJDB_CONCEPTS_CORE_SAME_HPP
