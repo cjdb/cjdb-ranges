@@ -35,7 +35,7 @@ namespace cjdb_test {
       /// \returns invoke(r, a, b) == invoke(r, b, a)
       ///
       template<class A, class B>
-      requires cjdb::Relation<R, A, B>
+      requires cjdb::relation<R, A, B>
       constexpr bool symmetric(A const& a, B const& b) noexcept
       { return symmetric_impl(*this, a, b); }
 
@@ -45,7 +45,7 @@ namespace cjdb_test {
       /// \returns invoke(r, a, b) == invoke(r, b, a)
       ///
       template<class A, class B>
-      requires cjdb::Relation<R, A, B>
+      requires cjdb::relation<R, A, B>
       constexpr bool symmetric(A const& a, B const& b) const noexcept
       { return symmetric_impl(*this, a, b); }
    private:

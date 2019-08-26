@@ -16,42 +16,42 @@
 #include "cjdb/concepts.hpp"
 
 // Core
-using cjdb::Same;
-using cjdb::DerivedFrom;
-using cjdb::ConvertibleTo;
-using cjdb::CommonReference;
-using cjdb::Common;
-using cjdb::Integral;
-using cjdb::SignedIntegral;
-using cjdb::UnsignedIntegral;
-using cjdb::Assignable;
-using cjdb::Swappable;
-using cjdb::SwappableWith;
-using cjdb::Destructible;
-using cjdb::Constructible;
-using cjdb::DefaultConstructible;
-using cjdb::MoveConstructible;
-using cjdb::CopyConstructible;
+using cjdb::same_as;
+using cjdb::derived_from;
+using cjdb::convertible_to;
+using cjdb::common_reference_with;
+using cjdb::common_with;
+using cjdb::integral;
+using cjdb::signed_integral;
+using cjdb::unsigned_integral;
+using cjdb::assignable_from;
+using cjdb::swappable;
+using cjdb::swappable_with;
+using cjdb::destructible;
+using cjdb::constructible_from;
+using cjdb::default_initializable;
+using cjdb::move_constructible;
+using cjdb::copy_constructible;
 
 // Compare
-using cjdb::Boolean;
-using cjdb::EqualityComparable;
-using cjdb::EqualityComparableWith;
-using cjdb::StrictTotallyOrdered;
-using cjdb::StrictTotallyOrderedWith;
+using cjdb::boolean;
+using cjdb::equality_comparable;
+using cjdb::equality_comparable_with;
+using cjdb::totally_ordered;
+using cjdb::totally_ordered_with;
 
 // Object
-using cjdb::Movable;
-using cjdb::Copyable;
-using cjdb::Semiregular;
-using cjdb::Regular;
+using cjdb::movable;
+using cjdb::copyable;
+using cjdb::semiregular;
+using cjdb::regular;
 
 // Callable
-using cjdb::Invocable;
-using cjdb::RegularInvocable;
-using cjdb::Predicate;
-using cjdb::Relation;
-using cjdb::StrictWeakOrder;
+using cjdb::invocable;
+using cjdb::regular_invocable;
+using cjdb::predicate;
+using cjdb::relation;
+using cjdb::strict_weak_order;
 
 int main()
 {}

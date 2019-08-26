@@ -16,7 +16,7 @@
 #ifndef CJDB_FUNCTIONAL_RANGECMP_PARTIAL_INEQUALITY_HPP
 #define CJDB_FUNCTIONAL_RANGECMP_PARTIAL_INEQUALITY_HPP
 
-#include "cjdb/concepts/comparison/stricttotallyordered.hpp"
+#include "cjdb/concepts/comparison/totally_ordered.hpp"
 #include "cjdb/type_traits/type_traits.hpp"
 #include <utility>
 
@@ -32,7 +32,7 @@ namespace cjdb::detail_partial_inequality {
    /// partial function. Users must be careful to ensure that use of the partial function does not
    /// exceed the lifetime of the original object.
    ///
-   template<StrictTotallyOrdered T, class Op>
+   template<totally_ordered T, class Op>
    class partial_inequality : private detail_partial_storage::partial_function_storage<T> {
       using base = detail_partial_storage::partial_function_storage<T>;
    public:
@@ -44,7 +44,7 @@ namespace cjdb::detail_partial_inequality {
       /// \param other The object to be compared with.
       /// \returns `invoke(Op{}, value(), other)`
       ///
-      template<StrictTotallyOrderedWith<T> U>
+      template<totally_ordered_with<T> U>
       constexpr bool operator()(U&& other) const noexcept
       {
          return invoke(Op{}, value(), std::forward<U>(other));

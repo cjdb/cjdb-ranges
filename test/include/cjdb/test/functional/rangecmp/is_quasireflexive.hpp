@@ -34,7 +34,7 @@ namespace cjdb_test {
       /// \returns invoke(r, a, a)
       ///
       template<class A, class B>
-      requires cjdb::Relation<R, A, B>
+      requires cjdb::relation<R, A, B>
       constexpr bool quasireflexive(A const& a, B const& b) noexcept
       { return quasireflexive_impl(*this, std::move(a), std::move(b)); }
 
@@ -43,7 +43,7 @@ namespace cjdb_test {
       /// \returns invoke(r, a, a)
       ///
       template<class A, class B>
-      requires cjdb::Relation<R, A, B>
+      requires cjdb::relation<R, A, B>
       constexpr bool quasireflexive(A const& a, B const& b) const noexcept
       { return quasireflexive_impl(*this, std::move(a), std::move(b)); }
    private:

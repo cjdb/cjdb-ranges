@@ -12,17 +12,17 @@
 
 #include "../object.hpp"
 
-static_assert(cjdb::Regular<int>);
-static_assert(cjdb::Regular<double>);
-static_assert(not cjdb::Regular<void>);
-static_assert(not cjdb::Regular<int&>);
-static_assert(not cjdb::Regular<semiregular>);
-static_assert(cjdb::Regular<regular>);
-static_assert(not cjdb::Regular<copyable>);
-static_assert(not cjdb::Regular<moveonly>);
-static_assert(not cjdb::Regular<nonmovable>);
-static_assert(not cjdb::Regular<copyonly>);
-static_assert(not cjdb::Regular<explicit_move>);
-static_assert(not cjdb::Regular<explicit_copy>);
+static_assert(cjdb::regular<int>);
+static_assert(cjdb::regular<double>);
+static_assert(not cjdb::regular<void>);
+static_assert(not cjdb::regular<int&>);
+static_assert(not cjdb::regular<semiregular>);
+static_assert(cjdb::regular<regular>);
+static_assert(not cjdb::regular<copyable>);
+static_assert(not cjdb::regular<moveonly>);
+static_assert(not cjdb::regular<nonmovable>);
+static_assert(not cjdb::regular<copyonly>);
+static_assert(not cjdb::regular<explicit_move>);
+static_assert(not cjdb::regular<explicit_copy>);
 
 int main() {}

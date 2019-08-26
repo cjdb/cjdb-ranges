@@ -12,17 +12,17 @@
 
 #include "../object.hpp"
 
-static_assert(cjdb::Semiregular<int>);
-static_assert(cjdb::Semiregular<double>);
-static_assert(not cjdb::Semiregular<void>);
-static_assert(not cjdb::Semiregular<int&>);
-static_assert(cjdb::Semiregular<semiregular>);
-static_assert(cjdb::Semiregular<regular>);
-static_assert(cjdb::Semiregular<copyable>);
-static_assert(not cjdb::Semiregular<moveonly>);
-static_assert(not cjdb::Semiregular<nonmovable>);
-static_assert(not cjdb::Semiregular<copyonly>);
-static_assert(not cjdb::Semiregular<explicit_move>);
-static_assert(not cjdb::Semiregular<explicit_copy>);
+static_assert(cjdb::semiregular<int>);
+static_assert(cjdb::semiregular<double>);
+static_assert(not cjdb::semiregular<void>);
+static_assert(not cjdb::semiregular<int&>);
+static_assert(cjdb::semiregular<semiregular>);
+static_assert(cjdb::semiregular<regular>);
+static_assert(cjdb::semiregular<copyable>);
+static_assert(not cjdb::semiregular<moveonly>);
+static_assert(not cjdb::semiregular<nonmovable>);
+static_assert(not cjdb::semiregular<copyonly>);
+static_assert(not cjdb::semiregular<explicit_move>);
+static_assert(not cjdb::semiregular<explicit_copy>);
 
 int main() {}

@@ -16,7 +16,7 @@
 #define DOCTEST_CONFIG_IMPLEMENT_WITH_MAIN
 #include "cjdb/functional/rangecmp/not_equal_to.hpp"
 
-#include "cjdb/concepts/comparison/equalitycomparable.hpp"
+#include "cjdb/concepts/comparison/equality_comparable.hpp"
 #include "cjdb/test/functional/rangecmp/is_irreflexive.hpp"
 #include "cjdb/test/functional/rangecmp/is_symmetric.hpp"
 #include "cjdb/test/constexpr_check.hpp"

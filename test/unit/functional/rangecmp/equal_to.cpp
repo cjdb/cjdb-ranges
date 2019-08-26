@@ -16,7 +16,7 @@
 #define DOCTEST_CONFIG_IMPLEMENT_WITH_MAIN
 #include "cjdb/functional/rangecmp/equal_to.hpp"
 
-#include "cjdb/concepts/comparison/equalitycomparable.hpp"
+#include "cjdb/concepts/comparison/equality_comparable.hpp"
 #include "cjdb/test/functional/rangecmp/is_equivalence.hpp"
 #include "cjdb/test/constexpr_check.hpp"
 #include <doctest.h>

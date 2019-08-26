@@ -9,8 +9,9 @@
 //
 // Project home: https://github.com/caseycarter/cmcstl2
 //
+#define DOCTEST_CONFIG_IMPLEMENT_WITH_MAIN
 #include "cjdb/functional/invoke.hpp"
-#include <catch2/catch.hpp>
+#include <doctest.h>
 #include <memory>
 #include <utility>
 
@@ -30,7 +31,7 @@ struct A {
 constexpr int f() noexcept { return 13; }
 constexpr int g(int i) { return 2 * i + 1; }
 
-TEST_CASE("Checks invoke", "[func.invoke]") { // NOLINT(readability-function-size)
+TEST_CASE("[func.invoke]") { // NOLINT(readability-function-size)
 	CHECK(cjdb::invoke(f) == 13);
 	CHECK(noexcept(cjdb::invoke(f) == 13));
 	CHECK(cjdb::invoke(g, 2) == 5);

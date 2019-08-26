@@ -184,51 +184,16 @@ function(add_impl)
          /w14905 # wide string literal cast to 'LPSTR'
          /w14906 # string literal cast to 'LPWSTR'
          /w14928 # illegal copy-initialization; more than one user-defined conversion has been implicitly applied
-         >
-      $<$<CXX_COMPILER_ID:GNU>:
-         -Wall
-         -Wextra
-         -Wcast-align
-         -Wconversion
-         -Wdouble-promotion
-         -Wnon-virtual-dtor
-         -Wold-style-cast
-         -Woverloaded-virtual
-         -Wpedantic
-         -Wshadow
-         -Wsign-conversion
-         -Wsign-promo
-         -Wunused
-         -Wformat=2
-         -Wodr
-         -Wno-attributes
-         $<$<NOT:$<VERSION_LESS:${CMAKE_CXX_COMPILER_VERSION},6>>:
-            -Wnull-dereference>
-         >
-      $<$<OR:$<CXX_COMPILER_ID:Clang>,$<CXX_COMPILER_ID:AppleClang>>:
-         -Weverything
-         -Wno-unused-command-line-argument
-         -Wno-c++98-compat
-         -Wno-c++98-compat-pedantic
-         -Wno-missing-prototypes
-         -Wno-missing-variable-declarations
-         -Wno-padded
-         -Wno-redundant-parens>)
+         >)
    # Warnings as errors
    target_compile_options("${add_target_args_TARGET}" PRIVATE
       $<$<CXX_COMPILER_ID:MSVC>:
-         /WX>
-      $<$<OR:$<CXX_COMPILER_ID:GNU>,$<CXX_COMPILER_ID:Clang>,$<CXX_COMPILER_ID:AppleClang>>:
-         -Werror>)
+         /WX>)
    # Strict C++
    target_compile_options("${add_target_args_TARGET}" PRIVATE
       $<$<CXX_COMPILER_ID:MSVC>:
             /permissive-
-      >
-      $<$<OR:$<CXX_COMPILER_ID:GNU>,$<CXX_COMPILER_ID:Clang>,$<CXX_COMPILER_ID:AppleClang>>:
-         -pedantic
-      >
-   )
+      >)
    # Compiler features
    target_compile_options("${add_target_args_TARGET}" PRIVATE
       $<$<OR:$<CXX_COMPILER_ID:GNU>,$<CXX_COMPILER_ID:Clang>,$<CXX_COMPILER_ID:AppleClang>>:

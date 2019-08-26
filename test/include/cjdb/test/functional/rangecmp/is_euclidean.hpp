@@ -30,12 +30,12 @@ namespace cjdb_test {
       {}
 
       template<class A, class B>
-      requires cjdb::Relation<R, A, B>
+      requires cjdb::relation<R, A, B>
       constexpr bool euclidean(A const& a, B const& b, A const& c) noexcept
       { return euclidean_impl(*this, a, b, c); }
 
       template<class A, class B>
-      requires cjdb::Relation<R, A, B>
+      requires cjdb::relation<R, A, B>
       constexpr bool euclidean(A const& a, B const& b, A const& c) const noexcept
       { return euclidean_impl(*this, a, b, c); }
    private:

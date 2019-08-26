@@ -1,2 +1,0 @@
-bincrafters https://api.bintray.com/conan/bincrafters/public-conan
-catchorg https://api.bintray.com/conan/catchorg/Catch2 

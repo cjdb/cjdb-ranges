@@ -37,7 +37,7 @@ namespace cjdb_test {
       ///          false otherwise.
       ///
       template<class A, class B>
-      requires cjdb::Relation<R, A, B>
+      requires cjdb::relation<R, A, B>
       constexpr bool transitive(A const& a, B const& b, A const& c) noexcept
       { return transitive_impl(*this, a, b, c); }
 
@@ -49,7 +49,7 @@ namespace cjdb_test {
       ///          false otherwise.
       ///
       template<class A, class B>
-      requires cjdb::Relation<R, A, B>
+      requires cjdb::relation<R, A, B>
       constexpr bool transitive(A const& a, B const& b, A const& c) const noexcept
       { return transitive_impl(*this, a, b, c); }
    private:
@@ -58,11 +58,21 @@ namespace cjdb_test {
       {
          auto const aRb = self(a, b);
          // [[assert: aRb]];
-         if (not aRb) { throw std::logic_error{"not aRb"}; }
+         if (not aRb) {
+#pragma clang diagnostic push
+#pragma clang diagnostic ignored "-Wexceptions"
+            throw std::logic_error{"not aRb"};
+#pragma clang diagnostic pop
+         }
 
          auto const bRc = self(b, c);
          // [[assert: bRc]];
-         if (not bRc) { throw std::logic_error{"not bRc"}; }
+         if (not bRc) {
+#pragma clang diagnostic push
+#pragma clang diagnostic ignored "-Wexceptions"
+            throw std::logic_error{"not bRc"};
+#pragma clang diagnostic pop
+         }
 
          auto const aRc = self(a, c);
          return aRb and bRc and aRc;

@@ -15,10 +15,10 @@
 //
 #include "cjdb/concepts/comparison/equality_comparable.hpp"
 
-#include "equalitycomparable.hpp"
+#include "equality_comparable.hpp"
 #include "vector.hpp"
 
-constexpr void check_EqualityComparable() noexcept
+constexpr void check_equality_comparable() noexcept
 {
    using cjdb::equality_comparable;
 
@@ -37,7 +37,7 @@ constexpr void check_EqualityComparable() noexcept
    static_assert(equality_comparable<cjdb_test::not_equality_comparable3>);
 }
 
-constexpr void check_EqualityComparableWith() noexcept
+constexpr void check_equality_comparable_with() noexcept
 {
    using cjdb::equality_comparable_with;
 
@@ -59,6 +59,6 @@ constexpr void check_EqualityComparableWith() noexcept
 
 int main()
 {
-   check_EqualityComparable();
-   check_EqualityComparableWith();
+   check_equality_comparable();
+   check_equality_comparable_with();
 }

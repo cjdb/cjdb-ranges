@@ -34,7 +34,7 @@ namespace cjdb_test {
       /// \returns invoke(r, a, a)
       ///
       template<class A>
-      requires cjdb::Relation<R, A, A>
+      requires cjdb::relation<R, A, A>
       constexpr bool irreflexive(A const& a) noexcept
       { return irreflexive_impl(*this, a); }
 
@@ -43,7 +43,7 @@ namespace cjdb_test {
       /// \returns invoke(r, a, a)
       ///
       template<class A>
-      requires cjdb::Relation<R, A, A>
+      requires cjdb::relation<R, A, A>
       constexpr bool irreflexive(A const& a) const noexcept
       { return irreflexive_impl(*this, a); }
    private:

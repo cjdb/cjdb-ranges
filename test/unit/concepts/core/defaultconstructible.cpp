@@ -8,31 +8,31 @@
 // Derived from: https://github.com/caseycarter/cmcstl2
 // Project home: https://github.com/cjdb/clang-concepts-ranges
 //
-#include "cjdb/concepts/core/defaultconstructible.hpp"
+#include "cjdb/concepts/core/default_initializable.hpp"
 
 #include "../object.hpp"
 #include <initializer_list>
 
-static_assert(cjdb::DefaultConstructible<int>);
-static_assert(cjdb::DefaultConstructible<int const>);
-static_assert(not cjdb::DefaultConstructible<int&>);
-static_assert(not cjdb::DefaultConstructible<int const&>);
-static_assert(not cjdb::DefaultConstructible<int()>);
-static_assert(not cjdb::DefaultConstructible<int(&)()>);
-static_assert(cjdb::DefaultConstructible<double>);
-static_assert(not cjdb::DefaultConstructible<void>);
-static_assert(not cjdb::DefaultConstructible<int[]>);
-static_assert(cjdb::DefaultConstructible<int[2]>);
-static_assert(not cjdb::DefaultConstructible<nondefaultconstructible>);
+static_assert(cjdb::default_initializable<int>);
+static_assert(cjdb::default_initializable<int const>);
+static_assert(not cjdb::default_initializable<int&>);
+static_assert(not cjdb::default_initializable<int const&>);
+static_assert(not cjdb::default_initializable<int()>);
+static_assert(not cjdb::default_initializable<int(&)()>);
+static_assert(cjdb::default_initializable<double>);
+static_assert(not cjdb::default_initializable<void>);
+static_assert(not cjdb::default_initializable<int[]>);
+static_assert(cjdb::default_initializable<int[2]>);
+static_assert(not cjdb::default_initializable<nondefaultconstructible>);
 
 // It's hard to catch explicit default constructors, see
 // http://www.open-std.org/jtc1/sc22/wg21/docs/cwg_active.html#1518.
-// static_assert(not cjdb::DefaultConstructible<explicit_default>);
-static_assert(cjdb::DefaultConstructible<explicit_move>);
-static_assert(cjdb::DefaultConstructible<explicit_copy>);
-static_assert(not cjdb::DefaultConstructible<deleted_default>);
+// static_assert(not cjdb::default_initializable<explicit_default>);
+static_assert(cjdb::default_initializable<explicit_move>);
+static_assert(cjdb::default_initializable<explicit_copy>);
+static_assert(not cjdb::default_initializable<deleted_default>);
 
-static_assert(cjdb::DefaultConstructible<std::initializer_list<int>>);
-static_assert(cjdb::DefaultConstructible<int*>);
+static_assert(cjdb::default_initializable<std::initializer_list<int>>);
+static_assert(cjdb::default_initializable<int*>);
 
 int main() {}

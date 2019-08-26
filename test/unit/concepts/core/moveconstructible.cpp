@@ -8,30 +8,30 @@
 // Derived from: https://github.com/caseycarter/cmcstl2
 // Project home: https://github.com/cjdb/clang-concepts-ranges
 //
-#include "cjdb/concepts/core/moveconstructible.hpp"
+#include "cjdb/concepts/core/move_constructible.hpp"
 
 #include "../object.hpp"
 
-static_assert(not cjdb::MoveConstructible<void>);
-static_assert(cjdb::MoveConstructible<int>);
-static_assert(cjdb::MoveConstructible<const int>);
-static_assert(not cjdb::MoveConstructible<int[4]>);
-static_assert(not cjdb::MoveConstructible<void()>);
-static_assert(cjdb::MoveConstructible<int &>);
-static_assert(cjdb::MoveConstructible<int &&>);
-static_assert(cjdb::MoveConstructible<const int &>);
-static_assert(cjdb::MoveConstructible<const int &&>);
+static_assert(not cjdb::move_constructible<void>);
+static_assert(cjdb::move_constructible<int>);
+static_assert(cjdb::move_constructible<const int>);
+static_assert(not cjdb::move_constructible<int[4]>);
+static_assert(not cjdb::move_constructible<void()>);
+static_assert(cjdb::move_constructible<int &>);
+static_assert(cjdb::move_constructible<int &&>);
+static_assert(cjdb::move_constructible<const int &>);
+static_assert(cjdb::move_constructible<const int &&>);
 
-static_assert(cjdb::MoveConstructible<copyable>);
-static_assert(cjdb::MoveConstructible<moveonly>);
-static_assert(not cjdb::MoveConstructible<nonmovable>);
-static_assert(not cjdb::MoveConstructible<copyonly>);
-static_assert(not cjdb::MoveConstructible<explicit_move>);
-static_assert(cjdb::MoveConstructible<explicit_copy>);
+static_assert(cjdb::move_constructible<copyable>);
+static_assert(cjdb::move_constructible<moveonly>);
+static_assert(not cjdb::move_constructible<nonmovable>);
+static_assert(not cjdb::move_constructible<copyonly>);
+static_assert(not cjdb::move_constructible<explicit_move>);
+static_assert(cjdb::move_constructible<explicit_copy>);
 
-static_assert(cjdb::MoveConstructible<nonmovable &>);
-static_assert(cjdb::MoveConstructible<nonmovable &&>);
-static_assert(cjdb::MoveConstructible<const nonmovable &>);
-static_assert(cjdb::MoveConstructible<const nonmovable &&>);
+static_assert(cjdb::move_constructible<nonmovable &>);
+static_assert(cjdb::move_constructible<nonmovable &&>);
+static_assert(cjdb::move_constructible<const nonmovable &>);
+static_assert(cjdb::move_constructible<const nonmovable &&>);
 
 int main() {}

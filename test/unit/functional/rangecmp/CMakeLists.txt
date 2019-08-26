@@ -17,17 +17,12 @@ add_cjdblib_test(FILENAME equal_to.cpp
    PRIVATE_INCLUDE
       "${CMAKE_SOURCE_DIR}/test/include"
    PRIVATE_LINKAGE
-      doctest::doctest
-   PRIVATE_COMPILER_OPTIONS
-      -Wno-error=terminate) # trigger warning as a reminder to enable [[assert]] when it becomes available
-
+      doctest::doctest)
 add_cjdblib_test(FILENAME not_equal_to.cpp
    PRIVATE_INCLUDE
       "${CMAKE_SOURCE_DIR}/test/include"
    PRIVATE_LINKAGE
-      doctest::doctest
-   PRIVATE_COMPILER_OPTIONS
-      -Wno-error=terminate) # trigger warning as a reminder to enable [[assert]] when it becomes available
+      doctest::doctest)
 
 add_cjdblib_test(FILENAME less.cpp
    PRIVATE_INCLUDE
@@ -36,8 +31,7 @@ add_cjdblib_test(FILENAME less.cpp
       doctest::doctest
    PRIVATE_COMPILER_OPTIONS
       -Wno-double-promotion
-      -Wno-conversion
-      -Wno-error=terminate) # trigger warning as a reminder to enable [[assert]] when it becomes available
+      -Wno-conversion)
 
 add_cjdblib_test(FILENAME greater.cpp
    PRIVATE_INCLUDE
@@ -46,8 +40,7 @@ add_cjdblib_test(FILENAME greater.cpp
       doctest::doctest
    PRIVATE_COMPILER_OPTIONS
       -Wno-double-promotion
-      -Wno-conversion
-      -Wno-error=terminate) # trigger warning as a reminder to enable [[assert]] when it becomes available
+      -Wno-conversion)
 
 add_cjdblib_test(FILENAME less_equal.cpp
    PRIVATE_INCLUDE
@@ -56,8 +49,7 @@ add_cjdblib_test(FILENAME less_equal.cpp
       doctest::doctest
    PRIVATE_COMPILER_OPTIONS
       -Wno-double-promotion
-      -Wno-conversion
-      -Wno-error=terminate) # trigger warning as a reminder to enable [[assert]] when it becomes available
+      -Wno-conversion)
 
 add_cjdblib_test(FILENAME greater_equal.cpp
    PRIVATE_INCLUDE
@@ -66,8 +58,7 @@ add_cjdblib_test(FILENAME greater_equal.cpp
       doctest::doctest
    PRIVATE_COMPILER_OPTIONS
       -Wno-double-promotion
-      -Wno-conversion
-      -Wno-error=terminate) # trigger warning as a reminder to enable [[assert]] when it becomes available
+      -Wno-conversion)
 
 add_cjdblib_test(FILENAME partial_equal_to.cpp PRIVATE_LINKAGE doctest::doctest)
 # add_cjdblib_test(FILENAME partial_not_equal_to.cpp PRIVATE_LINKAGE doctest::doctest)

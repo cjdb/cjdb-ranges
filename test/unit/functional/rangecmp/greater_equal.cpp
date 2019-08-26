@@ -16,7 +16,7 @@
 #define DOCTEST_CONFIG_IMPLEMENT_WITH_MAIN
 #include "cjdb/functional/rangecmp/greater_equal.hpp"
 
-#include "cjdb/concepts/comparison/stricttotallyordered.hpp"
+#include "cjdb/concepts/comparison/totally_ordered.hpp"
 #include "cjdb/test/functional/rangecmp/is_partial_order.hpp"
 #include "cjdb/test/constexpr_check.hpp"
 #include <doctest.h>

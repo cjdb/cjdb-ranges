@@ -17,7 +17,7 @@
 #define CJDB_TEST_FUNCTIONAL_RANGECMP_IS_ASYMMETRIC_HPP
 
 #include "cjdb/concepts/callable/relation.hpp"
-#include "cjdb/concepts/comparison/equalitycomparable.hpp"
+#include "cjdb/concepts/comparison/equality_comparable.hpp"
 #include "cjdb/test/constexpr_check.hpp"
 #include "cjdb/test/functional/rangecmp/is_antisymmetric.hpp"
 #include "cjdb/test/functional/rangecmp/is_irreflexive.hpp"
@@ -34,13 +34,13 @@ namespace cjdb_test {
          , is_antisymmetric<R>(r)
       {}
 
-      template<class A, cjdb::EqualityComparableWith<A> B>
-      requires cjdb::Relation<R, A, B>
+      template<class A, cjdb::equality_comparable_with<A> B>
+      requires cjdb::relation<R, A, B>
       constexpr bool asymmetric(A const& a, B const& b) noexcept
       { return asymmetric_impl(*this, a, b); }
 
-      template<class A, cjdb::EqualityComparableWith<A> B>
-      requires cjdb::Relation<R, A, B>
+      template<class A, cjdb::equality_comparable_with<A> B>
+      requires cjdb::relation<R, A, B>
       constexpr bool asymmetric(A const& a, B const& b) const noexcept
       { return asymmetric_impl(*this, a, b); }
    private:

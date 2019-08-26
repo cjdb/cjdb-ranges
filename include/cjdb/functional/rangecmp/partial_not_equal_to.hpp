@@ -16,7 +16,7 @@
 #ifndef CJDB_FUNCTIONAL_RANGECMP_PARTIAL_NOT_EQUAL_TO_HPP
 #define CJDB_FUNCTIONAL_RANGECMP_PARTIAL_NOT_EQUAL_TO_HPP
 
-#include "cjdb/concepts/comparison/equalitycomparable.hpp"
+#include "cjdb/concepts/comparison/equality_comparable.hpp"
 #include "cjdb/detail/functional/rangecmp/partial_equality.hpp"
 #include "cjdb/functional/rangecmp/not_equal_to.hpp"
 #include "cjdb/type_traits/type_traits.hpp"
@@ -38,7 +38,7 @@ namespace cjdb::ranges {
    ///
    /// \note This is an extension.
    ///
-   template<EqualityComparable T>
+   template<equality_comparable T>
    class partial_not_equal_to
    : private detail_partial_equality::partial_equality<T, ranges::not_equal_to> {
    private:

@@ -16,7 +16,7 @@
 #ifndef CJDB_DETAIL_FUNCTIONAL_RANGECMP_LESS_HPP
 #define CJDB_DETAIL_FUNCTIONAL_RANGECMP_LESS_HPP
 
-#include "cjdb/concepts/comparison/stricttotallyordered.hpp"
+#include "cjdb/concepts/comparison/totally_ordered.hpp"
 #include "cjdb/type_traits/type_traits.hpp"
 #include <utility>
 
@@ -28,7 +28,7 @@ namespace cjdb::ranges {
    struct less {
       /// \returns `true` if `t` is less than `u`, `false` otherwise.
       ///
-      template<class T, StrictTotallyOrderedWith<T> U>
+      template<class T, totally_ordered_with<T> U>
       constexpr bool operator()(T&& t, U&& u) const
       CJDB_NOEXCEPT_RETURN(
          static_cast<bool>(std::forward<T>(t) < std::forward<U>(u))

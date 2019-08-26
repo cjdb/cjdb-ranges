@@ -16,7 +16,7 @@
 #define DOCTEST_CONFIG_IMPLEMENT_WITH_MAIN
 #include "cjdb/functional/rangecmp/partial_equal_to.hpp"
 
-#include "cjdb/concepts/core/same.hpp"
+#include "cjdb/concepts/core/same_as.hpp"
 #include <doctest.h>
 #include "partial_test.hpp"
 #include <utility>
@@ -37,8 +37,8 @@ TEST_CASE("Test [cjdb.ext.rangecmp.partial_equal_to]") {
    cjdb_test::check_iterators_match(ints, partial_equal_to{distance - 1}, equal_to{});
    cjdb_test::check_iterators_match(ints, partial_equal_to{distance}, equal_to{});
 
-   static_assert(not cjdb::Same<decltype(partial_equal_to{ints}),
+   static_assert(not cjdb::same_as<decltype(partial_equal_to{ints}),
                                 decltype(partial_equal_to{std::vector<int>{}})>);
-   static_assert(cjdb::Same<decltype(partial_equal_to{ints}),
+   static_assert(cjdb::same_as<decltype(partial_equal_to{ints}),
                             decltype(partial_equal_to{std::as_const(ints)})>);
 }

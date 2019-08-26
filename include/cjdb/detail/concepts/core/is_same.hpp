@@ -13,9 +13,17 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 //
-#include "cjdb/concepts/core/common_reference_with.hpp"
+#ifndef CJDB_DETAIL_CONCEPTS_CORE_IS_SAME_HPP
+#define CJDB_DETAIL_CONCEPTS_CORE_IS_SAME_HPP
 
-static_assert(cjdb::common_reference_with<int, float>);
-static_assert(cjdb::common_reference_with<void, void>);
+#include "cjdb/type_traits/type_traits.hpp"
 
-int main() {}
+namespace cjdb::detail_same {
+   /// \brief Concept equivalent of is_same_v to enable same_as<T, U> subsuming same_as<U, T> and vice
+   ///        versa.
+   ///
+   template<class T, class U>
+   concept is_same = is_same_v<T, U>;
+} // namespace cjdb::detail_same
+
+#endif // CJDB_DETAIL_CONCEPTS_CORE_IS_SAME_HPP

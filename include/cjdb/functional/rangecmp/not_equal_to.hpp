@@ -16,7 +16,7 @@
 #ifndef CJDB_DETAIL_FUNCTIONAL_RANGECMP_NOT_EQUAL_TO_HPP
 #define CJDB_DETAIL_FUNCTIONAL_RANGECMP_NOT_EQUAL_TO_HPP
 
-#include "cjdb/concepts/comparison/equalitycomparable.hpp"
+#include "cjdb/concepts/comparison/equality_comparable.hpp"
 #include "cjdb/functional/rangecmp/equal_to.hpp"
 #include "cjdb/type_traits/type_traits.hpp"
 #include <utility>
@@ -29,7 +29,7 @@ namespace cjdb::ranges {
    struct not_equal_to {
       /// \returns `true` if `t` is not equal to `u`, `false` otherwise.
       ///
-      template<class T, EqualityComparableWith<T> U>
+      template<class T, equality_comparable_with<T> U>
       constexpr bool operator()(T&& t, U&& u) const
       CJDB_NOEXCEPT_RETURN(
          not equal_to{}(std::forward<T>(t), std::forward<U>(u))

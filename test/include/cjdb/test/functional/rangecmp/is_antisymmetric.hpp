@@ -17,7 +17,7 @@
 #define CJDB_TEST_FUNCTIONAL_RANGECMP_IS_ANTISYMMETRIC_HPP
 
 #include "cjdb/concepts/callable/relation.hpp"
-#include "cjdb/concepts/comparison/equalitycomparable.hpp"
+#include "cjdb/concepts/comparison/equality_comparable.hpp"
 #include "cjdb/test/constexpr_check.hpp"
 #include "cjdb/test/functional/rangecmp/relation.hpp"
 #include <utility>
@@ -35,8 +35,8 @@ namespace cjdb_test {
       /// \param b Parameter to check.
       /// \returns invoke(r, a, b) == invoke(r, b, a)
       ///
-      template<class A, cjdb::EqualityComparableWith<A> B>
-      requires cjdb::Relation<R, A, B>
+      template<class A, cjdb::equality_comparable_with<A> B>
+      requires cjdb::relation<R, A, B>
       constexpr bool antisymmetric(A const& a, B const& b) noexcept
       { return antisymmetric_impl(*this, a, b); }
 
@@ -45,8 +45,8 @@ namespace cjdb_test {
       /// \param b Parameter to check.
       /// \returns invoke(r, a, b) == invoke(r, b, a)
       ///
-      template<class A, cjdb::EqualityComparableWith<A> B>
-      requires cjdb::Relation<R, A, B>
+      template<class A, cjdb::equality_comparable_with<A> B>
+      requires cjdb::relation<R, A, B>
       constexpr bool antisymmetric(A const& a, B const& b) const noexcept
       { return antisymmetric_impl(*this, a, b); }
    private:

@@ -16,7 +16,7 @@
 #ifndef CJDB_CONCEPTS_CORE_SAME_HPP
 #define CJDB_CONCEPTS_CORE_SAME_HPP
 
-#include "cjdb/detail/concepts/core/same.hpp"
+#include "cjdb/detail/concepts/core/is_same.hpp"
 
 namespace cjdb {
    /// \brief Checks if two types are exactly the same (including cv-qualifiers and ref-qualifiers).

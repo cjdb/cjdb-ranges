@@ -12,16 +12,16 @@
 
 #include "../object.hpp"
 
-static_assert(cjdb::Movable<int>);
-static_assert(not cjdb::Movable<const int>);
-static_assert(cjdb::Movable<double>);
-static_assert(not cjdb::Movable<void>);
-static_assert(cjdb::Movable<copyable>);
-static_assert(cjdb::Movable<moveonly>);
-static_assert(not cjdb::Movable<nonmovable>);
-static_assert(not cjdb::Movable<copyonly>);
+static_assert(cjdb::movable<int>);
+static_assert(not cjdb::movable<const int>);
+static_assert(cjdb::movable<double>);
+static_assert(not cjdb::movable<void>);
+static_assert(cjdb::movable<copyable>);
+static_assert(cjdb::movable<moveonly>);
+static_assert(not cjdb::movable<nonmovable>);
+static_assert(not cjdb::movable<copyonly>);
 
 // https://github.com/ericniebler/stl2/issues/310
-static_assert(not cjdb::Movable<int&&>);
+static_assert(not cjdb::movable<int&&>);
 
 int main() {}

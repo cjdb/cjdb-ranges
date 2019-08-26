@@ -21,11 +21,11 @@
 #include <utility>
 
 template<class F, class... Args>
-requires cjdb::Invocable<F, Args...>
+requires cjdb::invocable<F, Args...>
 constexpr void models_Invocable(F, Args&&...) noexcept {}
 
 template<class F, class... Args>
-requires (not cjdb::Invocable<F, Args...>)
+requires (not cjdb::invocable<F, Args...>)
 constexpr void not_Invocable(F, Args&&...) noexcept {}
 
 int main()

@@ -17,7 +17,7 @@
 #define CJDB_TEST_FUNCTIONAL_RANGECMP_IS_TRICHOTOMY_HPP
 
 #include "cjdb/concepts/callable/relation.hpp"
-#include "cjdb/concepts/comparison/equalitycomparable.hpp"
+#include "cjdb/concepts/comparison/equality_comparable.hpp"
 #include "cjdb/test/constexpr_check.hpp"
 #include "cjdb/test/functional/rangecmp/relation.hpp"
 #include <utility>
@@ -30,11 +30,11 @@ namespace cjdb_test {
          : relation<R>(std::move(r))
       {}
 
-      template<class A, cjdb::EqualityComparableWith<A> B>
+      template<class A, cjdb::equality_comparable_with<A> B>
       constexpr bool trichotomy(A const& a, B const& b) noexcept
       { return trichotomy_impl(*this, a, b); }
 
-      template<class A, cjdb::EqualityComparableWith<A> B>
+      template<class A, cjdb::equality_comparable_with<A> B>
       constexpr bool trichotomy(A const& a, B const& b) const noexcept
       { return trichotomy_impl(*this, a, b); }
    private:

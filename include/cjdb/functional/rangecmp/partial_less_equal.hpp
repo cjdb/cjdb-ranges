@@ -16,7 +16,7 @@
 #ifndef CJDB_FUNCTIONAL_RANGECMP_PARTIAL_LESS_EQUAL_HPP
 #define CJDB_FUNCTIONAL_RANGECMP_PARTIAL_LESS_EQUAL_HPP
 
-#include "cjdb/concepts/comparison/stricttotallyordered.hpp"
+#include "cjdb/concepts/comparison/totally_ordered.hpp"
 #include "cjdb/detail/functional/rangecmp/partial_inequality.hpp"
 #include "cjdb/functional/rangecmp/less_equal.hpp"
 
@@ -37,7 +37,7 @@ namespace cjdb::ranges {
    ///
    /// \note This is an extension.
    ///
-   template<StrictTotallyOrdered T>
+   template<totally_ordered T>
    class partial_less_equal
    : private detail_partial_inequality::partial_inequality<T, ranges::less_equal> {
    private:

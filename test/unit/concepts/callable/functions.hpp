@@ -18,9 +18,9 @@
 namespace regular_invocable {
    struct A {
       int i_ = 13;
-      constexpr int f() const noexcept { return 42; };
+      constexpr int f() const noexcept { return 42; }
       constexpr int g(int i) { return 2 * i + 1; }
-      constexpr int h(int j) && { return i_ * j; };
+      constexpr int h(int j) && { return i_ * j; }
    };
 
    constexpr int f() noexcept { return 13; }

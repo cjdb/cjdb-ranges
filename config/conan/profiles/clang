@@ -1,0 +1,17 @@
+[settings]
+os=Linux
+os_build=Linux
+arch=x86_64
+arch_build=x86_64
+compiler=clang
+compiler.version=6.0
+compiler.libcxx=libstdc++11
+build_type=Release
+[options]
+[build_requires]
+[env]
+CC=/opt/clang-concepts/bin/clang
+CXX=/opt/clang-concepts/bin/clang++
+CXXFLAGS=-std=c++2a -Xclang -fconcepts-ts -fdiagnostics-color=always -Werror -Wall -Wextra -Wcast-align -Wconversion -Wdouble-promotion -Wnon-virtual-dtor -Wold-style-cast -Woverloaded-virtual -Wpedantic -Wshadow -Wsign-conversion -Wsign-promo -Wunused -Wformat=2 -Wodr -Wno-attributes -Wnull-dereference
+LDFLAGS=-fuse-ld=lld -std=c++2a -Xclang -fconcepts-ts
+CONAN_CMAKE_GENERATOR=Ninja

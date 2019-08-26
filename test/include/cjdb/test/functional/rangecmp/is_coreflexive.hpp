@@ -17,7 +17,7 @@
 #define CJDB_TEST_FUNCTIONAL_RANGECMP_IS_COREFLEXIVE_HPP
 
 #include "cjdb/concepts/callable/relation.hpp"
-#include "cjdb/concepts/comparison/equalitycomparable.hpp"
+#include "cjdb/concepts/comparison/equality_comparable.hpp"
 #include "cjdb/test/constexpr_check.hpp"
 #include "cjdb/test/functional/rangecmp/is_reflexive.hpp"
 #include <utility>
@@ -34,8 +34,8 @@ namespace cjdb_test {
       /// \param a Parameter to check.
       /// \returns invoke(r, a, a)
       ///
-      template<cjdb::EqualityComparable A>
-      requires cjdb::Relation<R, A, A>
+      template<cjdb::equality_comparable A>
+      requires cjdb::relation<R, A, A>
       constexpr bool coreflexive(A const& a) noexcept
       { return coreflexive_impl(*this, std::move(a)); }
 
@@ -43,8 +43,8 @@ namespace cjdb_test {
       /// \param a Parameter to check.
       /// \returns invoke(r, a, a)
       ///
-      template<cjdb::EqualityComparable A>
-      requires cjdb::Relation<R, A, A>
+      template<cjdb::equality_comparable A>
+      requires cjdb::relation<R, A, A>
       constexpr bool coreflexive(A const& a) const noexcept
       { return coreflexive_impl(*this, std::move(a)); }
    private:

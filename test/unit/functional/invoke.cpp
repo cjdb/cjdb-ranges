@@ -98,8 +98,8 @@ TEST_CASE("Checks [func.invoke]") { // NOLINT(readability-function-size)
 		CHECK(a.i == 0);
 		cjdb::invoke(&A::i, &a) = 1;
 		CHECK(a.i == 1);
-		static_assert(cjdb::Same<decltype(cjdb::invoke(&A::i, ca)), const int&>);
-		static_assert(cjdb::Same<decltype(cjdb::invoke(&A::i, &ca)), const int&>);
+		static_assert(cjdb::same_as<decltype(cjdb::invoke(&A::i, ca)), const int&>);
+		static_assert(cjdb::same_as<decltype(cjdb::invoke(&A::i, &ca)), const int&>);
 	}
 
 	{

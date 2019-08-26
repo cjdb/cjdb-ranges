@@ -14,26 +14,26 @@
 // limitations under the License.
 //
 #include "cjdb/concepts/callable/relation.hpp"
-#include "cjdb/concepts/callable/strictweakorder.hpp"
+#include "cjdb/concepts/callable/strict_weak_order.hpp"
 
 #include "functions.hpp"
 
 template<class F, class T1, class T2>
-requires cjdb::Relation<F, T1, T2>
-constexpr void models_Relation(F&&, T1&&, T2&&) noexcept {}
+requires cjdb::relation<F, T1, T2>
+constexpr void models_relation(F&&, T1&&, T2&&) noexcept {}
 
 template<class F, class T1, class T2>
-requires (not cjdb::Relation<F, T1, T2>)
-constexpr void not_Relation(F&&, T1&&, T2&&) noexcept {}
+requires (not cjdb::relation<F, T1, T2>)
+constexpr void not_relation(F&&, T1&&, T2&&) noexcept {}
 
-// Tests also: StrictWeakOrder [concept.strictweakorder]
+// Tests also: strict_weak_order [concept.strictweakorder]
 template<class F, class T1, class T2>
-requires cjdb::Relation<F, T1, T2>
+requires cjdb::relation<F, T1, T2>
 constexpr void models_StrictWeakOrder(F&&, T1&&, T2&&) noexcept {}
 
-// Tests also: StrictWeakOrder [concept.strictweakorder]
+// Tests also: strict_weak_order [concept.strictweakorder]
 template<class F, class T1, class T2>
-requires (not cjdb::Relation<F, T1, T2>)
+requires (not cjdb::relation<F, T1, T2>)
 constexpr void not_StrictWeakOrder(F&&, T1&&, T2&&) noexcept {}
 
 int main()
@@ -42,20 +42,20 @@ int main()
       using namespace regular_invocable;
 
       auto a = A{};
-      not_Relation(&A::g, a, 0);
-      not_Relation(&A::h, A{}, 0);
+      not_relation(&A::g, a, 0);
+      not_relation(&A::h, A{}, 0);
 
-      // Tests also: StrictWeakOrder [concept.strictweakorder]
+      // Tests also: strict_weak_order [concept.strictweakorder]
       not_StrictWeakOrder(&A::g, a, 0);
       not_StrictWeakOrder(&A::h, A{}, 0);
    }
    {
       using namespace relation;
 
-      models_Relation(less{}, 0, 1);
-      models_Relation(greater, 0, 1);
+      models_relation(less{}, 0, 1);
+      models_relation(greater, 0, 1);
 
-      // Tests also: StrictWeakOrder [concept.strictweakorder]
+      // Tests also: strict_weak_order [concept.strictweakorder]
       models_StrictWeakOrder(less{}, 0, 1);
       models_StrictWeakOrder(greater, 0, 1);
    }
