@@ -13,8 +13,8 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 //
-#ifndef CJDB_CONCEPTS_CORE_COMMONREFERENCE_HPP
-#define CJDB_CONCEPTS_CORE_COMMONREFERENCE_HPP
+#ifndef CJDB_CONCEPTS_CORE_COMMON_REFERENCE_WITH_HPP
+#define CJDB_CONCEPTS_CORE_COMMON_REFERENCE_WITH_HPP
 
 #include "cjdb/concepts/core/convertible_to.hpp"
 #include "cjdb/concepts/core/same_as.hpp"
@@ -45,4 +45,4 @@ namespace cjdb {
       convertible_to<U, common_reference_t<T, U>>;
 } // namespace cjdb
 
-#endif // CJDB_CONCEPTS_CORE_COMMONREFERENCE_HPP
+#endif // CJDB_CONCEPTS_CORE_COMMON_REFERENCE_WITH_HPP

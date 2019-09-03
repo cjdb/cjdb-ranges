@@ -13,5 +13,5 @@ build_type=Release
 CC=/opt/clang-concepts/bin/clang
 CXX=/opt/clang-concepts/bin/clang++
 CXXFLAGS=-stdlib=libc++ -cxx-isystem /home/opt/clang-concepts/include/c++/v1 -std=c++2a -Xclang -fconcepts-ts -fdiagnostics-color=always -Werror -Wall -Wextra -Wcast-align -Wconversion -Wdouble-promotion -Wnon-virtual-dtor -Wold-style-cast -Woverloaded-virtual -Wpedantic -Wshadow -Wsign-conversion -Wsign-promo -Wunused -Wformat=2 -Wodr -Wno-attributes -Wnull-dereference
-LDFLAGS=-fuse-ld=lld -L /home/opt/clang-concepts/lib/ -Wl,-rpath,/home/opt/clang-concepts/lib/ -lc++abi -std=c++2a -Xclang -fconcepts-ts
+LDFLAGS=-fuse-ld=lld -L /opt/clang-concepts/lib/ -Wl,-rpath,/opt/clang-concepts/lib/ -lc++abi -std=c++2a -Xclang -fconcepts-ts
 CONAN_CMAKE_GENERATOR=Ninja

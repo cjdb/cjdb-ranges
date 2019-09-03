@@ -269,31 +269,13 @@ namespace cjdb_test {
 
    class not_totally_ordered_wrong_return {
    public:
-      constexpr friend bad_equality_boolean
-      operator<(not_totally_ordered_wrong_return x, not_totally_ordered_wrong_return y) noexcept
-      { return x.x_ < y.x_; }
+      constexpr void operator==(not_totally_ordered_wrong_return) const noexcept {}
+      constexpr void operator!=(not_totally_ordered_wrong_return) const noexcept {}
 
-      constexpr friend bad_equality_boolean
-      operator>(not_totally_ordered_wrong_return x, not_totally_ordered_wrong_return y) noexcept
-      { return y < x; }
-
-      constexpr friend bad_equality_boolean
-      operator<=(not_totally_ordered_wrong_return y, not_totally_ordered_wrong_return x) noexcept
-      { return not (x < y); }
-
-      constexpr friend bad_equality_boolean
-      operator>=(not_totally_ordered_wrong_return x, not_totally_ordered_wrong_return y) noexcept
-      { return not (x < y); }
-
-      constexpr friend bad_equality_boolean
-      operator==(not_totally_ordered_wrong_return x, not_totally_ordered_wrong_return y) noexcept
-      { return x.x_ == y.x_; }
-
-      constexpr friend bad_equality_boolean
-      operator!=(not_totally_ordered_wrong_return x, not_totally_ordered_wrong_return y) noexcept
-      { return not (x == y); }
-   private:
-      int x_ = 0;
+      constexpr void operator<(not_totally_ordered_wrong_return) const noexcept {}
+      constexpr void operator>(not_totally_ordered_wrong_return) const noexcept {}
+      constexpr void operator<=(not_totally_ordered_wrong_return) const noexcept {}
+      constexpr void operator>=(not_totally_ordered_wrong_return) const noexcept {}
    };
 } // namespace cjdb_test
 
