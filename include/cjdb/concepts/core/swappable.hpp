@@ -20,7 +20,7 @@
 
 namespace cjdb {
    namespace ranges {
-      constexpr auto swap = detail_swap::swap_fn{};
+      inline constexpr auto swap = detail_swap::swap_fn{};
    } // namespace ranges
 
    /// \see [concept.swappable]

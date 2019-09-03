@@ -10,8 +10,8 @@ build_type=Release
 [options]
 [build_requires]
 [env]
-CC=/opt/clang-concepts/bin/clang
-CXX=/opt/clang-concepts/bin/clang++
+CC=/home/cjdb/opt/clang-concepts/bin/clang
+CXX=/home/cjdb/opt/clang-concepts/bin/clang++
 CXXFLAGS=-std=c++2a -Xclang -fconcepts-ts -fdiagnostics-color=always -Werror -Wall -Wextra -Wcast-align -Wconversion -Wdouble-promotion -Wnon-virtual-dtor -Wold-style-cast -Woverloaded-virtual -Wpedantic -Wshadow -Wsign-conversion -Wsign-promo -Wunused -Wformat=2 -Wodr -Wno-attributes -Wnull-dereference
-LDFLAGS=-fuse-ld=lld -std=c++2a -Xclang -fconcepts-ts
+LDFLAGS=-fuse-ld=lld
 CONAN_CMAKE_GENERATOR=Ninja

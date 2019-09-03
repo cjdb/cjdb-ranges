@@ -38,6 +38,6 @@ namespace cjdb::detail_weakly_equality_comparable {
          //    bool(u != t) == bool(t != u);
          // }
       };
-} // namespace detail_weakly_equality_comparable
+} // namespace cjdb::detail_weakly_equality_comparable
 
 #endif // CJDB_DETAIL_CONCEPTS_CORE_EQUALITY_COMPARABLE_HPP

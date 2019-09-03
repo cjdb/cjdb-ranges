@@ -13,16 +13,16 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 //
-#define DOCTEST_CONFIG_IMPLEMENT_WITH_MAIN
 #include "cjdb/functional/rangecmp/partial_equal_to.hpp"
 
 #include "cjdb/concepts/core/same_as.hpp"
-#include <doctest.h>
+#include "cjdb/test/simple_test.hpp"
 #include "partial_test.hpp"
 #include <utility>
 
 
-TEST_CASE("Test [cjdb.ext.rangecmp.partial_equal_to]") {
+int main()
+{
    auto ints = ::cjdb_test::generate_ints();
    using difference_type = decltype(ints)::difference_type;
 
@@ -41,4 +41,6 @@ TEST_CASE("Test [cjdb.ext.rangecmp.partial_equal_to]") {
                                 decltype(partial_equal_to{std::vector<int>{}})>);
    static_assert(cjdb::same_as<decltype(partial_equal_to{ints}),
                             decltype(partial_equal_to{std::as_const(ints)})>);
+
+   return ::test_result();
 }

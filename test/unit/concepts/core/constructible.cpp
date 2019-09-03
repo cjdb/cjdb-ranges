@@ -18,11 +18,11 @@ static_assert(cjdb::constructible_from<int const>);
 static_assert(not cjdb::constructible_from<int const&>);
 static_assert(not cjdb::constructible_from<int()>);
 static_assert(not cjdb::constructible_from<int(&)()>);
-static_assert(not cjdb::constructible_from<int[]>);
-static_assert(cjdb::constructible_from<int[5]>);
+static_assert(not cjdb::constructible_from<int[]>); // NOLINT(modernize-avoid-c-arrays)
+static_assert(cjdb::constructible_from<int[5]>);    // NOLINT(modernize-avoid-c-arrays, readability-magic-numbers)
 static_assert(not cjdb::constructible_from<nondefaultconstructible>);
-static_assert(cjdb::constructible_from<int const(&)[5], int(&)[5]>);
-static_assert(not cjdb::constructible_from<int, int(&)[3]>);
+static_assert(cjdb::constructible_from<int const(&)[5], int(&)[5]>); // NOLINT(modernize-avoid-c-arrays, readability-magic-numbers)
+static_assert(not cjdb::constructible_from<int, int(&)[3]>); // NOLINT(modernize-avoid-c-arrays, readability-magic-numbers)
 
 static_assert(cjdb::constructible_from<int, int>);
 static_assert(cjdb::constructible_from<int, int&>);

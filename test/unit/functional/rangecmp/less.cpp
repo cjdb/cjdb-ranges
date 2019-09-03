@@ -13,48 +13,52 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 //
-#define DOCTEST_CONFIG_IMPLEMENT_WITH_MAIN
 #include "cjdb/functional/rangecmp/less.hpp"
 
 #include "cjdb/concepts/comparison/totally_ordered.hpp"
 #include "cjdb/test/functional/rangecmp/is_strict_total_order.hpp"
 #include "cjdb/test/constexpr_check.hpp"
-#include <doctest.h>
+#include "cjdb/test/simple_test.hpp"
 #include <string_view>
 
 
-TEST_CASE("Test [rangecmp.less]") {
+int main()
+{
    using cjdb::ranges::less;
    using namespace std::string_view_literals;
 
-   REQUIRE(less::is_transparent{});
+   static_assert(less::is_transparent{});
 
    constexpr auto hello = "hello"sv;
    constexpr auto konnichiwa = "konnichiwa"sv; // it's infuriating that "こんにちは" <= "hello" at
                                                // compile-time.
 
-   SUBCASE("shows less is a strict total order") {
-      CHECK_IS_STRICT_TOTAL_ORDER(less{}, 0, 1, 2);
-      CHECK_IS_STRICT_TOTAL_ORDER(less{}, 0, 1.0, 2);
-      CHECK_IS_STRICT_TOTAL_ORDER(less{}, 1, 1.5, 2);
+   { // shows less is a strict total order
+      CHECK_IS_STRICT_TOTAL_ORDER(less{}, 0, 1, 2);  // NOLINT(readability-magic-numbers)
+      CHECK_IS_STRICT_TOTAL_ORDER(less{}, 0, 1.0, 2);  // NOLINT(readability-magic-numbers)
+      CHECK_IS_STRICT_TOTAL_ORDER(less{}, 1, 1.5, 2);  // NOLINT(readability-magic-numbers)
 
-      CHECK_IS_STRICT_TOTAL_ORDER(less{}, "a"sv, "ab"sv, "c"sv);
-      CHECK_IS_STRICT_TOTAL_ORDER(less{}, "a"sv, "ab", "c"sv);
+      CHECK_IS_STRICT_TOTAL_ORDER(less{}, "a"sv, "ab"sv, "c"sv);  // NOLINT(readability-magic-numbers)
+      CHECK_IS_STRICT_TOTAL_ORDER(less{}, "a"sv, "ab", "c"sv);  // NOLINT(readability-magic-numbers)
    }
 
-   SUBCASE("shows less works for same-type ordering") {
-      CJDB_CONSTEXPR_CHECK(less{}(3, 4));
-      CJDB_CONSTEXPR_CHECK(not less{}(40, 3));
+   { // shows less works for same-type ordering
+      CJDB_CONSTEXPR_CHECK(less{}(3, 4));  // NOLINT(readability-magic-numbers)
+      CJDB_CONSTEXPR_CHECK(not less{}(40, 3));  // NOLINT(readability-magic-numbers)
 
       CJDB_CONSTEXPR_CHECK(less{}(hello, konnichiwa));
       CJDB_CONSTEXPR_CHECK(not less{}(konnichiwa, hello));
    }
 
-   SUBCASE("shows less works for cross-type ordering") {
-      CJDB_CONSTEXPR_CHECK(less{}(3.0, 4));
-      CJDB_CONSTEXPR_CHECK(not less{}(3.9999, 3)); // int promoted to double
+   { // shows less works for cross-type ordering
+      CJDB_CONSTEXPR_CHECK(less{}(3.0, 4));  // NOLINT(readability-magic-numbers)
+
+      // int promoted to double
+      CJDB_CONSTEXPR_CHECK(not less{}(3.9999, 3));  // NOLINT(readability-magic-numbers)
 
       CJDB_CONSTEXPR_CHECK(less{}(hello, konnichiwa.data()));
       CJDB_CONSTEXPR_CHECK(not less{}(konnichiwa.data(), hello));
    }
+
+   return ::test_result();
 }

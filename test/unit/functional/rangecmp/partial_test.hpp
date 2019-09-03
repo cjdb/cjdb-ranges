@@ -16,9 +16,8 @@
 #ifndef CJDB_TEST_FUNCTIONAL_RANGECMP_PARTIAL_TEST_HPP
 #define CJDB_TEST_FUNCTIONAL_RANGECMP_PARTIAL_TEST_HPP
 
-#define DOCTEST_CONFIG_IMPLEMENT_WITH_MAIN
 #include <algorithm> // FIXME(cjdb): change to "cjdb/algorithm/find_if.hpp"
-#include <doctest.h>
+#include "cjdb/test/simple_test.hpp"
 #include <iterator>  // FIXME(cjdb): change to "cjdb/range/access.hpp"
 #include <numeric>   // FIXME(cjdb): change to "cjdb/range/iota_view.hpp"
 #include <vector>

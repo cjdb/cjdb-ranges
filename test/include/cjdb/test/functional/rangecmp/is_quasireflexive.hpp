@@ -35,7 +35,7 @@ namespace cjdb_test {
       ///
       template<class A, class B>
       requires cjdb::relation<R, A, B>
-      constexpr bool quasireflexive(A const& a, B const& b) noexcept
+      [[nodiscard]] constexpr bool quasireflexive(A const& a, B const& b) noexcept
       { return quasireflexive_impl(*this, std::move(a), std::move(b)); }
 
       /// \brief Checks that the relation is reflexive, with respect to type T.
@@ -44,11 +44,12 @@ namespace cjdb_test {
       ///
       template<class A, class B>
       requires cjdb::relation<R, A, B>
-      constexpr bool quasireflexive(A const& a, B const& b) const noexcept
+      [[nodiscard]] constexpr bool quasireflexive(A const& a, B const& b) const noexcept
       { return quasireflexive_impl(*this, std::move(a), std::move(b)); }
    private:
       template<class Self, class A, class B>
-      constexpr static bool quasireflexive_impl(Self& self, A const& a, B const& b) noexcept
+      [[nodiscard]] constexpr static
+      bool quasireflexive_impl(Self& self, A const& a, B const& b) noexcept
       { return self(a, b) and self.reflexive(a) and self.reflexive(b); }
    };
 } // namespace cjdb_test

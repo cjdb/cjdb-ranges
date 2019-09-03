@@ -30,11 +30,11 @@ namespace cjdb_test {
       ~relation() = default;
 
       template<class A, class B>
-      constexpr auto operator()(A&& a, B&& b) noexcept
+      [[nodiscard]] constexpr auto operator()(A&& a, B&& b) noexcept
       { return cjdb::invoke(r_, std::forward<A>(a), std::forward<B>(b)); }
 
       template<class A, class B>
-      constexpr auto operator()(A&& a, B&& b) const noexcept
+      [[nodiscard]] constexpr auto operator()(A&& a, B&& b) const noexcept
       { return cjdb::invoke(r_, std::forward<A>(a), std::forward<B>(b)); }
    private:
       R r_;

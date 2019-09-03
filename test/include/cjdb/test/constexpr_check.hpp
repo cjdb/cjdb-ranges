@@ -15,12 +15,12 @@
 //
 #ifndef CJDB_TEST_CONSTEXPR_CHECK
 #define CJDB_TEST_CONSTEXPR_CHECK
-#include <doctest.h>
+#include <cjdb/test/simple_test.hpp>
 #include <type_traits>
 
 #define CJDB_CONSTEXPR_CHECK(...)                 \
    {                                              \
-      REQUIRE(std::bool_constant<__VA_ARGS__>{}); \
+      CHECK(std::bool_constant<__VA_ARGS__>{}); \
       CHECK(__VA_ARGS__);                         \
    }                                              \
 

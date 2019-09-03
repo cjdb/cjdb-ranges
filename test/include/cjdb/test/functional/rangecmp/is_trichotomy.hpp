@@ -31,15 +31,15 @@ namespace cjdb_test {
       {}
 
       template<class A, cjdb::equality_comparable_with<A> B>
-      constexpr bool trichotomy(A const& a, B const& b) noexcept
+      [[nodiscard]] constexpr bool trichotomy(A const& a, B const& b) noexcept
       { return trichotomy_impl(*this, a, b); }
 
       template<class A, cjdb::equality_comparable_with<A> B>
-      constexpr bool trichotomy(A const& a, B const& b) const noexcept
+      [[nodiscard]] constexpr bool trichotomy(A const& a, B const& b) const noexcept
       { return trichotomy_impl(*this, a, b); }
    private:
       template<class Self, class A, class B>
-      constexpr static bool trichotomy_impl(Self& self, A const& a, B const& b) noexcept
+      [[nodiscard]] constexpr static bool trichotomy_impl(Self& self, A const& a, B const& b) noexcept
       {
          auto const aRb = static_cast<bool>(self(a, b));
          auto const bRa = static_cast<bool>(self(b, a));

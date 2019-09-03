@@ -82,6 +82,6 @@ namespace cjdb {
          //    (bool(b1) != bool(b2)) == (bool(b1) != b2);
          // }
       };
-}
+} // namespace cjdb
 
 #endif // CJDB_CONCEPTS_COMPARISON_BOOLEAN_HPP

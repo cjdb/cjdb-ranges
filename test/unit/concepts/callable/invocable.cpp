@@ -22,66 +22,66 @@
 
 template<class F, class... Args>
 requires cjdb::invocable<F, Args...>
-constexpr void models_Invocable(F, Args&&...) noexcept {}
+constexpr void models_invocable(F, Args&&...) noexcept {}
 
 template<class F, class... Args>
 requires (not cjdb::invocable<F, Args...>)
-constexpr void not_Invocable(F, Args&&...) noexcept {}
+constexpr void not_invocable(F, Args&&...) noexcept {}
 
-int main()
+int main() // NOLINT(bugprone-exception-escape)
 {
    {
       using namespace regular_invocable;
 
-      models_Invocable(f);
-      not_Invocable(f, 0);
+      models_invocable(f);
+      not_invocable(f, 0);
 
-      models_Invocable(g, 2);
-      not_Invocable(g);
-      not_Invocable(g, 3, 0);
+      models_invocable(g, 2);
+      not_invocable(g);
+      not_invocable(g, 3, 0);
 
-      not_Invocable(&A::i_);
-      not_Invocable(&A::f);
+      not_invocable(&A::i_);
+      not_invocable(&A::f);
 
       {
          auto a = A{};
-         models_Invocable(&A::i_, a);
-         models_Invocable(&A::f, a);
-         models_Invocable(&A::g, a, 0);
-         not_Invocable(&A::g, a);
-         not_Invocable(&A::g, 0);
-         not_Invocable(&A::h);
+         models_invocable(&A::i_, a);
+         models_invocable(&A::f, a);
+         models_invocable(&A::g, a, 0);
+         not_invocable(&A::g, a);
+         not_invocable(&A::g, 0);
+         not_invocable(&A::h);
 
          auto const& c = a;
-         models_Invocable(&A::i_, c);
-         models_Invocable(&A::f, c);
-         not_Invocable(&A::g, c, 0);
-         not_Invocable(&A::h, c, 0);
+         models_invocable(&A::i_, c);
+         models_invocable(&A::f, c);
+         not_invocable(&A::g, c, 0);
+         not_invocable(&A::h, c, 0);
       }
 
-      models_Invocable(&A::i_, A{});
-      models_Invocable(&A::f, A{});
-      models_Invocable(&A::g, A{}, 0);
-      models_Invocable(&A::h, A{}, 0);
+      models_invocable(&A::i_, A{});
+      models_invocable(&A::f, A{});
+      models_invocable(&A::g, A{}, 0);
+      models_invocable(&A::h, A{}, 0);
 
       {
          auto up = std::make_unique<A>();
-         models_Invocable(&A::i_, up);
-         models_Invocable(&A::f, up);
-         models_Invocable(&A::g, up, 0);
-         not_Invocable(&A::h, up, 0);
+         models_invocable(&A::i_, up);
+         models_invocable(&A::f, up);
+         models_invocable(&A::g, up, 0);
+         not_invocable(&A::h, up, 0);
       }
       {
          auto sp = std::make_shared<A>();
-         models_Invocable(&A::i_, sp);
-         models_Invocable(&A::f, sp);
-         models_Invocable(&A::g, sp, 0);
-         not_Invocable(&A::h, sp, 0);
+         models_invocable(&A::i_, sp);
+         models_invocable(&A::f, sp);
+         models_invocable(&A::g, sp, 0);
+         not_invocable(&A::h, sp, 0);
       }
    }
    {
       auto generator = std::mt19937_64{std::random_device{}()};
       auto distribution = std::uniform_int_distribution<>();
-      models_Invocable(distribution, generator);
+      models_invocable(distribution, generator);
    }
 }

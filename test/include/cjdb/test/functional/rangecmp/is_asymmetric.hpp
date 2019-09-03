@@ -36,16 +36,16 @@ namespace cjdb_test {
 
       template<class A, cjdb::equality_comparable_with<A> B>
       requires cjdb::relation<R, A, B>
-      constexpr bool asymmetric(A const& a, B const& b) noexcept
+      [[nodiscard]] constexpr bool asymmetric(A const& a, B const& b) noexcept
       { return asymmetric_impl(*this, a, b); }
 
       template<class A, cjdb::equality_comparable_with<A> B>
       requires cjdb::relation<R, A, B>
-      constexpr bool asymmetric(A const& a, B const& b) const noexcept
+      [[nodiscard]] constexpr bool asymmetric(A const& a, B const& b) const noexcept
       { return asymmetric_impl(*this, a, b); }
    private:
       template<class Self, class A, class B>
-      constexpr bool asymmetric_impl(Self& self, A const& a, B const& b) noexcept
+      [[nodiscard]] constexpr bool asymmetric_impl(Self& self, A const& a, B const& b) noexcept
       { return self.irreflexive(a) and self.irreflexive(b) and self.antisymmetric(a, b); }
    };
 } // namespace cjdb_test

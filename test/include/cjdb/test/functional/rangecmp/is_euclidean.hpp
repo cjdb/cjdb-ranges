@@ -31,16 +31,17 @@ namespace cjdb_test {
 
       template<class A, class B>
       requires cjdb::relation<R, A, B>
-      constexpr bool euclidean(A const& a, B const& b, A const& c) noexcept
+      [[nodiscard]] constexpr bool euclidean(A const& a, B const& b, A const& c) noexcept
       { return euclidean_impl(*this, a, b, c); }
 
       template<class A, class B>
       requires cjdb::relation<R, A, B>
-      constexpr bool euclidean(A const& a, B const& b, A const& c) const noexcept
+      [[nodiscard]] constexpr bool euclidean(A const& a, B const& b, A const& c) const noexcept
       { return euclidean_impl(*this, a, b, c); }
    private:
       template<class Self, class A, class B>
-      constexpr static bool euclidean_impl(Self& self, A const& a, B const& b, A const& c) noexcept
+      [[nodiscard]] constexpr static
+      bool euclidean_impl(Self& self, A const& a, B const& b, A const& c) noexcept
       { return self(a, b) and self(a, c) and self(b, c); }
    };
 } // namespace cjdb_test
