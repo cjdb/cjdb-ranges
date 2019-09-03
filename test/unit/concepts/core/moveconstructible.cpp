@@ -15,7 +15,7 @@
 static_assert(not cjdb::move_constructible<void>);
 static_assert(cjdb::move_constructible<int>);
 static_assert(cjdb::move_constructible<const int>);
-static_assert(not cjdb::move_constructible<int[4]>);
+static_assert(not cjdb::move_constructible<int[4]>); // NOLINT(modernize-avoid-c-arrays,readability-magic-numbers)
 static_assert(not cjdb::move_constructible<void()>);
 static_assert(cjdb::move_constructible<int &>);
 static_assert(cjdb::move_constructible<int &&>);

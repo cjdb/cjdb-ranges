@@ -33,12 +33,12 @@ namespace cjdb::ranges::detail_swap {
 
    /// \note Deleted to inhibit ADL.
    ///
-   template<class T, std::size_t N> void swap(T(&)[N], T(&)[N]) = delete;
+   template<class T, std::size_t N> void swap(T(&)[N], T(&)[N]) = delete; // NOLINT(modernize-avoid-c-arrays)
 
    /// \brief Determines if a type has a swap function that can be found by ADL.
    ///
    template<class T1, class T2>
-   constexpr auto is_customised = false;
+   inline constexpr auto is_customised = false;
 
    template<class T1, class T2>
    requires
@@ -47,7 +47,7 @@ namespace cjdb::ranges::detail_swap {
       requires(T1&& t1, T2&& t2) {
          swap(static_cast<T1&&>(t1), static_cast<T2&&>(t2));
       }
-   constexpr auto is_customised<T1, T2> = true;
+   inline constexpr auto is_customised<T1, T2> = true;
 
    /// \brief Implementation for ranges::swap.
    /// \see [concept.swappable]
@@ -71,12 +71,12 @@ namespace cjdb::ranges::detail_swap {
 
       template<class T1, class T2, std::size_t N>
       requires
-         (not is_customised<T1(&)[N], T2(&)[N]>) and
+         (not is_customised<T1(&)[N], T2(&)[N]>) and // NOLINT(modernize-avoid-c-arrays)
          (extent_v<T1> == extent_v<T2>) and
-         requires(T1(& t1)[N], T2(& t2)[N]) {
+         requires(T1(& t1)[N], T2(& t2)[N]) { // NOLINT(modernize-avoid-c-arrays)
             std::declval<swap_fn const&>()(t1[0], t2[1]);
          }
-      constexpr void operator()(T1(& t1)[N], T2(& t2)[N]) const
+      constexpr void operator()(T1(& t1)[N], T2(& t2)[N]) const // NOLINT(modernize-avoid-c-arrays)
       noexcept(noexcept(std::declval<swap_fn const&>()(t1[0], t2[0])))
       {
          for (auto i = std::size_t{}; i < N; ++i) {

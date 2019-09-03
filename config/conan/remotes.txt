@@ -1,1 +1,2 @@
 public-conan https://api.bintray.com/conan/bincrafters/public-conan
+cjdb https://api.bintray.com/conan/cjdb/cjdb

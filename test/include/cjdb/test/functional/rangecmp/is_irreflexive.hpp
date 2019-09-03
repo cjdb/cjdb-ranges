@@ -35,7 +35,7 @@ namespace cjdb_test {
       ///
       template<class A>
       requires cjdb::relation<R, A, A>
-      constexpr bool irreflexive(A const& a) noexcept
+      [[nodiscard]] constexpr bool irreflexive(A const& a) noexcept
       { return irreflexive_impl(*this, a); }
 
       /// \brief Checks that the relation is reflexive, with respect to type T.
@@ -44,11 +44,11 @@ namespace cjdb_test {
       ///
       template<class A>
       requires cjdb::relation<R, A, A>
-      constexpr bool irreflexive(A const& a) const noexcept
+      [[nodiscard]] constexpr bool irreflexive(A const& a) const noexcept
       { return irreflexive_impl(*this, a); }
    private:
       template<class Self, class A>
-      constexpr static bool irreflexive_impl(Self& self, A const& a)
+      [[nodiscard]] constexpr static bool irreflexive_impl(Self& self, A const& a)
       { return not self.reflexive(a); }
    };
 } // namespace cjdb_test

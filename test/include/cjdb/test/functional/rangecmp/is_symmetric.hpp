@@ -36,7 +36,7 @@ namespace cjdb_test {
       ///
       template<class A, class B>
       requires cjdb::relation<R, A, B>
-      constexpr bool symmetric(A const& a, B const& b) noexcept
+      [[nodiscard]] constexpr bool symmetric(A const& a, B const& b) noexcept
       { return symmetric_impl(*this, a, b); }
 
       /// \brief Checks that the relation is symmetric, with respect to types T and U.
@@ -46,14 +46,14 @@ namespace cjdb_test {
       ///
       template<class A, class B>
       requires cjdb::relation<R, A, B>
-      constexpr bool symmetric(A const& a, B const& b) const noexcept
+      [[nodiscard]] constexpr bool symmetric(A const& a, B const& b) const noexcept
       { return symmetric_impl(*this, a, b); }
    private:
       template<class Self, class A, class B>
-      constexpr static bool symmetric_impl(Self& self, A const& a, B const& b) noexcept
+      [[nodiscard]] constexpr static bool symmetric_impl(Self& self, A const& a, B const& b) noexcept
       { return self(a, b) == self(b, a); }
    };
-} // namespace cjdb
+} // namespace cjdb_test
 
 #define CHECK_IS_SYMMETRIC(r, a, b)                          \
    {                                                         \

@@ -15,20 +15,14 @@
 #
 add_cjdblib_test(FILENAME equal_to.cpp
    PRIVATE_INCLUDE
-      "${CMAKE_SOURCE_DIR}/test/include"
-   PRIVATE_LINKAGE
-      doctest::doctest)
+      "${CMAKE_SOURCE_DIR}/test/include")
 add_cjdblib_test(FILENAME not_equal_to.cpp
    PRIVATE_INCLUDE
-      "${CMAKE_SOURCE_DIR}/test/include"
-   PRIVATE_LINKAGE
-      doctest::doctest)
+      "${CMAKE_SOURCE_DIR}/test/include")
 
 add_cjdblib_test(FILENAME less.cpp
    PRIVATE_INCLUDE
       "${CMAKE_SOURCE_DIR}/test/include"
-   PRIVATE_LINKAGE
-      doctest::doctest
    PRIVATE_COMPILER_OPTIONS
       -Wno-double-promotion
       -Wno-conversion)
@@ -36,8 +30,6 @@ add_cjdblib_test(FILENAME less.cpp
 add_cjdblib_test(FILENAME greater.cpp
    PRIVATE_INCLUDE
       "${CMAKE_SOURCE_DIR}/test/include"
-   PRIVATE_LINKAGE
-      doctest::doctest
    PRIVATE_COMPILER_OPTIONS
       -Wno-double-promotion
       -Wno-conversion)
@@ -45,8 +37,6 @@ add_cjdblib_test(FILENAME greater.cpp
 add_cjdblib_test(FILENAME less_equal.cpp
    PRIVATE_INCLUDE
       "${CMAKE_SOURCE_DIR}/test/include"
-   PRIVATE_LINKAGE
-      doctest::doctest
    PRIVATE_COMPILER_OPTIONS
       -Wno-double-promotion
       -Wno-conversion)
@@ -54,15 +44,13 @@ add_cjdblib_test(FILENAME less_equal.cpp
 add_cjdblib_test(FILENAME greater_equal.cpp
    PRIVATE_INCLUDE
       "${CMAKE_SOURCE_DIR}/test/include"
-   PRIVATE_LINKAGE
-      doctest::doctest
    PRIVATE_COMPILER_OPTIONS
       -Wno-double-promotion
       -Wno-conversion)
 
-add_cjdblib_test(FILENAME partial_equal_to.cpp PRIVATE_LINKAGE doctest::doctest)
-# add_cjdblib_test(FILENAME partial_not_equal_to.cpp PRIVATE_LINKAGE doctest::doctest)
-add_cjdblib_test(FILENAME partial_less.cpp PRIVATE_LINKAGE doctest::doctest)
-# add_cjdblib_test(FILENAME partial_greater.cpp PRIVATE_LINKAGE doctest::doctest)
-# add_cjdblib_test(FILENAME partial_less_equal.cpp PRIVATE_LINKAGE doctest::doctest)
-# add_cjdblib_test(FILENAME partial_greater_equal.cpp PRIVATE_LINKAGE doctest::doctest)
+add_cjdblib_test(FILENAME partial_equal_to.cpp PRIVATE_INCLUDE "${CMAKE_SOURCE_DIR}/test/include")
+# add_cjdblib_test(FILENAME partial_not_equal_to.cpp PRIVATE_INCLUDE "${CMAKE_SOURCE_DIR}/test/include")
+add_cjdblib_test(FILENAME partial_less.cpp PRIVATE_INCLUDE "${CMAKE_SOURCE_DIR}/test/include")
+# add_cjdblib_test(FILENAME partial_greater.cpp PRIVATE_INCLUDE "${CMAKE_SOURCE_DIR}/test/include")
+# add_cjdblib_test(FILENAME partial_less_equal.cpp PRIVATE_INCLUDE "${CMAKE_SOURCE_DIR}/test/include")
+# add_cjdblib_test(FILENAME partial_greater_equal.cpp PRIVATE_INCLUDE "${CMAKE_SOURCE_DIR}/test/include")

@@ -173,7 +173,7 @@ namespace cjdb {
       struct common_reference2<T1, T2> {
          using type = common_ref_t<T1, T2>;
       };
-   } // namespace detail_common_reference
+   } // namespace detail_common_type
 
    template<class T1, class T2>
    struct common_reference<T1, T2> : detail_common_type::common_reference2<T1, T2> {};

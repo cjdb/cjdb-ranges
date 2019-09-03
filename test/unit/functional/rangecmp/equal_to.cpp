@@ -13,25 +13,26 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 //
-#define DOCTEST_CONFIG_IMPLEMENT_WITH_MAIN
 #include "cjdb/functional/rangecmp/equal_to.hpp"
 
 #include "cjdb/concepts/comparison/equality_comparable.hpp"
 #include "cjdb/test/functional/rangecmp/is_equivalence.hpp"
 #include "cjdb/test/constexpr_check.hpp"
-#include <doctest.h>
+#include "cjdb/test/simple_test.hpp"
 #include <string_view>
 
-TEST_CASE("Test [rangecmp.equal_to]") {
+int main()
+{
    using cjdb::ranges::equal_to;
    using namespace std::string_view_literals;
 
-   REQUIRE(equal_to::is_transparent{});
+   static_assert(equal_to::is_transparent{});
 
    constexpr auto hello = "hello"sv;
    constexpr auto goodbye = "goodbye"sv;
 
-   SUBCASE("shows equal_to is an equivalence relation") {
+   { // shows equal_to is an equivalence relation
+
       CHECK_IS_EQUIVALENCE(equal_to{}, 0, 0, 0);
       CHECK_IS_EQUIVALENCE(equal_to{}, 0, 0.0, 0);
       CHECK_IS_EQUIVALENCE(equal_to{}, 0.0, 0, 0.0);
@@ -39,7 +40,7 @@ TEST_CASE("Test [rangecmp.equal_to]") {
       CHECK_IS_EQUIVALENCE(equal_to{}, hello, hello, hello);
    }
 
-   SUBCASE("shows equal_to works for same-type equality") {
+   { // shows equal_to works for same-type equality
       CJDB_CONSTEXPR_CHECK(equal_to{}(0, 0));
       CJDB_CONSTEXPR_CHECK(not equal_to{}(0, 1));
 
@@ -47,12 +48,18 @@ TEST_CASE("Test [rangecmp.equal_to]") {
       CJDB_CONSTEXPR_CHECK(not equal_to{}(hello, goodbye));
    }
 
-   SUBCASE("shows equal_to works for cross-type equality") {
+   { // shows equal_to works for cross-type equality
       CJDB_CONSTEXPR_CHECK(equal_to{}(1, 1.0));
-      CJDB_CONSTEXPR_CHECK(not equal_to{}(1, 1.5)); // int is promoted to double
-      CJDB_CONSTEXPR_CHECK(not equal_to{}(1, 2.6)); // outright not equal
+
+      // int is promoted to double
+      CJDB_CONSTEXPR_CHECK(not equal_to{}(1, 1.5)); // NOLINT(readability-magic-numbers)
+
+      // outright not equal
+      CJDB_CONSTEXPR_CHECK(not equal_to{}(1, 2.6)); // NOLINT(readability-magic-numbers)
 
       CJDB_CONSTEXPR_CHECK(equal_to{}(hello, hello.data()));
       CJDB_CONSTEXPR_CHECK(not equal_to{}(hello, goodbye.data()));
    }
+
+   return ::test_result();
 }

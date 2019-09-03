@@ -36,7 +36,7 @@ namespace cjdb_test {
       ///
       template<cjdb::equality_comparable A>
       requires cjdb::relation<R, A, A>
-      constexpr bool coreflexive(A const& a) noexcept
+      [[nodiscard]] constexpr bool coreflexive(A const& a) noexcept
       { return coreflexive_impl(*this, std::move(a)); }
 
       /// \brief Checks that the relation is reflexive, with respect to type T.
@@ -45,11 +45,11 @@ namespace cjdb_test {
       ///
       template<cjdb::equality_comparable A>
       requires cjdb::relation<R, A, A>
-      constexpr bool coreflexive(A const& a) const noexcept
+      [[nodiscard]] constexpr bool coreflexive(A const& a) const noexcept
       { return coreflexive_impl(*this, std::move(a)); }
    private:
       template<class Self, class A>
-      constexpr static bool coreflexive_impl(Self& self, A const& a)
+      [[nodiscard]] constexpr static bool coreflexive_impl(Self& self, A const& a)
       { return self.reflexive(a) and a == a; }
    };
 } // namespace cjdb_test
