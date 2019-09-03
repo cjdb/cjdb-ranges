@@ -13,8 +13,8 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 //
-#ifndef CJDB_CONCEPTS_CORE_CONVERTIBLETO_HPP
-#define CJDB_CONCEPTS_CORE_CONVERTIBLETO_HPP
+#ifndef CJDB_CONCEPTS_CORE_CONVERTIBLE_TO_HPP
+#define CJDB_CONCEPTS_CORE_CONVERTIBLE_TO_HPP
 
 #include "cjdb/type_traits/type_traits.hpp"
 
@@ -53,4 +53,4 @@ namespace cjdb {
       };
 } // namespace cjdb
 
-#endif // CJDB_CONCEPTS_CORE_CONVERTIBLETO_HPP
+#endif // CJDB_CONCEPTS_CORE_CONVERTIBLE_TO_HPP

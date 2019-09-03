@@ -64,9 +64,9 @@ namespace cjdb::detail_partial_storage {
 
       /// \brief Returns the value stored.
       ///
-      constexpr auto const& value() const noexcept
+      [[nodiscard]] constexpr auto const& value() const noexcept
       {
-         if constexpr (is_lvalue_reference_v<T>) {
+         if constexpr (is_lvalue_reference_v<T>) { // NOLINT
             return *value_;
          }
          else {

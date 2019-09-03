@@ -122,7 +122,7 @@ namespace cjdb {
       : bool_constant<is_convertible_v<From, To> and noexcept(To(std::declval<From>()))> {};
 
    template<class From, class To>
-   constexpr auto is_nothrow_convertible_v = is_nothrow_convertible<From, To>();
+   inline constexpr auto is_nothrow_convertible_v = is_nothrow_convertible<From, To>();
 
    using std::is_invocable, std::is_invocable_v;
    using std::is_invocable_r, std::is_invocable_r_v;

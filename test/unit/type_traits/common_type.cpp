@@ -13,12 +13,11 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 //
-#define DOCTEST_CONFIG_IMPLEMENT_WITH_MAIN
 #include "cjdb/type_traits/common_type.hpp"
 #include "cjdb/type_traits/common_reference.hpp"
 
 #include <array>
-#include <doctest.h>
+#include "cjdb/test/simple_test.hpp"
 #include <functional>
 #include <initializer_list>
 #include <tuple>
@@ -361,9 +360,9 @@ static_assert(std::is_same_v<common_reference_t<int const volatile &&, int volat
 static_assert(std::is_same_v<common_reference_t<int &&, int const &, int volatile &>, int const volatile &>);
 
 // Array types?? Yup!
-static_assert(std::is_same_v<common_reference_t<int (&)[10], int (&&)[10]>, int const(&)[10]>);
-static_assert(std::is_same_v<common_reference_t<int const (&)[10], int volatile (&)[10]>, int const volatile(&)[10]>);
-static_assert(std::is_same_v<common_reference_t<int (&)[10], int (&)[11]>, int *>);
+static_assert(std::is_same_v<common_reference_t<int (&)[10], int (&&)[10]>, int const(&)[10]>); // NOLINT(modernize-avoid-c-arrays,readability-magic-numbers)
+static_assert(std::is_same_v<common_reference_t<int const (&)[10], int volatile (&)[10]>, int const volatile(&)[10]>); // NOLINT(modernize-avoid-c-arrays,readability-magic-numbers)
+static_assert(std::is_same_v<common_reference_t<int (&)[10], int (&)[11]>, int *>); // NOLINT(modernize-avoid-c-arrays,readability-magic-numbers)
 
 // Some tests with noncopyable types
 static_assert(std::is_same_v<
@@ -499,7 +498,7 @@ namespace libcpp_tests
     static_assert((std::is_same_v<common_type_t<int, S<int> >, S<int> >));
     static_assert((std::is_same_v<common_type_t<int, S<int>, S<int> >, S<int> >));
     static_assert((std::is_same_v<common_type_t<int, int, S<int> >, S<int> >));
-}
+} // namespace libcpp_tests
 
 // libstdc++ tests
 //
@@ -610,7 +609,7 @@ namespace libstdcpp_tests {
    union UConv2 {
       operator Abstract*(); // NOLINT(google-explicit-constructor)
    };
-}
+} // namespace libstdcpp_tests
 
 namespace libstdcpp_tests {
    static_assert(is_type<common_type<int, int>, int>);
@@ -648,8 +647,8 @@ namespace libstdcpp_tests {
    static_assert(is_type<common_type<const int B::*, volatile int D::*>, const volatile int D::*>);
    static_assert(is_type<common_type<int (B::*)(), int (D::*)()>, int (D::*)()>);
    static_assert(is_type<common_type<int (B::*)() const, int (D::*)() const>, int (D::*)() const>);
-   static_assert(is_type<common_type<int[3], int[3]>, int*>);
-   static_assert(is_type<common_type<int[1], const int[3]>, const int*>);
+   static_assert(is_type<common_type<int[3], int[3]>, int*>); // NOLINT(modernize-avoid-c-arrays)
+   static_assert(is_type<common_type<int[1], const int[3]>, const int*>); // NOLINT(modernize-avoid-c-arrays)
    static_assert(is_type<common_type<void(), void()>, void(*)()>);
    static_assert(is_type<common_type<void(&)(), void(&)()>, void(*)()>);
    static_assert(is_type<common_type<void(&)(), void(&&)()>, void(*)()>);
@@ -717,7 +716,7 @@ namespace libstdcpp_tests {
    static_assert(not has_trait<common_type<int, const volatile void>>);
    static_assert(not has_trait<common_type<Abstract, void>>);
    static_assert(not has_trait<common_type<Ukn, void>>);
-   static_assert(not has_trait<common_type<int[4], void>>);
+   static_assert(not has_trait<common_type<int[4], void>>); // NOLINT(modernize-avoid-c-arrays)
    static_assert(not has_trait<common_type<ScEn, void>>);
    static_assert(not has_trait<common_type<UnscEn, void>>);
    static_assert(not has_trait<common_type<U, void>>);
@@ -750,7 +749,7 @@ namespace libstdcpp_tests {
    static_assert(not has_trait<common_type<ScEn, int>>);
    static_assert(not has_trait<common_type<ScEn, UnscEn>>);
    static_assert(not has_trait<common_type<U, S, Abstract, void, D,
-         int (B::*)(), int[5]>>);
+         int (B::*)(), int[5]>>); // NOLINT(modernize-avoid-c-arrays,readability-magic-numbers)
    static_assert(not has_trait<common_type<UConv1, Abstract&&>>);
    static_assert(not has_trait<common_type<std::initializer_list<int>,
                   std::initializer_list<long>>>);
@@ -791,15 +790,15 @@ namespace libstdcpp_tests {
    void test01()
    {
       constexpr auto a1 = make_array(0);
-      constexpr auto a2 = make_array(0, 1.2);
-      constexpr auto a3 = make_array(5, true, 3.1415f, 'c');
+      constexpr auto a2 = make_array(0, 1.2); // NOLINT(readability-magic-numbers)
+      constexpr auto a3 = make_array(5, true, 3.1415f, 'c'); // NOLINT(readability-magic-numbers)
 
       int i{};
-      double d{1.2};
-      float f{3.1415f};
+      double d{1.2}; // NOLINT(readability-magic-numbers)
+      float f{3.1415f}; // NOLINT(readability-magic-numbers)
 
       [[maybe_unused]] auto b1 = make_array(i);
-      [[maybe_unused]] auto b2 = make_array(i, 1.2);
+      [[maybe_unused]] auto b2 = make_array(i, 1.2); // NOLINT(readability-magic-numbers)
       [[maybe_unused]] auto b3 = make_array(i, d);
       [[maybe_unused]] auto b4 = make_array(0, d);
       [[maybe_unused]] auto b5 = make_array(i, true, f, 'c');
@@ -820,46 +819,46 @@ namespace libstdcpp_tests {
    #define DO_JOIN2( X, Y ) X##Y
 
    #define COMMON_TYPE_TEST_1(type1, uid) \
-      typedef common_type_t<type1> JOIN(test_t,uid); \
+      typedef common_type_t<type1> JOIN(test_t,uid); /* NOLINT(bugprone-macro-parentheses) */ \
       CHECK( (std::is_same_v<JOIN(test_t,uid), JOIN(test_t,uid)>) ); \
-      typedef common_type_t<const type1> JOIN(test_t,JOIN(uid,c)); \
+      typedef common_type_t<const type1> JOIN(test_t,JOIN(uid,c)); /* NOLINT(bugprone-macro-parentheses) */ \
       CHECK( (std::is_same_v<JOIN(test_t,JOIN(uid,c)), \
                   JOIN(test_t,JOIN(uid,c))>) ); \
-      typedef common_type_t<volatile type1> JOIN(test_t,JOIN(uid,v)); \
+      typedef common_type_t<volatile type1> JOIN(test_t,JOIN(uid,v)); /* NOLINT(bugprone-macro-parentheses) */ \
       CHECK( (std::is_same_v<JOIN(test_t,JOIN(uid,v)), \
                   JOIN(test_t,JOIN(uid,v))>) ); \
-      typedef common_type_t<const volatile type1> JOIN(test_t,JOIN(uid,cv)); \
+      typedef common_type_t<const volatile type1> JOIN(test_t,JOIN(uid,cv)); /* NOLINT(bugprone-macro-parentheses) */ \
       CHECK( (std::is_same_v<JOIN(test_t,JOIN(uid,cv)), \
                   JOIN(test_t,JOIN(uid,cv))>) ); \
-      typedef common_type_t<type1 &> JOIN(test_t,JOIN(uid,l)); \
+      typedef common_type_t<type1 &> JOIN(test_t,JOIN(uid,l)); /* NOLINT(bugprone-macro-parentheses) */ \
       CHECK( (std::is_same_v<JOIN(test_t,JOIN(uid,l)), \
                   JOIN(test_t,JOIN(uid,l))>) ); \
-      typedef common_type_t<const type1 &> JOIN(test_t,JOIN(uid,lc)); \
+      typedef common_type_t<const type1 &> JOIN(test_t,JOIN(uid,lc)); /* NOLINT(bugprone-macro-parentheses) */ \
       CHECK( (std::is_same_v<JOIN(test_t,JOIN(uid,lc)), \
                   JOIN(test_t,JOIN(uid,lc))>) ); \
-      typedef common_type_t<volatile type1 &> JOIN(test_t,JOIN(uid,lv)); \
+      typedef common_type_t<volatile type1 &> JOIN(test_t,JOIN(uid,lv)); /* NOLINT(bugprone-macro-parentheses) */ \
       CHECK( (std::is_same_v<JOIN(test_t,JOIN(uid,lv)), \
                   JOIN(test_t,JOIN(uid,lv))>) ); \
-      typedef common_type_t<const volatile type1 &> JOIN(test_t,JOIN(uid,lcv)); \
+      typedef common_type_t<const volatile type1 &> JOIN(test_t,JOIN(uid,lcv)); /* NOLINT(bugprone-macro-parentheses) */ \
       CHECK( (std::is_same_v<JOIN(test_t,JOIN(uid,lcv)), \
                   JOIN(test_t,JOIN(uid,lcv))>) ); \
-      typedef common_type_t<type1 &&> JOIN(test_t,JOIN(uid,r)); \
+      typedef common_type_t<type1 &&> JOIN(test_t,JOIN(uid,r)); /* NOLINT(bugprone-macro-parentheses) */ \
       CHECK( (std::is_same_v<JOIN(test_t,JOIN(uid,r)), \
                   JOIN(test_t,JOIN(uid,r))>) ); \
-      typedef common_type_t<const type1 &&> JOIN(test_t,JOIN(uid,rc)); \
+      typedef common_type_t<const type1 &&> JOIN(test_t,JOIN(uid,rc)); /* NOLINT(bugprone-macro-parentheses) */ \
       CHECK( (std::is_same_v<JOIN(test_t,JOIN(uid,rc)), \
                   JOIN(test_t,JOIN(uid,rc))>) ); \
-      typedef common_type_t<volatile type1 &&> JOIN(test_t,JOIN(uid,rv)); \
+      typedef common_type_t<volatile type1 &&> JOIN(test_t,JOIN(uid,rv)); /* NOLINT(bugprone-macro-parentheses) */ \
       CHECK( (std::is_same_v<JOIN(test_t,JOIN(uid,rv)), \
                   JOIN(test_t,JOIN(uid,rv))>) ); \
-      typedef common_type_t<const volatile type1 &&> JOIN(test_t,JOIN(uid,rcv)); \
+      typedef common_type_t<const volatile type1 &&> JOIN(test_t,JOIN(uid,rcv)); /* NOLINT(bugprone-macro-parentheses) */ \
       CHECK( (std::is_same_v<JOIN(test_t,JOIN(uid,rcv)), \
                   JOIN(test_t,JOIN(uid,rcv))>) )
 
    struct AA { };
    struct BB : AA { };
 
-   void typedefs_test01() // NOLINT(readability-function-size)
+   void typedefs_test01()
    {
       // Positive tests.
       COMMON_TYPE_TEST_1(int, 1);
@@ -887,7 +886,7 @@ namespace libstdcpp_tests {
       COMMON_TYPE_TEST_2(volatile, type1, type2, type3, uid); \
       COMMON_TYPE_TEST_2(const volatile, type1, type2, type3, uid)
 
-   void typedefs_test02() // NOLINT(readability-function-size)
+   void typedefs_test02()
    {
       COMMON_TYPE_TEST_ALL_2(int, int, int, 1);
       COMMON_TYPE_TEST_ALL_2(int, double, double, 2);
@@ -925,7 +924,7 @@ namespace libstdcpp_tests {
    static_assert(std::is_same_v<common_type_t<const volatile void, const void>, void>);
    static_assert(std::is_same_v<common_type_t<const volatile void, volatile void>, void>);
    static_assert(std::is_same_v<common_type_t<const volatile void, const volatile void>, void>);
-}
+} // namespace libstdcpp_tests
 
 // https://github.com/ericniebler/stl2/issues/338
 struct MyIntRef {
@@ -935,6 +934,8 @@ using T = common_reference_t<int&, MyIntRef>;
 static_assert(std::is_same_v<common_reference_t<int&, MyIntRef>, MyIntRef>);
 static_assert(std::is_same_v<common_reference_t<int, int, int>, int>);
 
-TEST_CASE("common_reference") {
+int main()
+{
    ::libstdcpp_tests::typedefs_1();
+   return ::test_result();
 }

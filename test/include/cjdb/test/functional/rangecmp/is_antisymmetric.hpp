@@ -37,7 +37,7 @@ namespace cjdb_test {
       ///
       template<class A, cjdb::equality_comparable_with<A> B>
       requires cjdb::relation<R, A, B>
-      constexpr bool antisymmetric(A const& a, B const& b) noexcept
+      [[nodiscard]] constexpr bool antisymmetric(A const& a, B const& b) noexcept
       { return antisymmetric_impl(*this, a, b); }
 
       /// \brief Checks that the relation is symmetric, with respect to types T and U.
@@ -47,11 +47,11 @@ namespace cjdb_test {
       ///
       template<class A, cjdb::equality_comparable_with<A> B>
       requires cjdb::relation<R, A, B>
-      constexpr bool antisymmetric(A const& a, B const& b) const noexcept
+      [[nodiscard]] constexpr bool antisymmetric(A const& a, B const& b) const noexcept
       { return antisymmetric_impl(*this, a, b); }
    private:
       template<class Self, class A, class B>
-      constexpr static bool antisymmetric_impl(Self& self, A const& a, B const& b) noexcept
+      [[nodiscard]] constexpr static bool antisymmetric_impl(Self& self, A const& a, B const& b) noexcept
       { return (self(a, b) != self(b, a)) or (a == b); }
    };
 } // namespace cjdb_test

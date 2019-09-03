@@ -17,6 +17,7 @@
 #define CJDB_TEST_FUNCTIONAL_RANGECMP_IS_TRANSITIVE_HPP
 
 #include "cjdb/concepts/callable/relation.hpp"
+#include "cjdb/contracts.hpp"
 #include "cjdb/test/constexpr_check.hpp"
 #include "cjdb/test/functional/rangecmp/relation.hpp"
 #include <utility>
@@ -38,7 +39,7 @@ namespace cjdb_test {
       ///
       template<class A, class B>
       requires cjdb::relation<R, A, B>
-      constexpr bool transitive(A const& a, B const& b, A const& c) noexcept
+      [[nodiscard]] constexpr bool transitive(A const& a, B const& b, A const& c) noexcept
       { return transitive_impl(*this, a, b, c); }
 
       /// \brief Checks that the relation is transitive, with respect to types T and U.
@@ -50,29 +51,18 @@ namespace cjdb_test {
       ///
       template<class A, class B>
       requires cjdb::relation<R, A, B>
-      constexpr bool transitive(A const& a, B const& b, A const& c) const noexcept
+      [[nodiscard]] constexpr bool transitive(A const& a, B const& b, A const& c) const noexcept
       { return transitive_impl(*this, a, b, c); }
    private:
       template<class Self, class A, class B>
-      constexpr static bool transitive_impl(Self& self, A const& a, B const& b, A const& c) noexcept
+      [[nodiscard]] constexpr static
+      bool transitive_impl(Self& self, A const& a, B const& b, A const& c) noexcept
       {
          auto const aRb = self(a, b);
-         // [[assert: aRb]];
-         if (not aRb) {
-#pragma clang diagnostic push
-#pragma clang diagnostic ignored "-Wexceptions"
-            throw std::logic_error{"not aRb"};
-#pragma clang diagnostic pop
-         }
+         CJDB_ASSERT(aRb and "transitivity cannot hold: aRc failed.");
 
          auto const bRc = self(b, c);
-         // [[assert: bRc]];
-         if (not bRc) {
-#pragma clang diagnostic push
-#pragma clang diagnostic ignored "-Wexceptions"
-            throw std::logic_error{"not bRc"};
-#pragma clang diagnostic pop
-         }
+         CJDB_ASSERT(bRc and "transitivity cannot hold: bRc failed.");
 
          auto const aRc = self(a, c);
          return aRb and bRc and aRc;

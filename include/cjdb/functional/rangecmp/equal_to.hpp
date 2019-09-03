@@ -31,7 +31,7 @@ namespace cjdb::ranges {
       template<class T, equality_comparable_with<T> U>
       constexpr bool operator()(T&& t, U&& u) const
       CJDB_NOEXCEPT_RETURN(
-         static_cast<bool>(std::forward<T>(t) == std::forward<U>(u))
+        static_cast<bool>(std::forward<T>(t) == std::forward<U>(u))
       )
 
       using is_transparent = true_type;

@@ -19,7 +19,7 @@ static_assert(cjdb::copy_constructible<int&>);
 static_assert(not cjdb::copy_constructible<int&&>);
 static_assert(cjdb::copy_constructible<const int&>);
 static_assert(not cjdb::copy_constructible<const int&&>);
-static_assert(not cjdb::copy_constructible<int[4]>);
+static_assert(not cjdb::copy_constructible<int[4]>); // NOLINT(modernize-avoid-c-arrays)
 static_assert(not cjdb::copy_constructible<void()>);
 
 static_assert(cjdb::copy_constructible<copyable>);

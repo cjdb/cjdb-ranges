@@ -20,14 +20,14 @@
 
 namespace cjdb {
    template<template<class...> class Expected, class T>
-   constexpr auto is_template_impl = false;
+   inline constexpr auto is_template_impl = false;
 
    template<template<class...> class Expected, template<class...> class Actual, class... Ts>
    requires same_as<Expected<Ts...>, Actual<Ts...>>
-   constexpr auto is_template_impl<Expected, Actual<Ts...>> = true;
+   inline constexpr auto is_template_impl<Expected, Actual<Ts...>> = true;
 
    template<template<class...> class Template, class T>
-   constexpr auto is_template = is_template_impl<Template, T>;
+   inline constexpr auto is_template = is_template_impl<Template, T>;
 } // namespace cjdb
 
 #endif // CJDB_TYPE_TRAITS_IS_TEMPLATE_HPP

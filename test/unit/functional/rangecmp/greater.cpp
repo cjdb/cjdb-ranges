@@ -13,48 +13,52 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 //
-#define DOCTEST_CONFIG_IMPLEMENT_WITH_MAIN
 #include "cjdb/functional/rangecmp/greater.hpp"
 
 #include "cjdb/concepts/comparison/totally_ordered.hpp"
 #include "cjdb/test/functional/rangecmp/is_strict_total_order.hpp"
 #include "cjdb/test/constexpr_check.hpp"
-#include <doctest.h>
+#include "cjdb/test/simple_test.hpp"
 #include <string_view>
 
 
-TEST_CASE("Test [rangecmp.greater]") {
+int main()
+{
    using cjdb::ranges::greater;
    using namespace std::string_view_literals;
 
-   REQUIRE(greater::is_transparent{});
+   static_assert(greater::is_transparent{});
 
    constexpr auto hello = "hello"sv;
    constexpr auto konnichiwa = "konnichiwa"sv; // it's infuriating that "こんにちは" <= "hello" at
                                                // compile-time.
 
-   SUBCASE("shows greater is a strict total order") {
-      CHECK_IS_STRICT_TOTAL_ORDER(greater{}, 2, 1, 0);
-      CHECK_IS_STRICT_TOTAL_ORDER(greater{}, 2, 1.0, 0);
-      CHECK_IS_STRICT_TOTAL_ORDER(greater{}, 2, 1.5, 1);
+   { // shows greater is a strict total order
+      CHECK_IS_STRICT_TOTAL_ORDER(greater{}, 2, 1, 0);   // NOLINT(readability-magic-numbers)
+      CHECK_IS_STRICT_TOTAL_ORDER(greater{}, 2, 1.0, 0); // NOLINT(readability-magic-numbers)
+      CHECK_IS_STRICT_TOTAL_ORDER(greater{}, 2, 1.5, 1); // NOLINT(readability-magic-numbers)
 
-      CHECK_IS_STRICT_TOTAL_ORDER(greater{}, "c"sv, "ab"sv, "a"sv);
-      CHECK_IS_STRICT_TOTAL_ORDER(greater{}, "c"sv, "ab"sv, "a"sv);
+      CHECK_IS_STRICT_TOTAL_ORDER(greater{}, "c"sv, "ab"sv, "a"sv); // NOLINT(readability-magic-numbers)
+      CHECK_IS_STRICT_TOTAL_ORDER(greater{}, "c"sv, "ab"sv, "a"sv); // NOLINT(readability-magic-numbers)
    }
 
-   SUBCASE("shows greater works for same-type ordering") {
-      CJDB_CONSTEXPR_CHECK(greater{}(4, 3));
-      CJDB_CONSTEXPR_CHECK(not greater{}(3, 40));
+   { // shows greater works for same-type ordering
+      CJDB_CONSTEXPR_CHECK(greater{}(4, 3)); // NOLINT(readability-magic-numbers)
+      CJDB_CONSTEXPR_CHECK(not greater{}(3, 40)); // NOLINT(readability-magic-numbers)
 
       CJDB_CONSTEXPR_CHECK(greater{}(konnichiwa, hello));
       CJDB_CONSTEXPR_CHECK(not greater{}(hello, konnichiwa));
    }
 
-   SUBCASE("shows greater works for cross-type ordering") {
-      CJDB_CONSTEXPR_CHECK(greater{}(4, 3.0));
-      CJDB_CONSTEXPR_CHECK(not greater{}(3, 3.9999)); // int promoted to double
+   { // shows greater works for cross-type ordering
+      CJDB_CONSTEXPR_CHECK(greater{}(4, 3.0)); // NOLINT(readability-magic-numbers)
+
+      // int promoted to double
+      CJDB_CONSTEXPR_CHECK(not greater{}(3, 3.9999)); // NOLINT(readability-magic-numbers)
 
       CJDB_CONSTEXPR_CHECK(greater{}(konnichiwa.data(), hello));
       CJDB_CONSTEXPR_CHECK(not greater{}(hello, konnichiwa.data()));
    }
+
+   return ::test_result();
 }

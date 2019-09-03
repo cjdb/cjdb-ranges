@@ -15,16 +15,16 @@
 #
 task:
   container:
-    image: cjdb/cirrus-cpp:bionic
-    cpu: 2
+    image: cjdb/cirrus-ci
+    cpu: 8
     memory: 8
   env:
     CLANG_TIDY_PATH: /opt/clang-concepts/bin/clang-tidy
     matrix:
-      - PROFILE: clang
+      - PROFILE: clang-libcxx
         CODE_COVERAGE: gcov
         REQUIRED_SANITIZERS: Address;Undefined
-        ENABLE_CLANG_TIDY: Off
+        ENABLE_CLANG_TIDY: On
     matrix:
       - BUILD_TYPE: Debug
       - BUILD_TYPE: Release

@@ -1,5 +1,5 @@
 #
-#  Copyright 2018 Christopher Di Bella
+#  Copyright 2019 Christopher Di Bella
 #
 # Licensed under the Apache License, Version 2.0 (the "License");
 # you may not use this file except in compliance with the License.
@@ -13,4 +13,12 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 #
-add_subdirectory(clang-tidy)
+
+# System packages
+find_package(Clang REQUIRED)
+find_package(ClangTidy REQUIRED)
+find_package(CodeCoverage REQUIRED)
+include(basic_project-sanitizers)
+
+# User packages
+find_package(contracts_consolation REQUIRED)

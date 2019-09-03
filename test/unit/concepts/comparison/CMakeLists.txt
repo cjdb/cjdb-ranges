@@ -13,6 +13,5 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 #
-add_cjdblib_test(FILENAME boolean.cpp)
 add_cjdblib_test(FILENAME equality_comparable.cpp)
 add_cjdblib_test(FILENAME totally_ordered.cpp)

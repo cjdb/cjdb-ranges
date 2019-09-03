@@ -36,7 +36,7 @@ constexpr void check_totally_ordered() noexcept
    static_assert(not totally_ordered<cjdb_test::not_totally_ordered_no_ge>);
    static_assert(not totally_ordered<cjdb_test::not_totally_ordered_no_eq>);
    static_assert(not totally_ordered<cjdb_test::not_totally_ordered_no_ne>);
-   static_assert(totally_ordered<cjdb_test::not_totally_ordered_wrong_return>);
+   static_assert(not totally_ordered<cjdb_test::not_totally_ordered_wrong_return>);
 }
 
 constexpr void check_totally_ordered_with() noexcept

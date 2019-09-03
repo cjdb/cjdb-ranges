@@ -34,7 +34,6 @@ using cjdb::move_constructible;
 using cjdb::copy_constructible;
 
 // Compare
-using cjdb::boolean;
 using cjdb::equality_comparable;
 using cjdb::equality_comparable_with;
 using cjdb::totally_ordered;

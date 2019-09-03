@@ -8,34 +8,33 @@
 // Derived from: https://github.com/caseycarter/cmcstl2
 // Project home: https://github.com/cjdb/clang-concepts-ranges
 //
-#define DOCTEST_CONFIG_IMPLEMENT_WITH_MAIN
 #include "cjdb/concepts/core/swappable.hpp"
 
 #include "cjdb/concepts/core/same_as.hpp"
 #include "cjdb/type_traits/type_traits.hpp"
-#include <doctest.h>
+#include "cjdb/test/simple_test.hpp"
 
 namespace swappable_test {
    static_assert(cjdb::swappable<int>);
    static_assert(cjdb::swappable_with<int&, int&>);
-   static_assert(cjdb::swappable<int[4]>);
-   static_assert(cjdb::swappable_with<int(&)[4], int(&)[4]>);
+   static_assert(cjdb::swappable<int[4]>); // NOLINT(modernize-avoid-c-arrays,readability-magic-numbers)
+   static_assert(cjdb::swappable_with<int(&)[4], int(&)[4]>); // NOLINT(modernize-avoid-c-arrays,readability-magic-numbers)
    static_assert(not cjdb::swappable_with<int, int>);
    static_assert(not cjdb::swappable_with<int&, double&>);
-   static_assert(not cjdb::swappable_with<int(&)[4], bool(&)[4]>);
-   static_assert(not cjdb::swappable<int[]>);
-   static_assert(not cjdb::swappable<int[][4]>);
+   static_assert(not cjdb::swappable_with<int(&)[4], bool(&)[4]>); // NOLINT(modernize-avoid-c-arrays,readability-magic-numbers)
+   static_assert(not cjdb::swappable<int[]>);    // NOLINT(modernize-avoid-c-arrays,readability-magic-numbers)
+   static_assert(not cjdb::swappable<int[][4]>); // NOLINT(modernize-avoid-c-arrays,readability-magic-numbers)
 
    static_assert(noexcept(cjdb::ranges::swap(std::declval<int&>(), std::declval<int&>())));
    static_assert(std::is_nothrow_swappable_with_v<int&, int&>);
-   static_assert(std::is_nothrow_swappable_with_v<int(&)[42], int(&)[42]>);
+   static_assert(std::is_nothrow_swappable_with_v<int(&)[42], int(&)[42]>); // NOLINT(modernize-avoid-c-arrays,readability-magic-numbers)
 
-   static_assert(cjdb::swappable<int[3][4]>);
-   static_assert(cjdb::swappable_with<int(&)[3][4], int(&)[3][4]>);
-   static_assert(cjdb::swappable<int[3][4][1][2]>);
-   static_assert(cjdb::swappable_with<int(&)[3][4][1][2], int(&)[3][4][1][2]>);
-   static_assert(not cjdb::swappable_with<int(&)[3][4][1][2], int(&)[4][4][1][2]>);
-   static_assert(std::is_nothrow_swappable_with_v<int(&)[6][7], int(&)[6][7]>);
+   static_assert(cjdb::swappable<int[3][4]>); // NOLINT(modernize-avoid-c-arrays)
+   static_assert(cjdb::swappable_with<int(&)[3][4], int(&)[3][4]>); // NOLINT(modernize-avoid-c-arrays,readability-magic-numbers)
+   static_assert(cjdb::swappable<int[3][4][1][2]>); // NOLINT(modernize-avoid-c-arrays,readability-magic-numbers)
+   static_assert(cjdb::swappable_with<int(&)[3][4][1][2], int(&)[3][4][1][2]>); // NOLINT(modernize-avoid-c-arrays,readability-magic-numbers)
+   static_assert(not cjdb::swappable_with<int(&)[3][4][1][2], int(&)[4][4][1][2]>); // NOLINT(modernize-avoid-c-arrays,readability-magic-numbers)
+   static_assert(std::is_nothrow_swappable_with_v<int(&)[6][7], int(&)[6][7]>); // NOLINT(modernize-avoid-c-arrays,readability-magic-numbers)
 
    // Has std:: as an associated namespace
    struct unswappable : std::string { // NOLINT(cppcoreguidelines-special-member-functions)
@@ -94,7 +93,7 @@ namespace ranges = cjdb::ranges;
 
 template<class T, cjdb::swappable_with<T> U>
 void value_swap(T&& t, U&& u) {
-ranges::swap(std::forward<T>(t), std::forward<U>(u));
+   ranges::swap(std::forward<T>(t), std::forward<U>(u));
 }
 
 template<cjdb::swappable T>
@@ -106,7 +105,7 @@ ranges::swap(t1, t2);
 namespace N {
    struct A { int m; };
    struct Proxy {
-      A* a;
+      A* a; // NOLINT(misc-non-private-member-variables-in-classes)
       Proxy(A& a) : a{&a} {} // NOLINT(google-explicit-constructor)
       friend void swap(Proxy&& x, Proxy&& y) {
          ranges::swap(x.a, y.a);
@@ -117,35 +116,40 @@ namespace N {
       ranges::swap(x.m, p.a->m);
    }
    void swap(Proxy p, A& x) { swap(x, p); } // satisfy symmetry requirement
-}
+} // namespace N
 
-TEST_CASE("[concepts.swappable]") {
+int main()
+{
    { // From [concept.swappable]/5
-      int i = 1, j = 2;
+      auto i = 1;
+      auto j = 2;
       lv_swap(i, j);
       CHECK(i == 2);
       CHECK(j == 1);
-      N::A a1 = { 5 }, a2 = { -5 };
+      auto a1 = N::A{5};  // NOLINT(readability-magic-numbers)
+      auto a2 = N::A{-5}; // NOLINT(readability-magic-numbers)
       value_swap(a1, proxy(a2));
       CHECK(a1.m == -5);
       CHECK(a2.m == 5);
    }
    { // From cmcstl2
-      int a[2][2] = {{0, 1}, {2, 3}};
-      int b[2][2] = {{4, 5}, {6, 7}};
+      int a[2][2] = {{0, 1}, {2, 3}}; // NOLINT(modernize-avoid-c-arrays,readability-magic-numbers)
+      int b[2][2] = {{4, 5}, {6, 7}}; // NOLINT(modernize-avoid-c-arrays,readability-magic-numbers)
 
       static_assert(cjdb::swappable_with<decltype((a)),decltype((b))>);
       cjdb::ranges::swap(a, b);
       static_assert(noexcept(cjdb::ranges::swap(a, b)));
 
-      CHECK(a[0][0] == 4);
-      CHECK(a[0][1] == 5);
-      CHECK(a[1][0] == 6);
-      CHECK(a[1][1] == 7);
+      CHECK(a[0][0] == 4); // NOLINT(readability-magic-numbers)
+      CHECK(a[0][1] == 5); // NOLINT(readability-magic-numbers)
+      CHECK(a[1][0] == 6); // NOLINT(readability-magic-numbers)
+      CHECK(a[1][1] == 7); // NOLINT(readability-magic-numbers)
 
       CHECK(b[0][0] == 0);
       CHECK(b[0][1] == 1);
       CHECK(b[1][0] == 2);
       CHECK(b[1][1] == 3);
    }
+
+   return ::test_result();
 }

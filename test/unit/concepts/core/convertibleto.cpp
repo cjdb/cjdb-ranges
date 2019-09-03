@@ -31,7 +31,7 @@ constexpr void models_ConvertibleTo()
    static_assert(cjdb::convertible_to<From&, To>);
    static_assert(cjdb::convertible_to<From&, To const>);
 
-   if constexpr (std::is_base_of_v<To, From>) { // NOLINT(readability-braces-around-statements)
+   if constexpr (std::is_base_of_v<To, From>) { // NOLINT
       static_assert(cjdb::convertible_to<From&, To&>);
    }
 

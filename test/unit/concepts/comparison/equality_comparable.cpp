@@ -34,7 +34,7 @@ constexpr void check_equality_comparable() noexcept
    static_assert(not equality_comparable<void>);
    static_assert(not equality_comparable<cjdb_test::not_equality_comparable1>);
    static_assert(not equality_comparable<cjdb_test::not_equality_comparable2>);
-   static_assert(equality_comparable<cjdb_test::not_equality_comparable3>);
+   static_assert(not equality_comparable<cjdb_test::not_equality_comparable3>);
 }
 
 constexpr void check_equality_comparable_with() noexcept

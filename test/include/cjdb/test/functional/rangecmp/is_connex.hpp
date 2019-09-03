@@ -30,15 +30,15 @@ namespace cjdb_test {
       {}
 
       template<class A, class B>
-      constexpr bool connex(A const& a, B const& b) noexcept
+      [[nodiscard]] constexpr bool connex(A const& a, B const& b) noexcept
       { return connex_impl(*this, a, b); }
 
       template<class A, class B>
-      constexpr bool connex(A const& a, B const& b) const noexcept
+      [[nodiscard]] constexpr bool connex(A const& a, B const& b) const noexcept
       { return connex_impl(*this, a, b); }
    private:
       template<class Self, class A, class B>
-      constexpr static bool connex_impl(Self& self, A const& a, B const& b) noexcept
+      [[nodiscard]] constexpr static bool connex_impl(Self& self, A const& a, B const& b) noexcept
       { return self(a, b) or self(b, a); }
    };
 } // namespace cjdb_test

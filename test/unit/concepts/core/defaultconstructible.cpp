@@ -21,8 +21,8 @@ static_assert(not cjdb::default_initializable<int()>);
 static_assert(not cjdb::default_initializable<int(&)()>);
 static_assert(cjdb::default_initializable<double>);
 static_assert(not cjdb::default_initializable<void>);
-static_assert(not cjdb::default_initializable<int[]>);
-static_assert(cjdb::default_initializable<int[2]>);
+static_assert(not cjdb::default_initializable<int[]>); // NOLINT(modernize-avoid-c-arrays)
+static_assert(cjdb::default_initializable<int[2]>);    // NOLINT(modernize-avoid-c-arrays)
 static_assert(not cjdb::default_initializable<nondefaultconstructible>);
 
 // It's hard to catch explicit default constructors, see

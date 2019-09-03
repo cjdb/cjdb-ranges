@@ -114,7 +114,7 @@ namespace cjdb {
       }
       struct common_type5<T1, T2, R...> : common_type<common_type_t<T1, T2>, common_type_t<R...>> {
       };
-   } // detail_common_type
+   } // namespace detail_common_type
 
    template <typename T1, typename T2, typename... R>
    requires (sizeof...(R) > 0)

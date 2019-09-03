@@ -19,7 +19,6 @@
 // clang-format off
 // Note that header inclusion order reflects how concepts are laid out in the Standard.
 //
-#include "cjdb/concepts/comparison/boolean.hpp"
 #include "cjdb/concepts/comparison/equality_comparable.hpp"
 #include "cjdb/concepts/comparison/totally_ordered.hpp"
 // clang-format on
