@@ -15,21 +15,16 @@
 #
 FROM ubuntu:bionic
 
-RUN apt update
-RUN apt upgrade -y
-RUN apt install software-properties-common
-RUN apt-add-repository ppa:ubuntu-toolchain-r/test
-RUN apt-key adv --keyserver hkp://keyserver.ubuntu.com:80 --recv-keys 15CF4D18AF4F7421
-RUN apt-add-repository 'deb http://apt.llvm.org/bionic/ llvm-toolchain-bionic-8 main'
-RUN apt update
-
-# Install tools
-RUN apt install clang-8 clang++-8 lld-8
-RUN apt install ninja-build git python3 python3-pip
-
-# Python config
-RUN python3 -m pip install pip --upgrade
-RUN python3 -m pip install cmake conan
+RUN apt update                                                                               && \
+    apt install -y software-properties-common                                                && \
+    apt-add-repository ppa:ubuntu-toolchain-r/test                                           && \
+    apt-key adv --keyserver hkp://keyserver.ubuntu.com:80 --recv-keys 15CF4D18AF4F7421       && \
+    apt-add-repository 'deb http://apt.llvm.org/bionic/ llvm-toolchain-bionic-8 main'        && \
+    apt upgrade -y                                                                           && \
+    apt update                                                                               && \
+    apt install -y gcc-8 g++-8 clang-8 clang++-8 lld-8 ninja-build git python3 python3-pip   && \
+    python3 -m pip install pip --upgrade                                                     && \
+    python3 -m pip install cmake conan
 
 # LLVM install
 WORKDIR /tmp
@@ -60,4 +55,4 @@ RUN ninja install
 
 WORKDIR /
 RUN rm -rf /tmp/*
-RUN apt remove clang-8 clang++-8 lld-8
+RUN apt remove -y clang-8 clang++-8 lld-8 && apt autoremove -y

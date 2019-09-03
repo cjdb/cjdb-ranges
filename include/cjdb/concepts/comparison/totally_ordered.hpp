@@ -16,7 +16,7 @@
 #ifndef CJDB_CONCEPTS_COMPARISON_STRICTTOTALLYORDERED_HPP
 #define CJDB_CONCEPTS_COMPARISON_STRICTTOTALLYORDERED_HPP
 
-#include "cjdb/concepts/comparison/boolean.hpp"
+#include "cjdb/concepts/core/convertible_to.hpp"
 #include "cjdb/concepts/comparison/equality_comparable.hpp"
 #include "cjdb/type_traits/type_traits.hpp"
 

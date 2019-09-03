@@ -90,12 +90,8 @@ namespace cjdb_test {
    };
 
    struct not_equality_comparable3 {
-      constexpr friend cjdb_test::bad_equality_boolean
-      operator==(not_equality_comparable3, not_equality_comparable3) noexcept
-      { return true; }
-      constexpr friend cjdb_test::bad_equality_boolean
-      operator!=(not_equality_comparable3 x, not_equality_comparable3 y) noexcept
-      { return not (x == y); }
+      constexpr void operator==(not_equality_comparable3) const noexcept {}
+      constexpr void operator!=(not_equality_comparable3) const noexcept {}
    };
 } // namespace cjdb_test
 
