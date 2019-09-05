@@ -55,4 +55,4 @@ RUN ninja install
 
 WORKDIR /
 RUN rm -rf /tmp/*
-RUN apt remove clang-8 clang++-8 lld-8
+RUN apt remove -y clang-8 clang++-8 lld-8 && apt autoremove -y

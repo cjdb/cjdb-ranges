@@ -54,6 +54,9 @@ namespace cjdb_test {
       [[nodiscard]] constexpr bool transitive(A const& a, B const& b, A const& c) const noexcept
       { return transitive_impl(*this, a, b, c); }
    private:
+      [[noreturn]] static consteval void fail(std::string_view)
+      { std::abort(); }
+
       template<class Self, class A, class B>
       [[nodiscard]] constexpr static
       bool transitive_impl(Self& self, A const& a, B const& b, A const& c) noexcept
