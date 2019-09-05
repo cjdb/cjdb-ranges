@@ -17,13 +17,11 @@ task:
   container:
     image: cjdb/cirrus-ci
     cpu: 8
-    memory: 8
+    memory: 8G
   env:
     CLANG_TIDY_PATH: /opt/clang-concepts/bin/clang-tidy
     matrix:
       - PROFILE: clang-libcxx
-        CODE_COVERAGE: gcov
-        REQUIRED_SANITIZERS: Address;Undefined
         ENABLE_CLANG_TIDY: On
     matrix:
       - BUILD_TYPE: Debug
@@ -37,9 +35,6 @@ task:
     - conan install ..
         --profile=${PROFILE}
         --settings build_type=${BUILD_TYPE}
-        --options code_coverage=${CODE_COVERAGE}
-        --options required_sanitizers=${REQUIRED_SANITIZERS}
-        --options optional_sanitizers=${OPTIONAL_SANITIZERS}
         --options enable_clang_tidy=${ENABLE_CLANG_TIDY}
         --options clang_tidy_path=${CLANG_TIDY_PATH}
         --build
@@ -48,7 +43,7 @@ task:
     - conan build .. --configure
   build_script:
     - cd build-${BUILD_TYPE}
-    - ninja -v
+    - conan build .. --build
   test_script:
     - cd build-${BUILD_TYPE}
     - conan build .. --test
