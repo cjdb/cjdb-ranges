@@ -13,5 +13,5 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 #
-add_cjdblib_test(FILENAME invoke.cpp PRIVATE_INCLUDE "${CMAKE_SOURCE_DIR}/test/include")
+add_cjdblib_test(FILENAME invoke.cpp INCLUDE "${CMAKE_SOURCE_DIR}/test/include")
 add_subdirectory(rangecmp)

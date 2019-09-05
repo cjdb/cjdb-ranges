@@ -27,47 +27,24 @@ class Project_name(ConanFile):
     settings = ("os", "compiler", "arch", "build_type")
     generators = ("cmake", "cmake_paths", "virtualrunenv")
     options = {
-        "code_coverage": ["Off", "gcov", "LLVMSourceCoverage"],
-        "required_sanitizers": "ANY",
-        "optional_sanitizers": "ANY",
         "enable_clang_tidy": ["Off", "On"],
         "clang_tidy_path": "ANY"
     }
     default_options = {
-        "code_coverage": "Off",
-        "required_sanitizers": "",
-        "optional_sanitizers": "Address;Undefined;ControlFlowIntegrity",
         "enable_clang_tidy": "Off",
         "clang_tidy_path": "/usr/bin/clang-tidy"
     }
-    requires = ("doctest/2.2.0@bincrafters/stable")
+    requires = ("contracts-consolation/0.1@cjdb/experimental")
     exports_sources = (".clang*", "cmake/*", "CMakeLists.txt", "include/*",
                        "source/*", "test/*", "LICENSE.md")
     build_policy = "always"
     no_copy_source = False
 
-    def define_from_options(self, cmake):
-        cmake_key = "{}_{}".format(self.name, "CODE_COVERAGE")
-        cmake.definitions[cmake_key] = self.options.code_coverage
-
-        cmake_key = "{}_{}".format(self.name, "REQUIRED_SANITIZERS")
-        cmake.definitions[cmake_key] = self.options.required_sanitizers
-
-        cmake_key = "{}_{}".format(self.name, "OPTIONAL_SANITIZERS")
-        cmake.definitions[cmake_key] = self.options.optional_sanitizers
-
-        cmake_key = "{}_{}".format(self.name, "ENABLE_CLANG_TIDY")
-        cmake.definitions[cmake_key] = self.options.enable_clang_tidy
-
-        cmake_key = "{}_{}".format(self.name, "CLANG_TIDY_PATH")
-        cmake.definitions[cmake_key] = self.options.clang_tidy_path
-
-        return cmake
-
     def build(self):
         cmake = CMake(self)
 
-        cmake = self.define_from_options(cmake)
+        cmake.definitions[f"{self.name}_ENABLE_CLANG_TIDY"] = self.options.enable_clang_tidy
+        cmake.definitions[f"{self.name}_CLANG_TIDY_PATH"] = self.options.clang_tidy_path
         cmake.configure()
         cmake.build()
 

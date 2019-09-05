@@ -15,10 +15,7 @@
 #
 
 # System packages
-find_package(Clang REQUIRED)
 find_package(ClangTidy REQUIRED)
-find_package(CodeCoverage REQUIRED)
-include(basic_project-sanitizers)
 
 # User packages
 find_package(contracts_consolation REQUIRED)
