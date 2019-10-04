@@ -19,7 +19,7 @@ task:
     cpu: 8
     memory: 8G
   env:
-    CLANG_TIDY_PATH: /opt/clang-concepts/bin/clang-tidy
+    CLANG_TIDY_PATH: /usr/local/bin/clang-tidy
     matrix:
       - PROFILE: clang-libcxx
         ENABLE_CLANG_TIDY: On

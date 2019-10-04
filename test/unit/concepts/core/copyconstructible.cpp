@@ -33,20 +33,24 @@ static_assert(not cjdb::copy_constructible<nonmovable &&>);
 static_assert(cjdb::copy_constructible<const nonmovable &>);
 static_assert(not cjdb::copy_constructible<const nonmovable &&>);
 
+#ifndef STL2_WORKAROUND_MSVC_106654
+// j/k, there's no workaround
+#else   // ^^^ "workaround" / no workaround vvv
 // https://github.com/ericniebler/stl2/issues/301
 struct not_mutable_ref { // NOLINT(cppcoreguidelines-special-member-functions)
-   not_mutable_ref() = default;
-   not_mutable_ref(const not_mutable_ref&) = default;
-   not_mutable_ref(not_mutable_ref&&) = default;
-   not_mutable_ref(not_mutable_ref&) = delete;
+	not_mutable_ref() = default;
+	not_mutable_ref(const not_mutable_ref&) = default;
+	not_mutable_ref(not_mutable_ref&&) = default;
+	not_mutable_ref(not_mutable_ref&) = delete;
 };
 struct not_const_ref_ref { // NOLINT(cppcoreguidelines-special-member-functions)
-   not_const_ref_ref() = default;
-   not_const_ref_ref(const not_const_ref_ref&) = default;
-   not_const_ref_ref(not_const_ref_ref&&) = default;
-   not_const_ref_ref(const not_const_ref_ref&&) = delete;
+	not_const_ref_ref() = default;
+	not_const_ref_ref(const not_const_ref_ref&) = default;
+	not_const_ref_ref(not_const_ref_ref&&) = default;
+	not_const_ref_ref(const not_const_ref_ref&&) = delete;
 };
 static_assert(not cjdb::copy_constructible<not_mutable_ref>);
 static_assert(not cjdb::copy_constructible<not_const_ref_ref>);
+#endif // STL2_WORKAROUND_MSVC_106654
 
 int main() {}

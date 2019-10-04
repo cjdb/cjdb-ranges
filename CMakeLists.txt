@@ -19,8 +19,6 @@ project("cjdblib" CXX)
 add_library(${PROJECT_NAME} INTERFACE)
 
 set(CMAKE_CXX_STANDARD_REQUIRED ON)
-set(CMAKE_CXX_STANDARD 20)
-set(CMAKE_CXX_EXTENSIONS OFF)
 set(CMAKE_INTERPROCEDURAL_OPTIMIZATION_RELEASE ON)
 set(CMAKE_EXPORT_COMPILE_COMMANDS ON)
 
@@ -31,9 +29,17 @@ list(APPEND CMAKE_MODULE_PATH "${CMAKE_CURRENT_SOURCE_DIR}/config/cmake")
 enable_testing()
 include(CTest)
 
-include(basic_project-utility)
-include(basic_project-options)
-include(basic_project-packages)
+find_package(contracts_consolation REQUIRED)
+
+# clang-tidy options
+option(${PROJECT_NAME}_ENABLE_CLANG_TIDY "Builds with clang-tidy, if available. Defaults to On." On)
+set(${PROJECT_NAME}_CLANG_TIDY_PATH "/usr/bin/clang-tidy" CACHE
+	STRING "Sets the path for clang-tidy. Defaults to \"/usr/bin/clang-tidy\".")
+
+if(${PROJECT_NAME}_ENABLE_CLANG_TIDY)
+	find_package(ClangTidy REQUIRED)
+endif()
+
 include(basic_project-add-targets)
 include(basic_project-install)
 
