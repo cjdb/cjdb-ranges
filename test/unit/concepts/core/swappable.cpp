@@ -106,12 +106,12 @@ namespace N {
    struct A { int m; };
    struct Proxy {
       A* a; // NOLINT(misc-non-private-member-variables-in-classes)
-      Proxy(A& a) : a{&a} {} // NOLINT(google-explicit-constructor)
+      Proxy(A& a_) : a{&a_} {} // NOLINT(google-explicit-constructor)
       friend void swap(Proxy&& x, Proxy&& y) {
          ranges::swap(x.a, y.a);
       }
    };
-   Proxy proxy(A& a) { return Proxy{ a }; }
+   Proxy proxy(A& a_) { return Proxy{ a_ }; }
    void swap(A& x, Proxy p) {
       ranges::swap(x.m, p.a->m);
    }

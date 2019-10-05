@@ -1,21 +1,10 @@
-//
-//  Copyright Christopher Di Bella
-//
-// Licensed under the Apache License, Version 2.0 (the "License");
-// you may not use this file except in compliance with the License.
-// You may obtain a copy of the License at
-//
-//   http://www.apache.org/licenses/LICENSE-2.0
-//
-// Unless required by applicable law or agreed to in writing, software
-// distributed under the License is distributed on an "AS IS" BASIS,
-// WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
-// See the License for the specific language governing permissions and
-// limitations under the License.
+// Copyright (c) Christopher Di Bella.
+// SPDX-License-Identifier: Apache-2.0 WITH LLVM-exception
 //
 #include "cjdb/concepts/callable/relation.hpp"
 #include "cjdb/concepts/callable/strict_weak_order.hpp"
 
+#include "cjdb/functional/rangecmp/less.hpp"
 #include "functions.hpp"
 
 template<class F, class T1, class T2>
@@ -29,34 +18,34 @@ constexpr void not_relation(F&&, T1&&, T2&&) noexcept {}
 // Tests also: strict_weak_order [concept.strictweakorder]
 template<class F, class T1, class T2>
 requires cjdb::relation<F, T1, T2>
-constexpr void models_StrictWeakOrder(F&&, T1&&, T2&&) noexcept {}
+constexpr void models_strict_weak_order(F&&, T1&&, T2&&) noexcept {}
 
 // Tests also: strict_weak_order [concept.strictweakorder]
 template<class F, class T1, class T2>
 requires (not cjdb::relation<F, T1, T2>)
-constexpr void not_StrictWeakOrder(F&&, T1&&, T2&&) noexcept {}
+constexpr void not_strict_weak_order(F&&, T1&&, T2&&) noexcept {}
 
 int main()
 {
-   {
-      using namespace regular_invocable;
+	{
+		using namespace regular_invocable;
 
-      auto a = A{};
-      not_relation(&A::g, a, 0);
-      not_relation(&A::h, A{}, 0);
+		auto a = A{};
+		not_relation(&A::g, a, 0);
+		not_relation(&A::h, A{}, 0);
 
-      // Tests also: strict_weak_order [concept.strictweakorder]
-      not_StrictWeakOrder(&A::g, a, 0);
-      not_StrictWeakOrder(&A::h, A{}, 0);
-   }
-   {
-      using namespace relation;
+		// Tests also: strict_weak_order [concept.strictweakorder]
+		not_strict_weak_order(&A::g, a, 0);
+		not_strict_weak_order(&A::h, A{}, 0);
+	}
+	{
+		using namespace relation;
 
-      models_relation(less{}, 0, 1);
-      models_relation(greater, 0, 1);
+		models_relation(cjdb::ranges::less{}, 0, 1);
+		models_relation(greater, 0, 1);
 
-      // Tests also: strict_weak_order [concept.strictweakorder]
-      models_StrictWeakOrder(less{}, 0, 1);
-      models_StrictWeakOrder(greater, 0, 1);
-   }
+		// Tests also: strict_weak_order [concept.strictweakorder]
+		models_strict_weak_order(cjdb::ranges::less{}, 0, 1);
+		models_strict_weak_order(greater, 0, 1);
+	}
 }

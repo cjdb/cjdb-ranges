@@ -1,148 +1,136 @@
-//
-//  Copyright Christopher Di Bella
-//
-// Licensed under the Apache License, Version 2.0 (the "License");
-// you may not use this file except in compliance with the License.
-// You may obtain a copy of the License at
-//
-//   http://www.apache.org/licenses/LICENSE-2.0
-//
-// Unless required by applicable law or agreed to in writing, software
-// distributed under the License is distributed on an "AS IS" BASIS,
-// WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
-// See the License for the specific language governing permissions and
-// limitations under the License.
+// Copyright (c) Christopher Di Bella.
+// SPDX-License-Identifier: Apache-2.0 WITH LLVM-exception
 //
 #include "cjdb/concepts/core/integral.hpp"
 
 #include "cjdb/type_traits/expose_type.hpp"
 
 template<class I>
-constexpr void models_Integral() noexcept
+constexpr void models_integral() noexcept
 {
-   static_assert(cjdb::integral<I>);
-   static_assert(cjdb::integral<I const>);
-   static_assert(cjdb::integral<I volatile>);
-   static_assert(cjdb::integral<I const volatile>);
+	static_assert(cjdb::integral<I>);
+	static_assert(cjdb::integral<I const>);
+	static_assert(cjdb::integral<I volatile>);
+	static_assert(cjdb::integral<I const volatile>);
 
-   static_assert(not cjdb::integral<I*>);
-   static_assert(not cjdb::integral<I const*>);
-   static_assert(not cjdb::integral<I volatile*>);
-   static_assert(not cjdb::integral<I const volatile*>);
+	static_assert(not cjdb::integral<I*>);
+	static_assert(not cjdb::integral<I const*>);
+	static_assert(not cjdb::integral<I volatile*>);
+	static_assert(not cjdb::integral<I const volatile*>);
 
-   static_assert(not cjdb::integral<I&>);
-   static_assert(not cjdb::integral<I const&>);
-   static_assert(not cjdb::integral<I volatile&>);
-   static_assert(not cjdb::integral<I const volatile&>);
+	static_assert(not cjdb::integral<I&>);
+	static_assert(not cjdb::integral<I const&>);
+	static_assert(not cjdb::integral<I volatile&>);
+	static_assert(not cjdb::integral<I const volatile&>);
 
-   static_assert(not cjdb::integral<std::remove_reference_t<I>&&>);
-   static_assert(not cjdb::integral<std::remove_reference_t<I> const&&>);
-   static_assert(not cjdb::integral<std::remove_reference_t<I> volatile&&>);
-   static_assert(not cjdb::integral<std::remove_reference_t<I> const volatile&&>);
+	static_assert(not cjdb::integral<std::remove_reference_t<I>&&>);
+	static_assert(not cjdb::integral<std::remove_reference_t<I> const&&>);
+	static_assert(not cjdb::integral<std::remove_reference_t<I> volatile&&>);
+	static_assert(not cjdb::integral<std::remove_reference_t<I> const volatile&&>);
 }
 
 template<cjdb::signed_integral I>
-constexpr void models_SignedIntegral() noexcept
+constexpr void models_signed_integral() noexcept
 {
-   models_Integral<I>();
+	models_integral<I>();
 
-   static_assert(cjdb::signed_integral<I>);
-   static_assert(cjdb::signed_integral<I const>);
-   static_assert(cjdb::signed_integral<I volatile>);
-   static_assert(cjdb::signed_integral<I const volatile>);
+	static_assert(cjdb::signed_integral<I>);
+	static_assert(cjdb::signed_integral<I const>);
+	static_assert(cjdb::signed_integral<I volatile>);
+	static_assert(cjdb::signed_integral<I const volatile>);
 
-   static_assert(not cjdb::signed_integral<I*>);
-   static_assert(not cjdb::signed_integral<I const*>);
-   static_assert(not cjdb::signed_integral<I volatile*>);
-   static_assert(not cjdb::signed_integral<I const volatile*>);
+	static_assert(not cjdb::signed_integral<I*>);
+	static_assert(not cjdb::signed_integral<I const*>);
+	static_assert(not cjdb::signed_integral<I volatile*>);
+	static_assert(not cjdb::signed_integral<I const volatile*>);
 
-   static_assert(not cjdb::signed_integral<I&>);
-   static_assert(not cjdb::signed_integral<I const&>);
-   static_assert(not cjdb::signed_integral<I volatile&>);
-   static_assert(not cjdb::signed_integral<I const volatile&>);
+	static_assert(not cjdb::signed_integral<I&>);
+	static_assert(not cjdb::signed_integral<I const&>);
+	static_assert(not cjdb::signed_integral<I volatile&>);
+	static_assert(not cjdb::signed_integral<I const volatile&>);
 
-   static_assert(not cjdb::signed_integral<std::remove_reference_t<I>&&>);
-   static_assert(not cjdb::signed_integral<std::remove_reference_t<I> const&&>);
-   static_assert(not cjdb::signed_integral<std::remove_reference_t<I> volatile&&>);
-   static_assert(not cjdb::signed_integral<std::remove_reference_t<I> const volatile&&>);
+	static_assert(not cjdb::signed_integral<std::remove_reference_t<I>&&>);
+	static_assert(not cjdb::signed_integral<std::remove_reference_t<I> const&&>);
+	static_assert(not cjdb::signed_integral<std::remove_reference_t<I> volatile&&>);
+	static_assert(not cjdb::signed_integral<std::remove_reference_t<I> const volatile&&>);
 }
 
 template<cjdb::unsigned_integral I>
-constexpr void models_UnsignedIntegral() noexcept
+constexpr void models_unsigned_integral() noexcept
 {
-   models_Integral<I>();
+	models_integral<I>();
 
-   static_assert(cjdb::unsigned_integral<I>);
-   static_assert(cjdb::unsigned_integral<I const>);
-   static_assert(cjdb::unsigned_integral<I volatile>);
-   static_assert(cjdb::unsigned_integral<I const volatile>);
+	static_assert(cjdb::unsigned_integral<I>);
+	static_assert(cjdb::unsigned_integral<I const>);
+	static_assert(cjdb::unsigned_integral<I volatile>);
+	static_assert(cjdb::unsigned_integral<I const volatile>);
 
-   static_assert(not cjdb::unsigned_integral<I*>);
-   static_assert(not cjdb::unsigned_integral<I const*>);
-   static_assert(not cjdb::unsigned_integral<I volatile*>);
-   static_assert(not cjdb::unsigned_integral<I const volatile*>);
+	static_assert(not cjdb::unsigned_integral<I*>);
+	static_assert(not cjdb::unsigned_integral<I const*>);
+	static_assert(not cjdb::unsigned_integral<I volatile*>);
+	static_assert(not cjdb::unsigned_integral<I const volatile*>);
 
-   static_assert(not cjdb::unsigned_integral<I&>);
-   static_assert(not cjdb::unsigned_integral<I const&>);
-   static_assert(not cjdb::unsigned_integral<I volatile&>);
-   static_assert(not cjdb::unsigned_integral<I const volatile&>);
+	static_assert(not cjdb::unsigned_integral<I&>);
+	static_assert(not cjdb::unsigned_integral<I const&>);
+	static_assert(not cjdb::unsigned_integral<I volatile&>);
+	static_assert(not cjdb::unsigned_integral<I const volatile&>);
 
-   static_assert(not cjdb::unsigned_integral<std::remove_reference_t<I>&&>);
-   static_assert(not cjdb::unsigned_integral<std::remove_reference_t<I> const&&>);
-   static_assert(not cjdb::unsigned_integral<std::remove_reference_t<I> volatile&&>);
-   static_assert(not cjdb::unsigned_integral<std::remove_reference_t<I> const volatile&&>);
+	static_assert(not cjdb::unsigned_integral<std::remove_reference_t<I>&&>);
+	static_assert(not cjdb::unsigned_integral<std::remove_reference_t<I> const&&>);
+	static_assert(not cjdb::unsigned_integral<std::remove_reference_t<I> volatile&&>);
+	static_assert(not cjdb::unsigned_integral<std::remove_reference_t<I> const volatile&&>);
 }
 
 template<class T>
 constexpr void models_none() noexcept
 {
-   static_assert(not cjdb::integral<T>);
-   static_assert(not cjdb::signed_integral<T>);
-   static_assert(not cjdb::unsigned_integral<T>);
+	static_assert(not cjdb::integral<T>);
+	static_assert(not cjdb::signed_integral<T>);
+	static_assert(not cjdb::unsigned_integral<T>);
 }
 
 int main()
 {
-   models_Integral<bool>();
-   models_Integral<char>();
-   models_Integral<char16_t>();
-   models_Integral<char32_t>();
-   models_Integral<wchar_t>();
+	models_integral<bool>();
+	models_integral<char>();
+	models_integral<char16_t>();
+	models_integral<char32_t>();
+	models_integral<wchar_t>();
 
-   models_SignedIntegral<signed char>();
-   static_assert(not cjdb::unsigned_integral<signed char>);
+	models_signed_integral<signed char>();
+	static_assert(not cjdb::unsigned_integral<signed char>);
 
-   models_UnsignedIntegral<unsigned char>();
-   static_assert(not cjdb::signed_integral<unsigned char>);
+	models_unsigned_integral<unsigned char>();
+	static_assert(not cjdb::signed_integral<unsigned char>);
 
-   models_SignedIntegral<short>();
-   static_assert(not cjdb::unsigned_integral<short>);
+	models_signed_integral<short>();
+	static_assert(not cjdb::unsigned_integral<short>);
 
-   models_UnsignedIntegral<unsigned short>();
-   static_assert(not cjdb::signed_integral<unsigned short>);
+	models_unsigned_integral<unsigned short>();
+	static_assert(not cjdb::signed_integral<unsigned short>);
 
-   models_SignedIntegral<int>();
-   static_assert(not cjdb::unsigned_integral<int>);
+	models_signed_integral<int>();
+	static_assert(not cjdb::unsigned_integral<int>);
 
-   models_UnsignedIntegral<unsigned int>();
-   static_assert(not cjdb::signed_integral<unsigned int>);
+	models_unsigned_integral<unsigned int>();
+	static_assert(not cjdb::signed_integral<unsigned int>);
 
-   models_SignedIntegral<long>();
-   static_assert(not cjdb::unsigned_integral<long>);
+	models_signed_integral<long>();
+	static_assert(not cjdb::unsigned_integral<long>);
 
-   models_UnsignedIntegral<unsigned long>();
-   static_assert(not cjdb::signed_integral<unsigned long>);
+	models_unsigned_integral<unsigned long>();
+	static_assert(not cjdb::signed_integral<unsigned long>);
 
-   models_SignedIntegral<long long>();
-   static_assert(not cjdb::unsigned_integral<long long>);
+	models_signed_integral<long long>();
+	static_assert(not cjdb::unsigned_integral<long long>);
 
-   models_UnsignedIntegral<unsigned long long>();
-   static_assert(not cjdb::signed_integral<unsigned long long>);
+	models_unsigned_integral<unsigned long long>();
+	static_assert(not cjdb::signed_integral<unsigned long long>);
 
-   models_none<float>();
-   models_none<double>();
-   models_none<long double>();
+	models_none<float>();
+	models_none<double>();
+	models_none<long double>();
 
-   struct S {};
-   models_none<S>();
+	struct S {};
+	models_none<S>();
 }

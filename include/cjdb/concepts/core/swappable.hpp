@@ -1,17 +1,5 @@
-//
-//  Copyright Christopher Di Bella
-//
-// Licensed under the Apache License, Version 2.0 (the "License");
-// you may not use this file except in compliance with the License.
-// You may obtain a copy of the License at
-//
-//   http://www.apache.org/licenses/LICENSE-2.0
-//
-// Unless required by applicable law or agreed to in writing, software
-// distributed under the License is distributed on an "AS IS" BASIS,
-// WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
-// See the License for the specific language governing permissions and
-// limitations under the License.
+// Copyright (c) Christopher Di Bella.
+// SPDX-License-Identifier: Apache-2.0 WITH LLVM-exception
 //
 #ifndef CJDB_CONCEPTS_CORE_SWAPPABLE_HPP
 #define CJDB_CONCEPTS_CORE_SWAPPABLE_HPP
@@ -19,26 +7,26 @@
 #include "cjdb/detail/concepts/core/swappable.hpp"
 
 namespace cjdb {
-   namespace ranges {
-      inline constexpr auto swap = detail_swap::swap_fn{};
-   } // namespace ranges
+	namespace ranges {
+		inline constexpr auto swap = detail_swap::swap_fn{};
+	} // namespace ranges
 
-   /// \see [concept.swappable]
-   ///
-   template<class T>
-   concept swappable = requires(T& a, T& b) { ranges::swap(a, b); };
+	/// \see [concept.swappable]
+	///
+	template<class T>
+	concept swappable = requires(T& a, T& b) { ranges::swap(a, b); };
 
-   /// \see [concept.swappable]
-   ///
-   template<class T, class U>
-   concept swappable_with =
-      common_reference_with<T, U> and
-      requires(T&& t, U&& u) {
-         ranges::swap(std::forward<T>(t), std::forward<T>(t));
-         ranges::swap(std::forward<U>(u), std::forward<U>(u));
-         ranges::swap(std::forward<T>(t), std::forward<U>(u));
-         ranges::swap(std::forward<U>(u), std::forward<T>(t));
-      };
+	/// \see [concept.swappable]
+	///
+	template<class T, class U>
+	concept swappable_with =
+		common_reference_with<T, U> and
+		requires(T&& t, U&& u) {
+			ranges::swap(std::forward<T>(t), std::forward<T>(t));
+			ranges::swap(std::forward<U>(u), std::forward<U>(u));
+			ranges::swap(std::forward<T>(t), std::forward<U>(u));
+			ranges::swap(std::forward<U>(u), std::forward<T>(t));
+		};
 } // namespace cjdb
 
 #endif // CJDB_CONCEPTS_CORE_SWAPPABLE_HPP
