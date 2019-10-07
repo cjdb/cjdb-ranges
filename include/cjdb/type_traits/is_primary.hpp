@@ -4,15 +4,16 @@
 #ifndef CJDB_TYPE_TRATIS_IS_PRIMARY_HPP
 #define CJDB_TYPE_TRATIS_IS_PRIMARY_HPP
 
-#include "cjdb/concepts/core/same_as.hpp"
+#include "cjdb/concepts/core/derived_from.hpp"
+#include "cjdb/detail/type_traits/primary_template.hpp"
+#include "cjdb/type_traits/type_traits.hpp"
 #include <utility>
 
 namespace cjdb {
-	template<class T>
-	concept is_primary = requires {
-		typename T::detail_primary;
-		requires same_as<typename T::detail_primary, T>;
-	};
+	template<typename T>
+	inline constexpr auto is_primary =
+		is_base_of_v<detail_primary_template::primary_template, T> and
+		not derived_from<T, detail_primary_template::primary_template>;
 } // namespace cjdb
 
 #endif // CJDB_TYPE_TRATIS_IS_PRIMARY_HPP

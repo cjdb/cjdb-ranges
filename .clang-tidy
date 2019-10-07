@@ -1,7 +1,7 @@
 # Copyright (c) Christopher Di Bella.
 # SPDX-License-Identifier: Apache-2.0 WITH LLVM-exception
 #
-Checks: 'bugprone-*,clang-analyzer-*,-clang-diagnostic-missing-prototypes,-clang-diagnostic-unused-command-line-argument,-cert-dcl21-cpp,-cert-dcl59-cpp,cppcoreguildelines-*,google-*,-google-build-namespaces,-google-build-using-namespace,-google-runtime-int,-google-runtime-references,misc-*,modernize-*,-modernize-use-trailing-return-type,performance-*,portability-*,readability-*,-readability-function-size,-readability-named-parameter,-readability-uppercase-literal-suffix'
+Checks: 'bugprone-*,clang-analyzer-*,-clang-diagnostic-missing-prototypes,-clang-diagnostic-unused-command-line-argument,-cert-dcl21-cpp,-cert-dcl59-cpp,cppcoreguildelines-*,google-*,-google-build-namespaces,-google-build-using-namespace,-google-runtime-int,-google-readability-braces-around-statements,-google-runtime-references,misc-*,modernize-*,-modernize-use-trailing-return-type,performance-*,portability-*,readability-*,-readability-avoid-const-params-in-decls,-readability-braces-around-statements,-readability-function-size,-readability-named-parameter,-readability-uppercase-literal-suffix'
 WarningsAsErrors: '*'
 HeaderFilterRegex: 'cjdb/.*'
 
