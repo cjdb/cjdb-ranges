@@ -3,4 +3,5 @@
 #
 add_subdirectory(concepts)
 add_subdirectory(functional)
+add_subdirectory(iterator)
 add_subdirectory(type_traits)
