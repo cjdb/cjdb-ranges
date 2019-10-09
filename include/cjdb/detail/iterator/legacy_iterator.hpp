@@ -15,12 +15,10 @@
 #include "cjdb/iterator/reference.hpp"
 #include "cjdb/type_traits/common_reference.hpp"
 
-namespace cjdb {
+namespace cjdb::detail_iterator_associated_types {
 	template<typename> struct incrementable_traits;
 	template<typename> struct readable_traits;
-} // namespace cjdb
 
-namespace cjdb::detail_legacy_iterator {
 	template<class I>
 	concept legacy_iterator =
 		copyable<I> and
@@ -77,6 +75,6 @@ namespace cjdb::detail_legacy_iterator {
 			{ i -  j } -> same_as<decltype(n)>;
 			{  i[n]  } -> convertible_to<iter_reference_t<I>>;
 		};
-} // namespace cjdb::detail_legacy_iterator
+} // namespace cjdb::detail_iterator_associated_types
 
 #endif // CJDB_DETAIL_ITERATOR_LEGACY_ITERATOR_HPP

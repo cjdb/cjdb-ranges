@@ -31,5 +31,4 @@ endif()
 include(basic_project-add-targets)
 include(basic_project-install)
 
-add_subdirectory(source)
 add_subdirectory(test)

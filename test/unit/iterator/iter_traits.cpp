@@ -3,10 +3,10 @@
 //
 #include "cjdb/detail/iterator/iter_traits.hpp"
 
-#include "cjdb/iterator/incrementable_traits.hpp"
-#include "cjdb/iterator/readable_traits.hpp"
 #include "cjdb/concepts/core/same_as.hpp"
-#include "cjdb/iterator/iterator_traits.hpp"
+#include "cjdb/detail/iterator/incrementable_traits.hpp"
+#include "cjdb/detail/iterator/readable_traits.hpp"
+#include "cjdb/detail/iterator/iterator_traits.hpp"
 #include <iterator>
 
 struct random_access_iter_concept {

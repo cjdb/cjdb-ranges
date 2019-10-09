@@ -1,10 +1,11 @@
 // Copyright (c) Christopher Di Bella.
 // SPDX-License-Identifier: Apache-2.0 WITH LLVM-exception
 //
-#include "cjdb/iterator/readable_traits.hpp"
+#include "cjdb/detail/iterator/readable_traits.hpp"
 
 #include "cjdb/concepts/core/same_as.hpp"
 #include "cjdb/concepts/core/integral.hpp"
+#include <memory>
 #include <vector>
 
 template<typename T, typename Expected>
