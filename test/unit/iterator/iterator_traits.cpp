@@ -1,11 +1,11 @@
 // Copyright (c) Christopher Di Bella.
 // SPDX-License-Identifier: Apache-2.0 WITH LLVM-exception
 //
-#include "cjdb/iterator/iterator_traits.hpp"
+#include "cjdb/detail/iterator/iterator_traits.hpp"
 
 #include "cjdb/concepts/core/integral.hpp"
-#include "cjdb/iterator/incrementable_traits.hpp"
-#include "cjdb/iterator/readable_traits.hpp"
+#include "cjdb/detail/iterator/incrementable_traits.hpp"
+#include "cjdb/detail/iterator/readable_traits.hpp"
 #include "cjdb/test/iterator/legacy_iterator_wrapper.hpp"
 #include <vector>
 

@@ -3,8 +3,8 @@
 //
 #include "cjdb/detail/iterator/legacy_iterator.hpp"
 
-#include "cjdb/iterator/incrementable_traits.hpp"
-#include "cjdb/iterator/readable_traits.hpp"
+#include "cjdb/detail/iterator/incrementable_traits.hpp"
+#include "cjdb/detail/iterator/readable_traits.hpp"
 
 #include <array>
 #include <deque>
@@ -20,74 +20,74 @@
 template<typename T>
 void check_legacy_iterator()
 {
-	using cjdb::detail_legacy_iterator::legacy_iterator;
+	using cjdb::detail_iterator_associated_types::legacy_iterator;
 	static_assert(legacy_iterator<T>);
 
-	using cjdb::detail_legacy_iterator::legacy_input_iterator;
+	using cjdb::detail_iterator_associated_types::legacy_input_iterator;
 	static_assert(not legacy_input_iterator<T>);
 }
 
 template<typename T>
 void check_legacy_input_iterator()
 {
-	using cjdb::detail_legacy_iterator::legacy_iterator;
+	using cjdb::detail_iterator_associated_types::legacy_iterator;
 	static_assert(legacy_iterator<T>);
 
-	using cjdb::detail_legacy_iterator::legacy_input_iterator;
+	using cjdb::detail_iterator_associated_types::legacy_input_iterator;
 	static_assert(legacy_input_iterator<T>);
 }
 
 template<typename T>
 void check_legacy_forward_iterator()
 {
-	using cjdb::detail_legacy_iterator::legacy_iterator;
+	using cjdb::detail_iterator_associated_types::legacy_iterator;
 	static_assert(legacy_iterator<T>);
 
-	using cjdb::detail_legacy_iterator::legacy_input_iterator;
+	using cjdb::detail_iterator_associated_types::legacy_input_iterator;
 	static_assert(legacy_input_iterator<T>);
 
-	using cjdb::detail_legacy_iterator::legacy_forward_iterator;
+	using cjdb::detail_iterator_associated_types::legacy_forward_iterator;
 	static_assert(legacy_forward_iterator<T>);
 
-	using cjdb::detail_legacy_iterator::legacy_bidirectional_iterator;
+	using cjdb::detail_iterator_associated_types::legacy_bidirectional_iterator;
 	static_assert(not legacy_bidirectional_iterator<T>);
 }
 
 template<typename T>
 void check_legacy_bidirectional_iterator()
 {
-	using cjdb::detail_legacy_iterator::legacy_iterator;
+	using cjdb::detail_iterator_associated_types::legacy_iterator;
 	static_assert(legacy_iterator<T>);
 
-	using cjdb::detail_legacy_iterator::legacy_input_iterator;
+	using cjdb::detail_iterator_associated_types::legacy_input_iterator;
 	static_assert(legacy_input_iterator<T>);
 
-	using cjdb::detail_legacy_iterator::legacy_forward_iterator;
+	using cjdb::detail_iterator_associated_types::legacy_forward_iterator;
 	static_assert(legacy_forward_iterator<T>);
 
-	using cjdb::detail_legacy_iterator::legacy_bidirectional_iterator;
+	using cjdb::detail_iterator_associated_types::legacy_bidirectional_iterator;
 	static_assert(legacy_bidirectional_iterator<T>);
 
-	using cjdb::detail_legacy_iterator::legacy_random_access_iterator;
+	using cjdb::detail_iterator_associated_types::legacy_random_access_iterator;
 	static_assert(not legacy_random_access_iterator<T>);
 }
 
 template<typename T>
 void check_legacy_random_access_iterator()
 {
-	using cjdb::detail_legacy_iterator::legacy_iterator;
+	using cjdb::detail_iterator_associated_types::legacy_iterator;
 	static_assert(legacy_iterator<T>);
 
-	using cjdb::detail_legacy_iterator::legacy_input_iterator;
+	using cjdb::detail_iterator_associated_types::legacy_input_iterator;
 	static_assert(legacy_input_iterator<T>);
 
-	using cjdb::detail_legacy_iterator::legacy_forward_iterator;
+	using cjdb::detail_iterator_associated_types::legacy_forward_iterator;
 	static_assert(legacy_forward_iterator<T>);
 
-	using cjdb::detail_legacy_iterator::legacy_bidirectional_iterator;
+	using cjdb::detail_iterator_associated_types::legacy_bidirectional_iterator;
 	static_assert(legacy_bidirectional_iterator<T>);
 
-	using cjdb::detail_legacy_iterator::legacy_random_access_iterator;
+	using cjdb::detail_iterator_associated_types::legacy_random_access_iterator;
 	static_assert(legacy_random_access_iterator<T>);
 }
 

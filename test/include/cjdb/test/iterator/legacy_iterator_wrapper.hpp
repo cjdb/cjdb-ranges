@@ -27,7 +27,7 @@ namespace cjdb_test {
 	///                 templates that can be instantiated with `I` as the only parameter: the types
 	///                 are then available for use.
 	///
-	template<cjdb::detail_legacy_iterator::legacy_iterator I, template<typename> typename... Args>
+	template<cjdb::detail_iterator_associated_types::legacy_iterator I, template<typename> typename... Args>
 	class legacy_iterator : public Args<I>... {
 	public:
 		constexpr explicit legacy_iterator(I i)
@@ -69,7 +69,7 @@ namespace cjdb_test {
 	///                 templates that can be instantiated with `I` as the only parameter: the types
 	///                 are then available for use.
 	///
-	template<cjdb::detail_legacy_iterator::legacy_input_iterator I, template<typename> typename... Args>
+	template<cjdb::detail_iterator_associated_types::legacy_input_iterator I, template<typename> typename... Args>
 	class legacy_input_iterator : public legacy_iterator<I, Args...> {
 	public:
 		using legacy_iterator<I, Args...>::legacy_iterator;
@@ -105,7 +105,7 @@ namespace cjdb_test {
 	///                 templates that can be instantiated with `I` as the only parameter: the types
 	///                 are then available for use.
 	///
-	template<cjdb::detail_legacy_iterator::legacy_forward_iterator I,
+	template<cjdb::detail_iterator_associated_types::legacy_forward_iterator I,
 	         template<typename> typename... Args>
 	class legacy_forward_iterator : public legacy_input_iterator<I, Args...> {
 	public:
@@ -135,7 +135,7 @@ namespace cjdb_test {
 	///                 templates that can be instantiated with `I` as the only parameter: the types
 	///                 are then available for use.
 	///
-	template<cjdb::detail_legacy_iterator::legacy_bidirectional_iterator I,
+	template<cjdb::detail_iterator_associated_types::legacy_bidirectional_iterator I,
 	         template<typename> typename... Args>
 	class legacy_bidirectional_iterator : public legacy_forward_iterator<I, Args...> {
 	public:
@@ -176,7 +176,7 @@ namespace cjdb_test {
 	///                 templates that can be instantiated with `I` as the only parameter: the types
 	///                 are then available for use.
 	///
-	template<cjdb::detail_legacy_iterator::legacy_random_access_iterator I,
+	template<cjdb::detail_iterator_associated_types::legacy_random_access_iterator I,
 	         template<typename> typename... Args>
 	class legacy_random_access_iterator : public legacy_bidirectional_iterator<I, Args...> {
 	public:

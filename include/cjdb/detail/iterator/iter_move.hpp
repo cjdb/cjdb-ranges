@@ -52,6 +52,13 @@ namespace cjdb::ranges::detail_iter_move {
 
 namespace cjdb::ranges {
 	inline constexpr auto iter_move = detail_iter_move::iter_move_fn{};
-} // namespace cjdb
+} // namespace cjdb::ranges
+
+namespace cjdb::detail_iter_move {
+	template<typename T>
+	concept iter_move_can_reference = requires(T& t) {
+		{ ranges::iter_move(t) } -> detail_iterator_reference::can_reference;
+	};
+} // namespace cjdb::detail_iter_move
 
 #endif // CJDB_DETAIL_ITERATOR_ITER_MOVE_HPP

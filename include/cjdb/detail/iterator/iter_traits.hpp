@@ -4,8 +4,8 @@
 #ifndef CJDB_DETAIL_ITERATOR_ITER_TRAITS_HPP
 #define CJDB_DETAIL_ITERATOR_ITER_TRAITS_HPP
 
+#include "cjdb/detail/iterator/iterator_traits.hpp"
 #include "cjdb/type_traits/is_primary.hpp"
-#include "cjdb/iterator/iterator_traits.hpp"
 
 namespace cjdb::ranges::detail_iter_traits {
 	template<typename I>
