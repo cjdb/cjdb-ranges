@@ -22,12 +22,16 @@ namespace cjdb::detail_iterator_associated_types {
 		};
 
 	template<typename I>
-	struct extract_incrementable_traits {
+	struct extract_incrementable_traits {};
+
+	template<typename I>
+	requires (has_difference_type<iterator_traits<I>> and not is_primary<iterator_traits<I>>)
+	struct extract_incrementable_traits<I> {
 		using type = typename iterator_traits<I>::difference_type;
 	};
 
 	template<typename I>
-	requires is_primary<iterator_traits<I>>
+	requires is_primary<iterator_traits<I>> and (has_difference_type<I> or has_integral_minus<I>)
 	struct extract_incrementable_traits<I> {
 		using type = typename incrementable_traits<I>::difference_type;
 	};

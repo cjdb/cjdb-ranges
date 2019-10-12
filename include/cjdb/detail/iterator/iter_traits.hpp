@@ -29,7 +29,9 @@ namespace cjdb::ranges::detail_iter_traits {
 
 	template<typename I>
 	concept iter_concept_fallback =
-		is_primary<iterator_traits<I>> and not has_iterator_category_member<I>;
+		is_primary<iterator_traits<I>> and
+		not has_iterator_concept_member<I> and
+		not has_iterator_category_member<I>;
 
 	template<typename I>
 	struct iter_concept {};
@@ -52,5 +54,9 @@ namespace cjdb::ranges::detail_iter_traits {
 	template<typename I>
 	using iter_concept_t = _t<iter_concept<I>>;
 } // namespace cjdb::ranges::detail_iter_traits
+
+namespace cjdb::detail_iter_traits {
+	using namespace cjdb::ranges::detail_iter_traits;
+} // namespace cjdb::detail_iter_traits
 
 #endif // CJDB_DETAIL_ITERATOR_ITER_TRAITS_HPP

@@ -27,15 +27,13 @@ namespace cjdb::detail_iterator_associated_types {
 	struct extract_readable_traits {};
 
 	template<typename I>
-	requires has_value_type<iterator_traits<I>> and
-	         (not is_primary<iterator_traits<I>>)
+	requires (has_value_type<iterator_traits<I>> and not is_primary<iterator_traits<I>>)
 	struct extract_readable_traits<I> {
 		using type = typename iterator_traits<I>::value_type;
 	};
 
 	template<typename I>
-	requires is_primary<iterator_traits<I>> and
-	         has_value_type<readable_traits<I>>
+	requires is_primary<iterator_traits<I>> and has_value_type<readable_traits<I>>
 	struct extract_readable_traits<I> {
 		using type = typename readable_traits<I>::value_type;
 	};
