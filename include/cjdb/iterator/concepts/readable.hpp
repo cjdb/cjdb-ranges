@@ -7,6 +7,7 @@
 #include "cjdb/concepts/core/common_reference_with.hpp"
 #include "cjdb/detail/iterator/readable_traits.hpp"
 #include "cjdb/detail/iterator/iterator_traits.hpp"
+#include "cjdb/type_traits/common_reference.hpp"
 
 namespace cjdb {
 	template<typename In>
@@ -23,6 +24,9 @@ namespace cjdb {
 		//    {  *i } -> equality_preserving;
 		//    { *ci } -> equality_preserving;
 		// }
+
+	template<readable T>
+	using iter_common_reference_t = common_reference_t<iter_reference_t<T>, iter_value_t<T>&>;
 } // namespace cjdb
 
 #endif // CJDB_ITERATOR_CONCEPTS_READABLE_HPP
