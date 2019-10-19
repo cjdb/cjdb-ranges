@@ -4,13 +4,10 @@
 #ifndef CJDB_CONCEPTS_CORE_SWAPPABLE_HPP
 #define CJDB_CONCEPTS_CORE_SWAPPABLE_HPP
 
-#include "cjdb/detail/concepts/core/swappable.hpp"
+#include "cjdb/concepts/core/common_reference_with.hpp"
+#include "cjdb/utility/swap.hpp"
 
 namespace cjdb {
-	namespace ranges {
-		inline constexpr auto swap = detail_swap::swap_fn{};
-	} // namespace ranges
-
 	/// \see [concept.swappable]
 	///
 	template<class T>

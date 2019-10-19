@@ -11,34 +11,36 @@
 #include <string_view>
 #include <utility>
 
+using cjdb::ranges::not_equal_to;
+static_assert(not_equal_to::is_transparent{});
+
+using namespace std::string_view_literals;
+constexpr auto hello = "hello"sv;
+
+
+auto is_irreflexive = []{
+	CHECK_IS_IRREFLEXIVE(not_equal_to{}, 0);
+	CHECK_IS_IRREFLEXIVE(not_equal_to{}, hello);
+};
+
+auto same_type_inequality = []{
+	CJDB_CONSTEXPR_CHECK(not_equal_to{}(0, 1));
+	CJDB_CONSTEXPR_CHECK(not not_equal_to{}(0, 0));
+};
+
+auto cross_type_inequality = []{
+	// int is promoted to double
+	CJDB_CONSTEXPR_CHECK(not_equal_to{}(1, 1.5)); // NOLINT(readability-magic-numbers)
+	// just outright not equal
+	CJDB_CONSTEXPR_CHECK(not_equal_to{}(1, 2.6)); // NOLINT(readability-magic-numbers)
+
+	CJDB_CONSTEXPR_CHECK(not not_equal_to{}(1, 1.0));
+};
+
 int main()
 {
-	using cjdb::ranges::not_equal_to;
-	using namespace std::string_view_literals;
-
-	static_assert(not_equal_to::is_transparent{});
-
-	constexpr auto hello = "hello"sv;
-
-	{ // Checks not_equal_to is irreflexive and symmetric
-		CHECK_IS_IRREFLEXIVE(not_equal_to{}, 0);
-		CHECK_IS_IRREFLEXIVE(not_equal_to{}, hello);
-	}
-
-	{ // Checks not_equal_to works for same-type inequality
-		CJDB_CONSTEXPR_CHECK(not_equal_to{}(0, 1));
-
-		CJDB_CONSTEXPR_CHECK(not not_equal_to{}(0, 0));
-	}
-
-	{ // Checks not_equal_to works for cross-type inequality
-		// int is promoted to double
-		CJDB_CONSTEXPR_CHECK(not_equal_to{}(1, 1.5)); // NOLINT(readability-magic-numbers)
-		// just outright not equal
-		CJDB_CONSTEXPR_CHECK(not_equal_to{}(1, 2.6)); // NOLINT(readability-magic-numbers)
-
-		CJDB_CONSTEXPR_CHECK(not not_equal_to{}(1, 1.0));
-	}
-
+	CJDB_EVALUATE_TEST_CASE(is_irreflexive);
+	CJDB_EVALUATE_TEST_CASE(same_type_inequality);
+	CJDB_EVALUATE_TEST_CASE(cross_type_inequality);
 	return ::test_result();
 }
