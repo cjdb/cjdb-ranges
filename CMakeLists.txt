@@ -3,7 +3,7 @@
 #
 cmake_minimum_required(VERSION 3.13)
 
-project("cjdblib" CXX)
+project("ranges" CXX)
 add_library(${PROJECT_NAME} INTERFACE)
 
 set(CMAKE_CXX_STANDARD_REQUIRED ON)
@@ -14,21 +14,37 @@ include("${CMAKE_BINARY_DIR}/conan_paths.cmake" REQUIRED)
 list(APPEND CMAKE_MODULE_PATH "${CMAKE_CURRENT_SOURCE_DIR}/config/cmake")
 
 # Project configuration
+target_include_directories(ranges INTERFACE
+   $<BUILD_INTERFACE:${CMAKE_CURRENT_SOURCE_DIR}/include>
+   $<INSTALL_INTERFACE:$<INSTALL_PREFIX>/include>)
+
 enable_testing()
 include(CTest)
 
 find_package(contracts_consolation REQUIRED)
 
 # clang-tidy options
-option(${PROJECT_NAME}_ENABLE_CLANG_TIDY "Builds with clang-tidy, if available. Defaults to On." On)
-set(${PROJECT_NAME}_CLANG_TIDY_PATH "/usr/bin/clang-tidy" CACHE
+option(CJDB_RANGES_ENABLE_CLANG_TIDY "Builds with clang-tidy, if available. Defaults to On." On)
+set(CJDB_RANGES_CLANG_TIDY_PATH "/usr/bin/clang-tidy" CACHE
 	STRING "Sets the path for clang-tidy. Defaults to \"/usr/bin/clang-tidy\".")
 
-if(${PROJECT_NAME}_ENABLE_CLANG_TIDY)
+if(CJDB_RANGES_ENABLE_CLANG_TIDY)
 	find_package(ClangTidy REQUIRED)
 endif()
 
-include(basic_project-add-targets)
-include(basic_project-install)
+include(add-targets)
 
 add_subdirectory(test)
+
+# Include
+
+include(CMakePackageConfigHelpers)
+install(TARGETS ranges
+        EXPORT cjdb-ranges
+        DESTINATION lib)
+install(EXPORT cjdb-ranges
+        FILE cjdb-ranges-config.cmake
+        NAMESPACE cjdb::
+        DESTINATION lib/cmake/cjdb-ranges)
+install(DIRECTORY include/ DESTINATION include FILES_MATCHING PATTERN "*")
+export(EXPORT cjdb-ranges FILE cjdb-ranges-config.cmake)

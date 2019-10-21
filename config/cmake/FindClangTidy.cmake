@@ -3,8 +3,8 @@
 #
 include(FindPackageHandleStandardArgs)
 
-if((NOT ${${PROJECT_NAME}_ENABLE_CLANG_TIDY}) OR (${PROJECT_NAME}_CLANG_TIDY_PATH STREQUAL ""))
-   if(NOT ${${PROJECT_NAME}_ENABLE_CLANG_TIDY})
+if((NOT ${CJDB_RANGES_ENABLE_CLANG_TIDY}) OR (CJDB_RANGES_CLANG_TIDY_PATH STREQUAL ""))
+   if(NOT ${CJDB_RANGES_ENABLE_CLANG_TIDY})
       message(STATUS "clang-tidy disabled.")
    else()
       message(STATUS "No path for clang-tidy.")
@@ -13,14 +13,14 @@ if((NOT ${${PROJECT_NAME}_ENABLE_CLANG_TIDY}) OR (${PROJECT_NAME}_CLANG_TIDY_PAT
    return()
 endif()
 
-if(EXISTS "${${PROJECT_NAME}_CLANG_TIDY_PATH}")
+if(EXISTS "${CJDB_RANGES_CLANG_TIDY_PATH}")
    find_package(Clang REQUIRED)
    set(ClangTidy_FOUND On)
-   set(CMAKE_CXX_CLANG_TIDY "${${PROJECT_NAME}_CLANG_TIDY_PATH}" -p=${CMAKE_BINARY_DIR})
-   message(STATUS "Found ${${PROJECT_NAME}_CLANG_TIDY_PATH}")
+   set(CMAKE_CXX_CLANG_TIDY "${CJDB_RANGES_CLANG_TIDY_PATH}" -p=${CMAKE_BINARY_DIR})
+   message(STATUS "Found ${CJDB_RANGES_CLANG_TIDY_PATH}")
 else()
    set(ClangTidy_FOUND Off)
-   message(STATUS "${PROJECT_NAME}_CLANG_TIDY_PATH=\"${${PROJECT_NAME}_CLANG_TIDY_PATH}\" not found.")
+   message(STATUS "CJDB_RANGES_CLANG_TIDY_PATH=\"${CJDB_RANGES_CLANG_TIDY_PATH}\" not found.")
 endif()
 
 find_package_handle_standard_args(ClangTidy
