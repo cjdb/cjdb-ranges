@@ -2,16 +2,15 @@
 # SPDX-License-Identifier: Apache-2.0 WITH LLVM-exception
 #
 from conans import ConanFile, CMake, RunEnvironment, tools
-import os
 
-class Project_name(ConanFile):
-    name = "cjdblib"
+class RangesConan(ConanFile):
+    name = "ranges"
     description = "A reference implementation for C++next features."
     author = "Christopher Di Bella"
     license = "Apache-2.0 WITH LLVM-exception"
     url = "https://github.com/cjdb/cjdblib.git"
-    version = "1.0"
-    topics = ("cpp", "c++", "cmake", "conan")
+    version = "head"
+    topics = ("cpp", "c++", "ranges")
     settings = ("os", "compiler", "arch", "build_type")
     generators = ("cmake", "cmake_paths", "virtualrunenv")
     options = {
@@ -23,16 +22,15 @@ class Project_name(ConanFile):
         "clang_tidy_path": "/usr/bin/clang-tidy"
     }
     requires = ("contracts-consolation/0.1@cjdb/experimental")
-    exports_sources = (".clang*", "cmake/*", "CMakeLists.txt", "include/*",
-                       "source/*", "test/*", "LICENSE.md")
-    build_policy = "always"
-    no_copy_source = False
+    exports_sources = ("include/*", "LICENSE.md", "CMakeLists.txt", "test/*", "config/cmake/*")
+    build_policy = "missing"
+    no_copy_source = True
 
     def build(self):
         cmake = CMake(self)
+        cmake.definitions[f"CJDB_RANGES_ENABLE_CLANG_TIDY"] = self.options.enable_clang_tidy
+        cmake.definitions[f"CJDB_RANGES_CLANG_TIDY_PATH"] = self.options.clang_tidy_path
 
-        cmake.definitions[f"{self.name}_ENABLE_CLANG_TIDY"] = self.options.enable_clang_tidy
-        cmake.definitions[f"{self.name}_CLANG_TIDY_PATH"] = self.options.clang_tidy_path
         cmake.configure()
         cmake.build()
 
@@ -40,12 +38,11 @@ class Project_name(ConanFile):
         with tools.environment_append(env_build.vars):
             cmake.test(output_on_failure=True)
 
-    def package(self):
-        cmake = CMake(self)
-
         cmake.install()
-        self.copy(
-            "LICENSE.md", dst="licenses", ignore_case=True, keep_path=False)
+
+    def package(self):
+        self.copy("include/")
+        self.copy("LICENSE.md", dst="licenses", ignore_case=True, keep_path=False)
 
     def package_info(self):
-        self.env_info.PATH.append(os.path.join(self.package_folder, "bin"))
+        self.info.header_only()

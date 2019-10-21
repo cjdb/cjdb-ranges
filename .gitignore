@@ -36,3 +36,4 @@
 .vs/*
 build*/*
 out/*
+test_package/build/*

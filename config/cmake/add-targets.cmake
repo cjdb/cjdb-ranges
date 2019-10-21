@@ -1,7 +1,7 @@
 # Copyright (c) Christopher Di Bella.
 # SPDX-License-Identifier: Apache-2.0 WITH LLVM-exception
 #
-include(basic_project-add-targets-impl)
+include(add-targets-impl)
 
 # \brief Builds an executable.
 # \param prefix A string that prefixes the filename that will be removed from its path. Everything
