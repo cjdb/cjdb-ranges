@@ -73,7 +73,6 @@ int main()
 	};
 	check_explicit_member<has_value_type, int>();
 	check_explicit_member<std::vector<int>::iterator, int>();
-	check_explicit_member<std::vector<int const>::iterator, int>();
 
 	struct has_element_type {
 		using element_type = dummy;

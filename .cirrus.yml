@@ -5,7 +5,7 @@ task:
   container:
     image: cjdb/cirrus-ci
     cpu: 8
-    memory: 8G
+    memory: 16G
   env:
     CLANG_TIDY_PATH: /usr/local/bin/clang-tidy
     matrix:
@@ -35,3 +35,5 @@ task:
   test_script:
     - cd build-${BUILD_TYPE}
     - conan build .. --test
+  install_script:
+    - conan create . cirrus/ci --profile=${PROFILE}

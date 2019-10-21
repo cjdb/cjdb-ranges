@@ -219,13 +219,9 @@ int main()
 
 	check_with_legacy_input_iterator<std::vector<int>::iterator>();
 	check_with_legacy_input_iterator<std::vector<int>::const_iterator>();
-	check_with_legacy_input_iterator<std::vector<int const>::iterator>();
-	check_with_legacy_input_iterator<std::vector<int const>::const_iterator>();
 
 	check_with_legacy_iterator<std::vector<int>::iterator>();
 	check_with_legacy_iterator<std::vector<int>::const_iterator>();
-	check_with_legacy_iterator<std::vector<int const>::iterator>();
-	check_with_legacy_iterator<std::vector<int const>::const_iterator>();
 	check_with_legacy_iterator<int* volatile>();
 	check_with_legacy_iterator<dummy* volatile>();
 
