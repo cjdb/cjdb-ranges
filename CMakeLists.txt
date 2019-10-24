@@ -1,7 +1,7 @@
 # Copyright (c) Christopher Di Bella.
 # SPDX-License-Identifier: Apache-2.0 WITH LLVM-exception
 #
-cmake_minimum_required(VERSION 3.13)
+cmake_minimum_required(VERSION 3.14)
 
 project("ranges" CXX)
 add_library(${PROJECT_NAME} INTERFACE)
@@ -21,7 +21,7 @@ target_include_directories(ranges INTERFACE
 enable_testing()
 include(CTest)
 
-find_package(contracts_consolation REQUIRED)
+find_package(constexpr-contracts REQUIRED)
 
 # clang-tidy options
 option(CJDB_RANGES_ENABLE_CLANG_TIDY "Builds with clang-tidy, if available. Defaults to On." On)

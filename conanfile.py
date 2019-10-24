@@ -8,7 +8,7 @@ class RangesConan(ConanFile):
     description = "A reference implementation for C++next features."
     author = "Christopher Di Bella"
     license = "Apache-2.0 WITH LLVM-exception"
-    url = "https://github.com/cjdb/cjdblib.git"
+    url = "https://github.com/cjdb/cjdb-ranges.git"
     version = "head"
     topics = ("cpp", "c++", "ranges")
     settings = ("os", "compiler", "arch", "build_type")
@@ -21,15 +21,15 @@ class RangesConan(ConanFile):
         "enable_clang_tidy": "Off",
         "clang_tidy_path": "/usr/bin/clang-tidy"
     }
-    requires = ("contracts-consolation/0.1@cjdb/experimental")
+    requires = ("constexpr-contracts/head@cjdb/development")
     exports_sources = ("include/*", "LICENSE.md", "CMakeLists.txt", "test/*", "config/cmake/*")
     build_policy = "missing"
     no_copy_source = True
 
     def build(self):
         cmake = CMake(self)
-        cmake.definitions[f"CJDB_RANGES_ENABLE_CLANG_TIDY"] = self.options.enable_clang_tidy
-        cmake.definitions[f"CJDB_RANGES_CLANG_TIDY_PATH"] = self.options.clang_tidy_path
+        cmake.definitions["CJDB_RANGES_ENABLE_CLANG_TIDY"] = self.options.enable_clang_tidy
+        cmake.definitions["CJDB_RANGES_CLANG_TIDY_PATH"] = self.options.clang_tidy_path
 
         cmake.configure()
         cmake.build()
