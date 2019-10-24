@@ -4,5 +4,5 @@
 add_cjdblib_test(FILENAME invoke.cpp INCLUDE "${CMAKE_SOURCE_DIR}/test/include")
 add_cjdblib_test(FILENAME identity.cpp
                  INCLUDE "${CMAKE_SOURCE_DIR}/test/include"
-                 LINK contracts_consolation)
+                 LINK cjdb::constexpr-contracts)
 add_subdirectory(rangecmp)
