@@ -81,7 +81,7 @@ namespace test_impl {
         template<typename V = T>
         auto eval_(int) -> decltype(!std::declval<V&>())
         {
-            return !t_;
+            return !static_cast<bool>(t_);
         }
         bool eval_(long)
         {

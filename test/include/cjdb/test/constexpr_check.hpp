@@ -19,24 +19,24 @@
 	}                                                           \
 }
 
-#define CJDB_EVALUATE_TEST_CASE(CJDB_RUN_TEST) do {               \
-	auto test_case = [](auto& test) {                              \
-		test();                                                     \
-		return 0;                                                   \
-	};                                                             \
-	[[maybe_unused]] constexpr auto x = test_case(CJDB_RUN_TEST);  \
-	auto y = test_case(CJDB_RUN_TEST);                             \
-	[[maybe_unused]] auto volatile* z = &y;                        \
+#define CJDB_EVALUATE_TEST_CASE(...) do {                      \
+	auto test_case = [](auto test) {                            \
+		test();                                                  \
+		return 0;                                                \
+	};                                                          \
+	[[maybe_unused]] constexpr auto x = test_case(__VA_ARGS__); \
+	auto y = test_case(__VA_ARGS__);                            \
+	[[maybe_unused]] auto volatile* z = &y;                     \
 } while (false)
 
-#define CJDB_EVALUATE_TEST_CASE_N(CJDB_RUN_TEST, ...) do {                    \
-	auto test_case = []<typename... Args>(auto& test, Args... args) {          \
-		test(std::move(args)...);                                               \
-		return 0;                                                               \
-	};                                                                         \
-	[[maybe_unused]] constexpr auto x = test_case(CJDB_RUN_TEST, __VA_ARGS__); \
-	auto y = test_case(CJDB_RUN_TEST, __VA_ARGS__);                            \
-	[[maybe_unused]] auto volatile* z = &y;                                    \
+#define CJDB_EVALUATE_TEST_CASE_N(...) do {                          \
+	auto test_case = []<typename... Args>(auto test, Args... args) {  \
+		test(std::move(args)...);                                      \
+		return 0;                                                      \
+	};                                                                \
+	[[maybe_unused]] constexpr auto x = test_case(__VA_ARGS__);       \
+	auto y = test_case(__VA_ARGS__);                                  \
+	[[maybe_unused]] auto volatile* z = &y;                           \
 } while (false)
 
 #endif // CJDB_TEST_CONSTEXPR_CHECK
