@@ -16,7 +16,7 @@ namespace cjdb_test {
 
 		[[nodiscard]] constexpr friend auto begin(unqualified_rvalue_range const&& x) noexcept
 		{
-			return x.data.begin();
+			return std::move(x).data.begin(); // NOLINT(performance-move-const-arg)
 		}
 
 		[[nodiscard]] constexpr friend auto end(unqualified_rvalue_range&& x)
@@ -26,7 +26,7 @@ namespace cjdb_test {
 
 		[[nodiscard]] constexpr friend auto end(unqualified_rvalue_range const&& x) noexcept
 		{
-			return x.data.end();
+			return std::move(x).data.end(); // NOLINT(performance-move-const-arg)
 		}
 
 		// NOLINTNEXTLINE(readability-magic-numbers,misc-non-private-member-variables-in-classes)
@@ -48,17 +48,25 @@ namespace cjdb_test {
 		{ return data.back(); }
 
 		[[nodiscard]] constexpr friend auto begin(unqualified_rvalue_range_preferred&& x)
-		{ return x.data.begin(); }
+		{
+			return std::move(x).data.begin(); // NOLINT(performance-move-const-arg)
+		}
 
 		[[nodiscard]] constexpr friend
 		auto begin(unqualified_rvalue_range_preferred const&& x) noexcept
-		{ return x.data.begin(); }
+		{
+			return std::move(x).data.begin(); // NOLINT(performance-move-const-arg)
+		}
 
 		[[nodiscard]] constexpr friend auto end(unqualified_rvalue_range_preferred&& x)
-		{ return x.data.end(); }
+		{
+			return std::move(x).data.end(); // NOLINT(performance-move-const-arg)
+		}
 
 		[[nodiscard]] constexpr friend auto end(unqualified_rvalue_range_preferred const&& x) noexcept
-		{ return x.data.end(); }
+		{
+			return std::move(x).data.end(); // NOLINT(performance-move-const-arg)
+		}
 
 		// NOLINTNEXTLINE(readability-magic-numbers,misc-non-private-member-variables-in-classes)
 		std::array<int, 1'000> data{};
@@ -67,18 +75,26 @@ namespace cjdb_test {
 	class unqualified_rvalue_range_private_members {
 	public:
 		[[nodiscard]] constexpr friend auto begin(unqualified_rvalue_range_private_members&& x)
-		{ return x.data.begin(); }
+		{
+			return std::move(x).data.begin(); // // NOLINT(performance-move-const-arg)
+		}
 
 		[[nodiscard]] constexpr friend
 		auto begin(unqualified_rvalue_range_private_members const&& x) noexcept
-		{ return x.data.begin(); }
+		{
+			return std::move(x).data.begin(); // NOLINT(performance-move-const-arg)
+		}
 
 		[[nodiscard]] constexpr friend auto end(unqualified_rvalue_range_private_members&& x)
-		{ return x.data.end(); }
+		{
+			return std::move(x).data.end(); // NOLINT(performance-move-const-arg)
+		}
 
 		[[nodiscard]] constexpr friend
 		auto end(unqualified_rvalue_range_private_members const&& x) noexcept
-		{ return x.data.end(); }
+		{
+			return std::move(x).data.end(); // NOLINT(performance-move-const-arg)
+		}
 
 		// NOLINTNEXTLINE(readability-magic-numbers,misc-non-private-member-variables-in-classes)
 		std::array<int, 1'000> data{};

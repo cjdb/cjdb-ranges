@@ -5,6 +5,7 @@
 #define CJDB_DETAIL_DECAY_COPY_HPP
 
 #include <type_traits>
+#include <utility>
 
 namespace cjdb::detail_decay_copy {
 	struct decay_copy_fn {
