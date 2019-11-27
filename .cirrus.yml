@@ -3,7 +3,7 @@
 #
 task:
   container:
-    image: cjdb/cirrus-ci
+    dockerfile: config/ci/Dockerfile
     cpu: 8
     memory: 16G
   env:

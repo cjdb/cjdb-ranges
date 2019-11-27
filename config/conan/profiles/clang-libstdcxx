@@ -8,10 +8,13 @@ compiler.version=10
 compiler.libcxx=libstdc++11
 build_type=Release
 [options]
+enable_clang_tidy=On
+clang_tidy_path=/usr/local/bin/clang-tidy
 [build_requires]
 [env]
 CC=/usr/local/bin/clang
 CXX=/usr/local/bin/clang++
 CXXFLAGS=-std=c++2a -Xclang -fconcepts-ts -D_GLIBCXX_HAVE_BUILTIN_IS_CONSTANT_EVALUATED -fdiagnostics-color=always -Werror -Wall -Wextra -Wcast-align -Wconversion -Wdouble-promotion -Wnon-virtual-dtor -Wold-style-cast -Woverloaded-virtual -Wpedantic -Wshadow -Wsign-conversion -Wsign-promo -Wunused -Wformat=2 -Wodr -Wno-attributes -Wnull-dereference
 LDFLAGS=-fuse-ld=lld
+LD_LIBRARY_PATH=/usr/local/lib64:/usr/local/lib:/usr/local/libexec
 CONAN_CMAKE_GENERATOR=Ninja
