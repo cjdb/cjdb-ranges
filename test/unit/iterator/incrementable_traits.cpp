@@ -94,10 +94,8 @@ int main()
 	check_with_difference_type<dummy>();
 	check_with_difference_type<int&>();
 	check_with_difference_type<int const&>();
-	check_with_difference_type<int volatile&>();
 	check_with_difference_type<int*>();
 	check_with_difference_type<int* const>();
-	check_with_difference_type<int* volatile>();
 	check_with_difference_type<int(*)()>();
 	check_with_difference_type<int(&)()>();
 
@@ -121,10 +119,8 @@ int main()
 		check_minus<dummy>();
 		check_minus<int&>();
 		check_minus<int const&>();
-		check_minus<int volatile&>();
 		check_minus<int*>();
 		check_minus<int* const>();
-		check_minus<int* volatile>();
 		check_minus<int(*)()>();
 		check_minus<int(&)()>();
 	}
@@ -134,10 +130,8 @@ int main()
 	check_with_both<dummy, char>();
 	check_with_both<int&, char>();
 	check_with_both<int const&, char>();
-	check_with_both<int volatile&, char>();
 	check_with_both<int*, char>();
 	check_with_both<int* const, char>();
-	check_with_both<int* volatile, char>();
 	check_with_both<int(*)(), char>();
 	check_with_both<int(&)(), char>();
 

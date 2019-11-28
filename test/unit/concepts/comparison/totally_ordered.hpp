@@ -251,6 +251,8 @@ namespace cjdb_test {
 		constexpr friend bool
 		operator==(not_totally_ordered_no_ne x, not_totally_ordered_no_ne y) noexcept
 		{ return x.x_ == y.x_; }
+
+		friend bool operator!=(not_totally_ordered_no_ne, not_totally_ordered_no_ne) = delete;
 	private:
 		int x_ = 0;
 	};

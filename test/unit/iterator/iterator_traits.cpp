@@ -222,33 +222,24 @@ int main()
 
 	check_with_legacy_iterator<std::vector<int>::iterator>();
 	check_with_legacy_iterator<std::vector<int>::const_iterator>();
-	check_with_legacy_iterator<int* volatile>();
-	check_with_legacy_iterator<dummy* volatile>();
 
 	check_pointer<int>();
 	check_pointer<int const, int>();
 	check_pointer<double>();
-	check_pointer<double volatile, double>();
 	check_pointer<dummy>();
-	check_pointer<dummy const volatile, dummy>();
 
 
 	check_fails<void>();
 	check_fails<dummy>();
 	check_fails<dummy&>();
 	check_fails<dummy* const>();
-	check_fails<dummy* const volatile>();
 	check_fails<dummy const&>();
-	check_fails<dummy volatile&>();
-	check_fails<dummy const volatile&>();
 	check_fails<dummy(*)()>();
 	check_fails<dummy(&)()>();
 	check_fails<int[]>();                    // NOLINT(modernize-avoid-c-arrays)
 	check_fails<int const[]>();              // NOLINT(modernize-avoid-c-arrays)
 	check_fails<double[]>();                 // NOLINT(modernize-avoid-c-arrays)
-	check_fails<double volatile[]>();        // NOLINT(modernize-avoid-c-arrays)
 	check_fails<dummy[]>();                  // NOLINT(modernize-avoid-c-arrays)
-	check_fails<dummy const volatile[]>();   // NOLINT(modernize-avoid-c-arrays)
 	check_fails<missing_iterator_category>();
 	check_fails<missing_value_type>();
 	check_fails<missing_difference_type>();

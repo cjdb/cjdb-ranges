@@ -3,3 +3,4 @@
 #
 add_cjdblib_test(FILENAME equality_comparable.cpp)
 add_cjdblib_test(FILENAME totally_ordered.cpp)
+add_cjdblib_test(FILENAME three_way_comparable.cpp)

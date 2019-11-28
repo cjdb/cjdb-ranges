@@ -52,7 +52,5 @@ static_assert(same_as<cjdb::ranges::detail_iter_traits::iter_concept_t<bidirecti
 
 static_assert(same_as<cjdb::ranges::detail_iter_traits::iter_concept_t<int*>,
                       cjdb::contiguous_iterator_tag>);
-static_assert(same_as<cjdb::ranges::detail_iter_traits::iter_concept_t<int* volatile>,
-                      std::random_access_iterator_tag>);
 
 int main() {}

@@ -21,8 +21,6 @@ constexpr void check_array()
 {
 	instantiate_readable_traits<T[], T>();                // NOLINT(modernize-avoid-c-arrays)
 	instantiate_readable_traits<T const[], T>();          // NOLINT(modernize-avoid-c-arrays)
-	instantiate_readable_traits<T volatile[], T>();       // NOLINT(modernize-avoid-c-arrays)
-	instantiate_readable_traits<T const volatile[], T>(); // NOLINT(modernize-avoid-c-arrays)
 }
 
 template<typename T, typename Expected>
@@ -52,10 +50,8 @@ constexpr void check_ref()
 	};
 	check_fails<ref_element>();
 
-	if (not (std::is_const_v<T> or std::is_volatile_v<T>)) {
+	if (not std::is_const_v<T>) {
 		check_ref<T const>();
-		check_ref<T volatile>();
-		check_ref<T const volatile>();
 	}
 }
 
