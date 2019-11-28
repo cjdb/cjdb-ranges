@@ -1,7 +1,7 @@
 # Copyright (c) Christopher Di Bella.
 # SPDX-License-Identifier: Apache-2.0 WITH LLVM-exception
 #
-FROM ubuntu:eoan
+FROM ubuntu:bionic
 
 COPY --from=cjdb/gcc-trunk /usr/local /usr/local
 COPY --from=cjdb/clang-concepts /usr/local/ /usr/local
