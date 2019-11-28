@@ -8,7 +8,7 @@ compiler.version=10
 compiler.libcxx=libstdc++11
 build_type=Release
 [options]
-enable_clang_tidy=Off
+ranges:enable_clang_tidy=Off
 [build_requires]
 [env]
 CC=/usr/local/bin/gcc

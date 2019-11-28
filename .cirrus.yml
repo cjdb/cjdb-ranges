@@ -10,7 +10,8 @@ task:
     CLANG_TIDY_PATH: /usr/local/bin/clang-tidy
     matrix:
       - PROFILE: clang-libcxx
-        ENABLE_CLANG_TIDY: On
+      - PROFILE: clang-libstdcxx
+      - PROFILE: gcc
     matrix:
       - BUILD_TYPE: Debug
       - BUILD_TYPE: Release
@@ -23,8 +24,6 @@ task:
     - conan install ..
         --profile=${PROFILE}
         --settings build_type=${BUILD_TYPE}
-        --options enable_clang_tidy=${ENABLE_CLANG_TIDY}
-        --options clang_tidy_path=${CLANG_TIDY_PATH}
         --build
   conan_build_configure_script:
     - cd build-${BUILD_TYPE}

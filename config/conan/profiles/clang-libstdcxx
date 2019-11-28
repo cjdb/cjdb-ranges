@@ -8,8 +8,8 @@ compiler.version=10
 compiler.libcxx=libstdc++11
 build_type=Release
 [options]
-enable_clang_tidy=On
-clang_tidy_path=/usr/local/bin/clang-tidy
+ranges:enable_clang_tidy=On
+ranges:clang_tidy_path=/usr/local/bin/clang-tidy
 [build_requires]
 [env]
 CC=/usr/local/bin/clang
