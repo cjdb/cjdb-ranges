@@ -8,10 +8,11 @@ compiler.version=10
 compiler.libcxx=libstdc++11
 build_type=Release
 [options]
+ranges:enable_clang_tidy=Off
 [build_requires]
 [env]
 CC=/usr/local/bin/gcc
 CXX=/usr/local/bin/g++
-CXXFLAGS=-std=c++2a -fdiagnostics-color=always -Werror -Wall -Wextra -Wcast-align -Wconversion -Wdouble-promotion -Wnon-virtual-dtor -Wold-style-cast -Woverloaded-virtual -Wshadow -Wsign-conversion -Wsign-promo -Wunused -Wformat=2 -Wodr -Wno-attributes -Wnull-dereference
+CXXFLAGS=-std=c++2a -fdiagnostics-color=always -Werror -Wall -Wextra -Wcast-align -Wconversion -Wdouble-promotion -Wnon-virtual-dtor -Wold-style-cast -Woverloaded-virtual -Wshadow -Wsign-conversion -Wsign-promo -Wunused -Wformat=2 -Wodr -Wno-attributes -Wnull-dereference -Wno-unused-local-typedefs -Wno-volatile
 LDFLAGS=-fuse-ld=gold
 CONAN_CMAKE_GENERATOR=Ninja
