@@ -1,14 +1,14 @@
 # Copyright (c) Christopher Di Bella.
 # SPDX-License-Identifier: Apache-2.0 WITH LLVM-exception
 #
-FROM ubuntu:bionic
+FROM ubuntu:eoan
 
 COPY --from=cjdb/gcc-trunk /usr/local /usr/local
 COPY --from=cjdb/clang-concepts /usr/local/ /usr/local
 
-RUN apt update
-RUN apt dist-upgrade -y
-RUN apt install -y python3 python3-pip ninja-build binutils libz3-dev libedit-dev swig
+RUN apt-get update
+RUN apt-get dist-upgrade -y
+RUN apt-get install -y python3.7 python3-pip ninja-build binutils libz3-dev libedit-dev swig libtinfo-dev
 RUN python3 -m pip install pip --upgrade
 RUN python3 -m pip install cmake conan
 
