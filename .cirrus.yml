@@ -10,6 +10,7 @@ task:
     CLANG_TIDY_PATH: /usr/local/bin/clang-tidy
     matrix:
       - PROFILE: clang-libcxx
+      - PROFILE: gcc
     matrix:
       - BUILD_TYPE: Debug
       - BUILD_TYPE: Release

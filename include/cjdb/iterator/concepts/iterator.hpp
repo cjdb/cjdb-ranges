@@ -8,7 +8,7 @@
 #include "cjdb/concepts/core/derived_from.hpp"
 #include "cjdb/concepts/core/same_as.hpp"
 #include "cjdb/concepts/object/semiregular.hpp"
-#include "cjdb/detail/concepts/core/equality_comparable.hpp"
+#include "cjdb/detail/concepts/comparison/weakly_equality_comparable_with.hpp"
 #include "cjdb/detail/iterator/incrementable_traits.hpp"
 #include "cjdb/detail/iterator/iter_traits.hpp"
 #include "cjdb/detail/iterator/readable_traits.hpp"
@@ -57,7 +57,7 @@ namespace cjdb {
 	concept sentinel_for =
 		semiregular<S> and
 		input_or_output_iterator<I> and
-		detail_weakly_equality_comparable::weakly_equality_comparable_with<S, I>;
+		detail_weakly_equality_comparable_with::weakly_equality_comparable_with<S, I>;
 
 	/// \brief `disable_sized_sentinel` allows use of sentinels and iterators with the library that
 	///        satisfy but do not in fact model `sized_sentinel_for`.

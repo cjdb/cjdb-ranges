@@ -58,6 +58,10 @@ namespace cjdb::detail_iterator_associated_types {
 	template<has_element_type T>
 	struct readable_traits<T> : cond_value_type<typename T::element_type> {};
 
+	template<has_value_type T>
+	requires has_element_type<T>
+	struct readable_traits<T> {};
+
 	template<typename T>
 	using iter_value_t = _t<extract_readable_traits<T>>;
 } // namespace cjdb::detail_iterator_associated_types
