@@ -12,9 +12,6 @@ RUN apt-get update          && \
     apt-get install -y wget ninja-build binutils libz3-dev libedit-dev swig libtinfo-dev libsqlite3-dev
 
 RUN update-alternatives --install /usr/local/bin/python3 python3 /usr/local/bin/python3.8 100
-
-# RUN apt-get install -y make libssl-dev  libffi-dev zlib1g-dev libz-dev libbz2-dev
-
 RUN python3 -m pip install pip --upgrade && python3 -m pip install cmake conan
 
 ENV PATH="/usr/local/bin:$PATH" LD_LIBRARY_PATH="/usr/local/lib64:/usr/local/lib:/usr/local/libexec"
