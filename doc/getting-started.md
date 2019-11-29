@@ -8,7 +8,7 @@ For brevity, there will be an assumption that you're familiar with both Conan an
 
 ## Installing cjdb-ranges
 
-See [install.md].
+See [install.md][2].
 
 ## Writing a simple file with cjdb-ranges
 
@@ -123,3 +123,4 @@ int main()
 
 [P1813]: https://wg21.link/p1813
 [1]: https://link.springer.com/chapter/10.1007%2F1-84628-598-4_2
+[2]: install.md
