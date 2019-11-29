@@ -2,20 +2,28 @@
 
 ## Pre-requisites
 
-This project currently only supports [clang-concepts-monorepo][1], with a GCC 10-compatible
-libstdc++ or a tip-of-trunk libc++. You will also require recent versions of Conan and CMake for
-effective usage.
+This project supports the following compilers:
 
-### What about MSVC 2019 and GCC?
+* [clang-concepts-monorepo][1] (Git hash 327743ab29bb0e458cfc4a0eab3bea946b72c938)
+* GCC trunk (Git hash 1dae669e3c506d8c3b8768cefe5ce7fbe385b45c)
 
-It is currently unclear whether the compile-time failures in MSVC are due to errors in the library
-or missing parts of their concepts implementation: as soon as MSVC is concepts feature-complete,
-this library will immediately adopt support for MSVC 2019.
+Due to bugs at the tip-of-trunk, you'll need to checkout the corresponding Git hashes that are listed.
+The project also supports libc++ (for Clang) and libstdc++ (for GCC only). You will also require
+recent versions of Conan and CMake for effective usage.
 
-Although GCC has had support for the Concepts TS since GCC 6, no attempt is being made to support
-GCC 6–9, as the Concepts TS has been superseded and incompatible with C++20 concepts. GCC 10 support
-is currently stalled by [GCC Bug 92040][2], which prevents some valid tests from passing. Support
-for GCC 10 will resume once Bug 92040 has been closed.
+### What about MSVC 2019?
+
+Part of the test framework for this library depends upon `std::is_constant_evaluated`, which currently
+is not supported by MSVC.
+
+### Why doesn't Clang support libstdc++?
+
+Clang currently generates an internal compiler error (ICE) when compiling with libstdc++.
+
+### Will vcpkg be supported?
+
+Yes, in time. Developer bandwidth is limited, and due to a lack of experience with both CMake
+toolchains and vcpkg workflow. You can track the [issue on GitHub][2].
 
 ## Installing with Conan
 
@@ -49,4 +57,4 @@ Notice that we change from a hyphen in `find_package` to a namespace scope opera
 `target_link_libraries`.
 
 [1]: https://github.com/saarraz/clang-concepts-monorepo
-[2]: https://gcc.gnu.org/bugzilla/show_bug.cgi?id=92040
+[2]: https://github.com/cjdb/cjdb-ranges/issues/20
