@@ -9,6 +9,8 @@
 #include "cjdb/concepts/core/constructible_from.hpp"
 #include "cjdb/concepts/core/integral.hpp"
 #include "cjdb/concepts/core/same_as.hpp"
+#include "cjdb/concepts/core/signed_integral.hpp"
+#include "cjdb/concepts/core/unsigned_integral.hpp"
 #include "cjdb/concepts/object/regular.hpp"
 #include <numeric>
 

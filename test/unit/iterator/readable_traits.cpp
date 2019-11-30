@@ -4,7 +4,6 @@
 #include "cjdb/detail/iterator/readable_traits.hpp"
 
 #include "cjdb/concepts/core/same_as.hpp"
-#include "cjdb/concepts/core/integral.hpp"
 #include <memory>
 #include <vector>
 

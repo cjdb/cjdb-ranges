@@ -16,6 +16,12 @@
 
 #include "cjdb/concepts/core/integral.hpp"
 
+#include "cjdb/concepts/core/signed_integral.hpp"
+
+#include "cjdb/concepts/core/unsigned_integral.hpp"
+
+#include "cjdb/concepts/core/floating_point.hpp"
+
 #include "cjdb/concepts/core/assignable_from.hpp"
 
 #include "cjdb/concepts/core/swappable.hpp"

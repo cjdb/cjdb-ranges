@@ -4,6 +4,10 @@
 #ifndef CJDB_RANDOM_HPP
 #define CJDB_RANDOM_HPP
 
+#include "cjdb/concepts/core/same_as.hpp"
+#include "cjdb/concepts/core/unsigned_integral.hpp"
+#include "cjdb/concepts/callable/invocable.hpp"
+#include <functional>
 #include <random>
 
 namespace cjdb {
@@ -19,10 +23,10 @@ namespace cjdb {
    template <class G>
    concept uniform_random_bit_generator =
       invocable<G&> and
-      unsigned_integral<invoke_result_t<G&>> and
+      unsigned_integral<std::invoke_result_t<G&>> and
       requires {
-         G::min(); requires same_as<decltype(G::min()), invoke_result_t<G&>>;
-         G::max(); requires same_as<decltype(G::max()), invoke_result_t<G&>>;
+         G::min(); requires same_as<decltype(G::min()), std::invoke_result_t<G&>>;
+         G::max(); requires same_as<decltype(G::max()), std::invoke_result_t<G&>>;
       };
 } // namespace cjdb
 
