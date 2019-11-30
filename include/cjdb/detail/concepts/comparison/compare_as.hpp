@@ -5,7 +5,7 @@
 #define CJDB_DETAIL_CONCEPTS_COMPARISON_COMPARE_AS_HPP
 
 #include <version>
-#if defined(__cpp_lib_three_way_comparison) and __cpp_lib_three_way_comparison >= 201711
+#if defined(__cpp_lib_three_way_comparison) and __cpp_lib_three_way_comparison >= 201907
 
 #include "cjdb/concepts/core/same_as.hpp"
 #include <compare>

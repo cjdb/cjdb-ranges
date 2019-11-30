@@ -5,7 +5,7 @@
 #define CJDB_CONCEPTS_THREE_WAY_COMPARABLE_HPP
 
 #include <version>
-#if defined(__cpp_lib_three_way_comparison) and __cpp_lib_three_way_comparison >= 201711
+#if defined(__cpp_lib_three_way_comparison) and __cpp_lib_three_way_comparison >= 201907
 
 #include "cjdb/concepts/core/common_reference_with.hpp"
 #include "cjdb/concepts/core/convertible_to.hpp"
@@ -74,5 +74,5 @@ namespace cjdb {
 		};
 } // namespace cjdb
 
-#endif // defined(__cpp_lib_three_way_comparison) and __cpp_lib_three_way_comparison >= 201711
+#endif // __cpp_lib_three_way_comparison
 #endif // CJDB_CONCEPTS_THREE_WAY_COMPARABLE_HPP

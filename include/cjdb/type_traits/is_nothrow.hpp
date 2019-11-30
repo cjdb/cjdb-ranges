@@ -35,7 +35,7 @@ namespace cjdb {
 			{std::forward<U>(u) >= std::forward<T>(t)} noexcept;
 		};
 
-	#if defined(__cpp_lib_three_way_comparison) and __cpp_lib_three_way_comparison >= 201711
+	#if defined(__cpp_lib_three_way_comparison) and __cpp_lib_three_way_comparison >= 201907
 		template<typename T, three_way_comparable_with<T> U>
 		inline constexpr auto is_nothrow_three_way_comparable =
 			is_nothrow_totally_ordered<T, U> and
