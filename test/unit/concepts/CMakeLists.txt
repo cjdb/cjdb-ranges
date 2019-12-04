@@ -6,4 +6,4 @@ add_subdirectory(comparison)
 add_subdirectory(callable)
 add_subdirectory(object)
 
-add_cjdblib_test(FILENAME concepts.cpp)
+add_cjdblib_test(FILENAME existence.cpp)
