@@ -8,8 +8,8 @@
 #include "cjdb/concepts/core/constructible_from.hpp"
 #include "cjdb/concepts/object/movable.hpp"
 #include "cjdb/detail/iterator/iter_move.hpp"
-#include "cjdb/detail/iterator/readable_traits.hpp"
-#include "cjdb/iterator/concepts/writable.hpp"
+#include "cjdb/detail/iterator/indirectly_readable_traits.hpp"
+#include "cjdb/iterator/concepts/indirectly_writable.hpp"
 #include "cjdb/iterator/concepts/indirectly_movable.hpp"
 
 namespace cjdb {
@@ -31,7 +31,7 @@ namespace cjdb {
 	template<typename In, typename Out>
 	concept indirectly_movable_storable =
 		indirectly_movable<In, Out> and
-		writable<Out, iter_value_t<In>> and
+		indirectly_writable<Out, iter_value_t<In>> and
 		movable<iter_value_t<In>> and
 		constructible_from<iter_value_t<In>, iter_rvalue_reference_t<In>> and
 		assignable_from<iter_value_t<In>&, iter_rvalue_reference_t<In>>;

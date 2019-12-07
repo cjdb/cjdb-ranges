@@ -47,7 +47,8 @@ using cjdb::contiguous_iterator;
 // using cjdb::indirect_relation;
 // using cjdb::indirect_strict_weak_order;
 
-// using cjdb::indirectly_­movable;
+using cjdb::indirectly_movable;
+using cjdb::indirectly_movable_storable;
 // using cjdb::indirectly_copyable;
 // using cjdb::indirectly_swappable;
 // using cjdb::comparable;

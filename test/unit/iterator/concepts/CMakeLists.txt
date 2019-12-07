@@ -14,4 +14,7 @@ add_cjdblib_test(FILENAME contiguous_iterator2.cpp)
 
 add_cjdblib_test(FILENAME sentinel.cpp)
 
+add_cjdblib_test(FILENAME indirectly_movable.cpp INCLUDE "${CMAKE_SOURCE_DIR}/test/include")
+add_cjdblib_test(FILENAME indirectly_movable_storable.cpp INCLUDE "${CMAKE_SOURCE_DIR}/test/include")
+
 add_subdirectory(non-iterators)
