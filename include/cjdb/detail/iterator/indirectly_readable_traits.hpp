@@ -1,8 +1,8 @@
 // Copyright (c) Christopher Di Bella.
 // SPDX-License-Identifier: Apache-2.0 WITH LLVM-exception
 //
-#ifndef CJDB_DETAIL_ITERATOR_READABLE_TRAITS_HPP
-#define CJDB_DETAIL_ITERATOR_READABLE_TRAITS_HPP
+#ifndef CJDB_DETAIL_ITERATOR_INDIRECTLY_READABLE_TRAITS_HPP
+#define CJDB_DETAIL_ITERATOR_INDIRECTLY_READABLE_TRAITS_HPP
 
 #include "cjdb/detail/iterator/iterator_traits.hpp"
 #include "cjdb/type_traits/is_primary.hpp"
@@ -33,42 +33,42 @@ namespace cjdb::detail_iterator_associated_types {
 	};
 
 	template<typename I>
-	requires is_primary<iterator_traits<I>> and has_value_type<readable_traits<I>>
+	requires is_primary<iterator_traits<I>> and has_value_type<indirectly_readable_traits<I>>
 	struct extract_readable_traits<I> {
-		using type = typename readable_traits<I>::value_type;
+		using type = typename indirectly_readable_traits<I>::value_type;
 	};
 
-	template<typename> struct readable_traits {};
+	template<typename> struct indirectly_readable_traits {};
 
 	template<typename T>
-	struct readable_traits<T*> : cond_value_type<T> {};
+	struct indirectly_readable_traits<T*> : cond_value_type<T> {};
 
 	template<typename I>
 	requires std::is_array_v<I>
-	struct readable_traits<I> {
+	struct indirectly_readable_traits<I> {
 		using value_type = std::remove_cv_t<std::remove_extent_t<I>>;
 	};
 
 	template<typename I>
-	struct readable_traits<I const> : readable_traits<I> {};
+	struct indirectly_readable_traits<I const> : indirectly_readable_traits<I> {};
 
 	template<has_value_type T>
-	struct readable_traits<T> : cond_value_type<typename T::value_type> {};
+	struct indirectly_readable_traits<T> : cond_value_type<typename T::value_type> {};
 
 	template<has_element_type T>
-	struct readable_traits<T> : cond_value_type<typename T::element_type> {};
+	struct indirectly_readable_traits<T> : cond_value_type<typename T::element_type> {};
 
 	template<has_value_type T>
 	requires has_element_type<T>
-	struct readable_traits<T> {};
+	struct indirectly_readable_traits<T> {};
 
 	template<typename T>
-	using iter_value_t = _t<extract_readable_traits<T>>;
+	using iter_value_t = _t<extract_readable_traits<std::remove_cvref_t<T>>>;
 } // namespace cjdb::detail_iterator_associated_types
 
 namespace cjdb {
-	using cjdb::detail_iterator_associated_types::readable_traits;
+	using cjdb::detail_iterator_associated_types::indirectly_readable_traits;
 	using cjdb::detail_iterator_associated_types::iter_value_t;
 } // namespace cjdb
 
-#endif // CJDB_DETAIL_ITERATOR_READABLE_TRAITS_HPP
+#endif // CJDB_DETAIL_ITERATOR_INDIRECTLY_READABLE_TRAITS_HPP

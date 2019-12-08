@@ -1,8 +1,8 @@
 # Copyright (c) Christopher Di Bella.
 # SPDX-License-Identifier: Apache-2.0 WITH LLVM-exception
 #
-add_cjdblib_test(FILENAME readable.cpp)
-add_cjdblib_test(FILENAME writable.cpp)
+add_cjdblib_test(FILENAME indirectly_readable.cpp INCLUDE "${CMAKE_SOURCE_DIR}/test/include")
+add_cjdblib_test(FILENAME indirectly_writable.cpp INCLUDE "${CMAKE_SOURCE_DIR}/test/include")
 add_cjdblib_test(FILENAME incrementable.cpp)
 
 add_cjdblib_test(FILENAME input_iterator.cpp)

@@ -250,7 +250,7 @@ namespace cjdb_test {
 	template<typename I>
 	struct minimal_extension {
 		using difference_type = typename cjdb::incrementable_traits<I>::difference_type;
-		using value_type = typename cjdb::readable_traits<I>::value_type;
+		using value_type = typename cjdb::indirectly_readable_traits<I>::value_type;
 	};
 
 	/// \brief Extension point for reference member.

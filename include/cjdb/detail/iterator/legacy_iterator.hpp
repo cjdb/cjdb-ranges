@@ -17,7 +17,7 @@
 
 namespace cjdb::detail_iterator_associated_types {
 	template<typename> struct incrementable_traits;
-	template<typename> struct readable_traits;
+	template<typename> struct indirectly_readable_traits;
 
 	template<class I>
 	concept legacy_iterator =
@@ -34,11 +34,11 @@ namespace cjdb::detail_iterator_associated_types {
 		and equality_comparable<I>
 		and requires(I i) {
 			typename incrementable_traits<I>::difference_type;
-			typename readable_traits<I>::value_type;
+			typename indirectly_readable_traits<I>::value_type;
 			typename common_reference_t<iter_reference_t<I>&&,
-			                            typename readable_traits<I>::value_type&>;
+			                            typename indirectly_readable_traits<I>::value_type&>;
 			typename common_reference_t<decltype(*i++)&&,
-			                            typename readable_traits<I>::value_type&>;
+			                            typename indirectly_readable_traits<I>::value_type&>;
 			requires signed_integral<typename incrementable_traits<I>::difference_type>;
 		};
 
@@ -47,7 +47,7 @@ namespace cjdb::detail_iterator_associated_types {
 		legacy_input_iterator<I> and
 		constructible_from<I> and
 		is_lvalue_reference_v<iter_reference_t<I>> and
-		same_as<remove_cvref_t<iter_reference_t<I>>, typename readable_traits<I>::value_type> and
+		same_as<remove_cvref_t<iter_reference_t<I>>, typename indirectly_readable_traits<I>::value_type> and
 		requires(I i) {
 			{  i++ } -> convertible_to<I const&>;
 			{ *i++ } -> same_as<iter_reference_t<I>>;

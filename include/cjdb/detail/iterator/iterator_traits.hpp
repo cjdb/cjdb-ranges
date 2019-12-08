@@ -129,7 +129,7 @@ namespace cjdb::detail_iterator_associated_types {
 	template<detail_iterator_associated_types::legacy_input_iterator I>
 	struct iterator_traits<I> : private detail_primary_template::primary_template {
 		using iterator_category = _t<extract_iterator_category_member<I>>;
-		using value_type        = typename readable_traits<I>::value_type;
+		using value_type        = typename indirectly_readable_traits<I>::value_type;
 		using difference_type   = typename incrementable_traits<I>::difference_type;
 		using pointer           = _t<extract_pointer_member<I>>;
 		using reference         = _t<extract_reference_member<I>>;

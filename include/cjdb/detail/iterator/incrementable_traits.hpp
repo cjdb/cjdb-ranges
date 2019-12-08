@@ -59,7 +59,7 @@ namespace cjdb::detail_iterator_associated_types {
 	};
 
 	template<typename T>
-	using iter_difference_t = _t<extract_incrementable_traits<T>>;
+	using iter_difference_t = _t<extract_incrementable_traits<std::remove_cvref_t<T>>>;
 } // namespace cjdb::detail_iterator_associated_types
 
 namespace cjdb {

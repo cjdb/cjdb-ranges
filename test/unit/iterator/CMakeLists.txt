@@ -2,8 +2,8 @@
 # SPDX-License-Identifier: Apache-2.0 WITH LLVM-exception
 #
 add_cjdblib_test(FILENAME incrementable_traits.cpp)
-add_cjdblib_test(FILENAME readable_traits.cpp)
-target_compile_options(test.unit.iterator.readable_traits PRIVATE -Wno-unused-local-typedefs)
+add_cjdblib_test(FILENAME indirectly_readable_traits.cpp)
+target_compile_options(test.unit.iterator.indirectly_readable_traits PRIVATE -Wno-unused-local-typedefs)
 
 add_cjdblib_test(FILENAME existence.cpp)
 add_cjdblib_test(FILENAME legacy_iterator.cpp)

@@ -22,7 +22,7 @@ struct iterator {
 };
 static_assert(cjdb::input_or_output_iterator<iterator>);
 static_assert(cjdb::input_iterator<iterator>);
-static_assert(cjdb::writable<iterator, dummy>);
+static_assert(cjdb::indirectly_writable<iterator, dummy>);
 static_assert(not cjdb::copyable<iterator>);
 static_assert(not cjdb::equality_comparable<iterator>);
 static_assert(not cjdb::sentinel_for<iterator, iterator>);

@@ -1,7 +1,7 @@
 // Copyright (c) Christopher Di Bella.
 // SPDX-License-Identifier: Apache-2.0 WITH LLVM-exception
 //
-#include "cjdb/detail/iterator/readable_traits.hpp"
+#include "cjdb/detail/iterator/indirectly_readable_traits.hpp"
 
 #include "cjdb/concepts/core/same_as.hpp"
 #include <memory>
@@ -10,9 +10,9 @@
 template<typename T, typename Expected>
 constexpr void instantiate_readable_traits()
 {
-	using cjdb::same_as, cjdb::readable_traits, cjdb::iter_value_t;
-	static_assert(same_as<typename readable_traits<T>::value_type, Expected>);
-	static_assert(same_as<iter_value_t<T>, typename readable_traits<T>::value_type>);
+	using cjdb::same_as, cjdb::indirectly_readable_traits, cjdb::iter_value_t;
+	static_assert(same_as<typename indirectly_readable_traits<T>::value_type, Expected>);
+	static_assert(same_as<iter_value_t<T>, typename indirectly_readable_traits<T>::value_type>);
 }
 
 template<typename T>
@@ -32,8 +32,8 @@ constexpr void check_explicit_member()
 template<typename T>
 constexpr void check_fails()
 {
-	constexpr auto result = requires { typename cjdb::readable_traits<T>::value_type; };
-	static_assert(not result, "This type shouldn't be readable!");
+	constexpr auto result = requires { typename cjdb::indirectly_readable_traits<T>::value_type; };
+	static_assert(not result, "This type shouldn't be indirectly_readable!");
 }
 
 template<typename T>

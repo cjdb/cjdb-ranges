@@ -12,7 +12,7 @@ using cjdb::incrementable_traits; // NOLINT(misc-unused-using-decls)
 using cjdb::iter_difference_t; // NOLINT(misc-unused-using-decls)
 
 // NOLINTNEXTLINE(misc-unused-using-decls)
-using cjdb::readable_traits; // TODO(@cjdb,#26): prefix indirectly_
+using cjdb::indirectly_readable_traits;
 using cjdb::iter_value_t; // NOLINT(misc-unused-using-decls)
 
 using cjdb::iter_reference_t; // NOLINT(misc-unused-using-decls)
@@ -23,8 +23,8 @@ using cjdb::iter_rvalue_reference_t; // NOLINT(misc-unused-using-decls)
 using cjdb::ranges::iter_move; // NOLINT(misc-unused-using-decls)
 // using cjdb::ranges::iter_swap;
 
-using cjdb::readable; // TODO(@cjdb,#26): prefix indirectly_
-using cjdb::writable; // TODO(@cjdb,#26): prefix indirectly_
+using cjdb::indirectly_readable;
+using cjdb::indirectly_writable;
 using cjdb::weakly_incrementable;
 using cjdb::incrementable;
 
