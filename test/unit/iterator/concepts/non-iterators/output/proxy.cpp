@@ -36,7 +36,7 @@ struct iterator {
 };
 static_assert(cjdb::input_or_output_iterator<iterator>);
 static_assert(cjdb::input_iterator<iterator>);
-static_assert(not cjdb::writable<iterator, dummy>);
+static_assert(not cjdb::indirectly_writable<iterator, dummy>);
 static_assert(not cjdb::output_iterator<iterator, dummy>);
 static_assert(cjdb::forward_iterator<iterator>);
 static_assert(cjdb::bidirectional_iterator<iterator>);

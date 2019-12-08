@@ -11,11 +11,11 @@
 #include "cjdb/detail/concepts/comparison/weakly_equality_comparable_with.hpp"
 #include "cjdb/detail/iterator/incrementable_traits.hpp"
 #include "cjdb/detail/iterator/iter_traits.hpp"
-#include "cjdb/detail/iterator/readable_traits.hpp"
+#include "cjdb/detail/iterator/indirectly_readable_traits.hpp"
 #include "cjdb/detail/iterator/reference.hpp"
 #include "cjdb/iterator/concepts/incrementable.hpp"
-#include "cjdb/iterator/concepts/readable.hpp"
-#include "cjdb/iterator/concepts/writable.hpp"
+#include "cjdb/iterator/concepts/indirectly_readable.hpp"
+#include "cjdb/iterator/concepts/indirectly_writable.hpp"
 
 #include <memory>
 #include <iterator>
@@ -94,7 +94,7 @@ namespace cjdb {
 		};
 
 	/// \brief The `input_iterator` concept defines requirements for a type whose referenced values
-	///        can be read (from the requirement for `readable`) and which can be both pre- and
+	///        can be read (from the requirement for `indirectly_readable`) and which can be both pre- and
 	///        post-incremented.
 	/// \note Unlike the _Cpp17InputIterator_ requirements, the `input_iterator` concept does not
 	///       need equality comparison since iterators are typically compared to sentinels.
@@ -102,12 +102,12 @@ namespace cjdb {
 	template<typename I>
 	concept input_iterator =
 		input_or_output_iterator<I> and
-		readable<I> and
+		indirectly_readable<I> and
 		requires { typename detail_iter_traits::iter_concept_t<I>; } and
 		derived_from<detail_iter_traits::iter_concept_t<I>, std::input_iterator_tag>;
 
 	/// \brief The `output_iterator` concept defines requirements for a type that can be used to
-	///        write values (from the requirement for writable) and which can be both pre- and
+	///        write values (from the requirement for indirectly_writable) and which can be both pre- and
 	///        post-incremented.
 	///
 	/// \pre **Axiom:**
@@ -125,7 +125,7 @@ namespace cjdb {
 	template<typename I, typename T>
 	concept output_iterator =
 		input_or_output_iterator<I> and
-		writable<I, T> and
+		indirectly_writable<I, T> and
 		requires(I i, T&& t) {
 			*i++ = std::forward<T>(t); // not required to be equality-preserving
 		};

@@ -5,7 +5,7 @@
 
 #include "cjdb/concepts/core/same_as.hpp"
 #include "cjdb/detail/iterator/incrementable_traits.hpp"
-#include "cjdb/detail/iterator/readable_traits.hpp"
+#include "cjdb/detail/iterator/indirectly_readable_traits.hpp"
 #include "cjdb/detail/iterator/iterator_traits.hpp"
 #include <iterator>
 

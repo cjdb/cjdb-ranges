@@ -6,5 +6,5 @@
 #include "cjdb/iterator/reference.hpp"
 #include "cjdb/iterator/concepts/incrementable.hpp"
 #include "cjdb/iterator/concepts/iterator.hpp"
-#include "cjdb/iterator/concepts/readable.hpp"
-#include "cjdb/iterator/concepts/writable.hpp"
+#include "cjdb/iterator/concepts/indirectly_readable.hpp"
+#include "cjdb/iterator/concepts/indirectly_writable.hpp"

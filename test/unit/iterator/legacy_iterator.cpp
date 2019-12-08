@@ -4,7 +4,7 @@
 #include "cjdb/detail/iterator/legacy_iterator.hpp"
 
 #include "cjdb/detail/iterator/incrementable_traits.hpp"
-#include "cjdb/detail/iterator/readable_traits.hpp"
+#include "cjdb/detail/iterator/indirectly_readable_traits.hpp"
 
 #include <array>
 #include <deque>
