@@ -48,18 +48,26 @@ endfunction()
 # \param file The name of the source file.
 # \returns A sans-prefix path that is dot separated.
 #
-function(name_target filename)
+function(name_target filename proposed_target)
 	get_filename_component(sublibrary "${filename}" ABSOLUTE)
-	string(REGEX REPLACE "[.][^.]+$" "" sublibrary "${sublibrary}")
+
+	# use any proposed target name in place of the filename
+	if (NOT ${proposed_target} STREQUAL "")
+		string(REGEX REPLACE "${filename}$" "${proposed_target}" sublibrary "${sublibrary}")
+	else()
+		string(REGEX REPLACE "[.][^.]+$" "" sublibrary "${sublibrary}")
+	endif()
+
 	string(REPLACE "/" "." sublibrary "${sublibrary}")
 	string(REPLACE "/" "." remove_prefix "${CMAKE_SOURCE_DIR}")
 	string(REGEX REPLACE "^.*${remove_prefix}[.]" "" sublibrary "${sublibrary}")
+
 	set(target "${sublibrary}" PARENT_SCOPE)
 endfunction()
 
 macro(BASIC_PROJECT_EXTRACT_ADD_TARGET_ARGS)
 	set(optional_values "")
-	set(single_value_args FILENAME LIBRARY_TYPE)
+	set(single_value_args FILENAME TARGET LIBRARY_TYPE)
 	set(multi_value_args INCLUDE LINK COMPILER_OPTIONS COMPILER_DEFINITIONS)
 
 	cmake_parse_arguments(add_target_args
