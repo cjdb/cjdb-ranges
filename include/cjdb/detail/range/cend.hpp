@@ -8,8 +8,6 @@
 #include "cjdb/detail/range/end.hpp"
 #include "cjdb/detail/type_traits/inject_const.hpp"
 
-#include "cjdb/detail/define.hpp"
-
 namespace cjdb::ranges::detail_cend {
 	struct cend_fn {
 		template<typename T>
@@ -26,7 +24,5 @@ namespace cjdb::ranges::detail_cend {
 namespace cjdb::ranges {
 	inline constexpr auto cend = detail_cend::cend_fn{};
 } // namespace cjdb::ranges
-
-#include "cjdb/detail/undef.hpp"
 
 #endif // CJDB_DETAIL_RANGE_CEND_HPP

@@ -8,8 +8,6 @@
 #include "cjdb/detail/range/begin.hpp"
 #include "cjdb/detail/type_traits/inject_const.hpp"
 
-#include "cjdb/detail/define.hpp"
-
 namespace cjdb::ranges::detail_cbegin {
 	struct cbegin_fn {
 		template<typename T>
@@ -26,7 +24,5 @@ namespace cjdb::ranges::detail_cbegin {
 namespace cjdb::ranges {
 	inline constexpr auto cbegin = detail_cbegin::cbegin_fn{};
 } // namespace cjdb::ranges
-
-#include "cjdb/detail/undef.hpp"
 
 #endif // CJDB_DETAIL_RANGE_CBEGIN_HPP
