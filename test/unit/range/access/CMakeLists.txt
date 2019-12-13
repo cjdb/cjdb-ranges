@@ -27,3 +27,9 @@ add_cjdblib_test(FILENAME data.cpp
                  INCLUDE "${CMAKE_SOURCE_DIR}/test/include"
                  COMPILER_DEFINITIONS CPO=data IS_CONST=false DATA
                  LINK cjdb::constexpr-contracts)
+
+add_cjdblib_test(FILENAME data.cpp
+                 TARGET cdata
+                 INCLUDE "${CMAKE_SOURCE_DIR}/test/include"
+                 COMPILER_DEFINITIONS CPO=cdata IS_CONST=true CDATA
+                 LINK cjdb::constexpr-contracts)
