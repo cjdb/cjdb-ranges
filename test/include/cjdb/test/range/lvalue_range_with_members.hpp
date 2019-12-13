@@ -30,8 +30,11 @@ namespace cjdb_test {
 		[[nodiscard]] auto end() const& noexcept
 		{ return data_.end(); }
 
-		[[nodiscard]] auto const& data() const noexcept
-		{ return data_; }
+		[[nodiscard]] auto data() &
+		{ return data_.data(); }
+
+		[[nodiscard]] auto data() const& noexcept
+		{ return data_.data(); }
 	private:
 		std::vector<int> data_;
 	};
@@ -51,6 +54,12 @@ namespace cjdb_test {
 
 		[[nodiscard]] friend auto end(lvalue_range_with_members_and_unqualified_friends const& x)
 		{ return x.end(); }
+
+		[[nodiscard]] friend auto data(lvalue_range_with_members_and_unqualified_friends& x) noexcept
+		{ return x.data(); }
+
+		[[nodiscard]] friend auto data(lvalue_range_with_members_and_unqualified_friends const& x)
+		{ return x.data(); }
 	};
 } // namespace cjdb_test
 

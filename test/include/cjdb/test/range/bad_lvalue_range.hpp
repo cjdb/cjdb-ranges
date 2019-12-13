@@ -35,6 +35,8 @@ namespace cjdb_test {
 		[[nodiscard]] int begin() const;
 		[[nodiscard]] int end();
 		[[nodiscard]] int end() const;
+		[[nodiscard]] int data();
+		[[nodiscard]] int data() const;
 
 		[[nodiscard]] constexpr friend int begin(bad_lvalue_range_preferred&)
 		{ return 0; }
@@ -66,6 +68,8 @@ namespace cjdb_test {
 		[[nodiscard]] std::vector<int>::const_iterator begin() const;
 		[[nodiscard]] std::vector<int>::iterator end();
 		[[nodiscard]] std::vector<int>::const_iterator end() const;
+		[[nodiscard]] std::vector<int>::pointer data();
+		[[nodiscard]] std::vector<int>::const_pointer data() const;
 	};
 } // namespace cjdb_test
 

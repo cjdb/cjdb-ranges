@@ -148,13 +148,13 @@ struct unqualified {                                                            
 	{                                                                                                                                               \
 		auto t = type{};                                                                                                                             \
 		CJDB_CONSTEXPR_CHECK(cjdb::ranges::cpo(std::forward<T>(t)) == base_cpo(std::forward<T>(t)));                                                 \
-		CJDB_CONSTEXPR_CHECK(cjdb::ranges::cpo(std::forward<T>(t)) == std::forward<T>(t).data.base_cpo());                                          \
+		CJDB_CONSTEXPR_CHECK(cjdb::ranges::cpo(std::forward<T>(t)) == std::forward<T>(t).data_.base_cpo());                                          \
 		static_assert(noexcept(cjdb::ranges::cpo(std::forward<T>(t))) == (is_const));                                                                \
 		                                                                                                                                             \
 		using good_ref = good_reference<type const>;                                                                                                 \
 		good_ref c = std::forward<T>(t);                                                                                                             \
 		CJDB_CONSTEXPR_CHECK(cjdb::ranges::cpo(std::forward<good_ref>(c)) == base_cpo(std::forward<good_ref>(c)));                                   \
-		CJDB_CONSTEXPR_CHECK(cjdb::ranges::cpo(std::forward<good_ref>(c)) == std::forward<T>(t).data.base_cpo());                                   \
+		CJDB_CONSTEXPR_CHECK(cjdb::ranges::cpo(std::forward<good_ref>(c)) == std::forward<T>(t).data_.base_cpo());                                   \
 		static_assert(noexcept(cjdb::ranges::cpo(std::forward<good_ref>(c))));                                                                       \
 		                                                                                                                                             \
 		auto copy = t;                                                                                                                               \
