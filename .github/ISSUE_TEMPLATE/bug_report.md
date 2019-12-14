@@ -1,6 +1,6 @@
 ---
 name: Bug report
-about: Create a report to help us improve
+about: Create a report to help us improve the library
 title: "[BUG]"
 labels: bug
 assignees: cjdb
@@ -16,13 +16,8 @@ Steps to reproduce the behavior:
 **Expected behavior**
 A clear and concise description of what you expected to happen.
 
-**Screenshots**
-If applicable, add screenshots to help explain your problem.
-
-**Desktop (please complete the following information):**
- - OS: [e.g. iOS]
- - Compiler [e.g. clang, MSVC]
- - Version [e.g. 10, 2019.3]
+**Acceptance criteria**
+A clear and concise set of criteria to indicate the bug's closure.
 
 **Additional context**
 Add any other context about the problem here.
