@@ -7,62 +7,53 @@
 #include <vector>
 
 namespace cjdb_test {
-	/// \brief An object of type `bad_lvalue_range` can be called with unqualified calls to `begin`
-	///        and to `end`.
+	/// \brief An object of type `bad_lvalue_range` can be called with unqualified calls to `begin` and
+	///        `end`..
 	///
-	/// \note This type is used for negative testing against `ranges::begin` and `ranges::end`.
+	/// \note This type is used for negative testing against `ranges::begin` `ranges::end`, and
+	///       `ranges::data`.
 	///
 	class bad_lvalue_range_unqualified {
 	public:
-		[[nodiscard]] constexpr friend int begin(bad_lvalue_range_unqualified&)
-		{ return 0; }
-		[[nodiscard]] constexpr friend int begin(bad_lvalue_range_unqualified const&)
-		{ return 0; }
-		[[nodiscard]] constexpr friend int end(bad_lvalue_range_unqualified&)
-		{ return 0; }
-		[[nodiscard]] constexpr friend int end(bad_lvalue_range_unqualified const&)
-		{ return 0; }
+		constexpr friend void begin(bad_lvalue_range_unqualified&) {}
+		constexpr friend void begin(bad_lvalue_range_unqualified const&) {}
+		constexpr friend void end(bad_lvalue_range_unqualified&) {}
+		constexpr friend void end(bad_lvalue_range_unqualified const&) {}
 	};
 
 	/// \brief An object of type `bad_lvalue_range_preferred` can be called with unqualified calls to
-	///        `begin` and to `end`.
+	///        `begin`, `end`, and `data`.
 	///
-	/// \note This type is used for negative testing against `ranges::begin` and `ranges::end`.
+	/// \note This type is used for negative testing against `ranges::begin` `ranges::end`, and
+	///       `ranges::data`.
 	///
 	class bad_lvalue_range_preferred {
 	public:
-		[[nodiscard]] int begin();
-		[[nodiscard]] int begin() const;
-		[[nodiscard]] int end();
-		[[nodiscard]] int end() const;
-		[[nodiscard]] int data();
-		[[nodiscard]] int data() const;
+		constexpr void begin() {}
+		constexpr void begin() const {}
+		constexpr void end() {}
+		constexpr void end() const {}
+		constexpr void data() {}
+		constexpr void data() const {}
 
-		[[nodiscard]] constexpr friend int begin(bad_lvalue_range_preferred&)
-		{ return 0; }
-		[[nodiscard]] constexpr friend int begin(bad_lvalue_range_preferred const&)
-		{ return 0; }
-		[[nodiscard]] constexpr friend int end(bad_lvalue_range_preferred&)
-		{ return 0; }
-		[[nodiscard]] constexpr friend int end(bad_lvalue_range_preferred const&)
-		{ return 0; }
+		constexpr friend void begin(bad_lvalue_range_preferred&) {}
+		constexpr friend void begin(bad_lvalue_range_preferred const&) {}
+		constexpr friend void end(bad_lvalue_range_preferred&) {}
+		constexpr friend void end(bad_lvalue_range_preferred const&) {}
 	};
 
 	/// \brief An object of type `bad_lvalue_range_private_members` can be called with unqualified
-	///        calls to `begin` and to `end`.
+	///        calls to `begin`, `end`, and `data`.
 	///
-	/// \note This type is used for negative testing against `ranges::begin` and `ranges::end`.
+	/// \note This type is used for negative testing against `ranges::begin` `ranges::end`, and
+	///       `ranges::data`.
 	///
 	class bad_lvalue_range_private_members {
 	public:
-		[[nodiscard]] constexpr friend int begin(bad_lvalue_range_private_members&)
-		{ return 0; }
-		[[nodiscard]] constexpr friend int begin(bad_lvalue_range_private_members const&)
-		{ return 0; }
-		[[nodiscard]] constexpr friend int end(bad_lvalue_range_private_members&)
-		{ return 0; }
-		[[nodiscard]] constexpr friend int end(bad_lvalue_range_private_members const&)
-		{ return 0; }
+		constexpr friend void begin(bad_lvalue_range_private_members&) {}
+		constexpr friend void begin(bad_lvalue_range_private_members const&) {}
+		constexpr friend void end(bad_lvalue_range_private_members&) {}
+		constexpr friend void end(bad_lvalue_range_private_members const&) {}
 	private:
 		[[nodiscard]] std::vector<int>::iterator begin();
 		[[nodiscard]] std::vector<int>::const_iterator begin() const;

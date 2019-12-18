@@ -8,6 +8,7 @@
 
 namespace cjdb_test {
 	class unqualified_rvalue_range {
+		using range_t = std::array<int, 1'000>; // NOLINT(readability-magic-numbers)
 	public:
 		[[nodiscard]] constexpr friend auto begin(unqualified_rvalue_range&& x)
 		{
@@ -29,23 +30,21 @@ namespace cjdb_test {
 			return std::move(x).data_.end(); // NOLINT(performance-move-const-arg)
 		}
 
-		[[nodiscard]] constexpr friend std::array<int, 1'000>::pointer
-		data(unqualified_rvalue_range&&) noexcept
+		[[nodiscard]] constexpr friend range_t::pointer data(unqualified_rvalue_range&&) noexcept
 		{
 			return nullptr;
 		}
 
-		[[nodiscard]] constexpr friend std::array<int, 1'000>::const_pointer
-		data(unqualified_rvalue_range const&&)
+		[[nodiscard]] constexpr friend range_t::const_pointer data(unqualified_rvalue_range const&&)
 		{
 			return nullptr;
 		}
 
-		// NOLINTNEXTLINE(readability-magic-numbers,misc-non-private-member-variables-in-classes)
-		std::array<int, 1'000> data_{};
+		range_t data_{}; // NOLINT(,misc-non-private-member-variables-in-classes)
 	};
 
 	class unqualified_rvalue_range_preferred {
+		using range_t = std::array<int, 1'000>; // NOLINT(readability-magic-numbers)
 	public:
 		[[nodiscard]] constexpr int begin() noexcept
 		{ return data_.front(); }
@@ -83,23 +82,23 @@ namespace cjdb_test {
 			return std::move(x).data_.end(); // NOLINT(performance-move-const-arg)
 		}
 
-		[[nodiscard]] constexpr friend std::array<int, 1'000>::pointer
+		[[nodiscard]] constexpr friend range_t::pointer
 		data(unqualified_rvalue_range_preferred&&) noexcept
 		{
 			return nullptr;
 		}
 
-		[[nodiscard]] constexpr friend std::array<int, 1'000>::const_pointer
+		[[nodiscard]] constexpr friend range_t::const_pointer
 		data(unqualified_rvalue_range_preferred const&&)
 		{
 			return nullptr;
 		}
 
-		// NOLINTNEXTLINE(readability-magic-numbers,misc-non-private-member-variables-in-classes)
-		std::array<int, 1'000> data_{};
+		range_t data_{}; // NOLINT(misc-non-private-member-variables-in-classes)
 	};
 
 	class unqualified_rvalue_range_private_members {
+		using range_t = std::array<int, 1'000>; // NOLINT(readability-magic-numbers)
 	public:
 		[[nodiscard]] constexpr friend auto begin(unqualified_rvalue_range_private_members&& x)
 		{
@@ -123,20 +122,19 @@ namespace cjdb_test {
 			return std::move(x).data_.end(); // NOLINT(performance-move-const-arg)
 		}
 
-		[[nodiscard]] constexpr friend std::array<int, 1'000>::pointer
+		[[nodiscard]] constexpr friend range_t::pointer
 		data(unqualified_rvalue_range_private_members&&) noexcept
 		{
 			return nullptr;
 		}
 
-		[[nodiscard]] constexpr friend std::array<int, 1'000>::const_pointer
+		[[nodiscard]] constexpr friend range_t::const_pointer
 		data(unqualified_rvalue_range_private_members const&&)
 		{
 			return nullptr;
 		}
 
-		// NOLINTNEXTLINE(readability-magic-numbers,misc-non-private-member-variables-in-classes)
-		std::array<int, 1'000> data_{};
+		range_t data_{}; // NOLINT(misc-non-private-member-variables-in-classes)
 	private:
 		[[nodiscard]] constexpr auto begin() noexcept
 		{ return data_.begin(); }

@@ -8,6 +8,7 @@
 
 namespace cjdb_test {
 	class unqualified_lvalue_range {
+		using range_t = std::array<int, 1'000>; // NOLINT(readability-magic-numbers)
 	public:
 		[[nodiscard]] constexpr friend auto begin(unqualified_lvalue_range& x)
 		{
@@ -29,23 +30,23 @@ namespace cjdb_test {
 			return x.data_.end();
 		}
 
-		[[nodiscard]] constexpr friend std::array<int, 1'000>::pointer
+		[[nodiscard]] constexpr friend range_t::pointer
 		data(unqualified_lvalue_range&) noexcept
 		{
 			return nullptr;
 		}
 
-		[[nodiscard]] constexpr friend std::array<int, 1'000>::const_pointer
+		[[nodiscard]] constexpr friend range_t::const_pointer
 		data(unqualified_lvalue_range const&) noexcept
 		{
 			return nullptr;
 		}
 
-		// NOLINTNEXTLINE(readability-magic-numbers,misc-non-private-member-variables-in-classes)
-		std::array<int, 1'000> data_{};
+		range_t data_{}; // NOLINT(misc-non-private-member-variables-in-classes)
 	};
 
 	class unqualified_lvalue_range_preferred {
+		using range_t = std::array<int, 1'000>; // NOLINT(readability-magic-numbers)
 	public:
 		[[nodiscard]] constexpr int begin() noexcept
 		{ return data_.front(); }
@@ -75,23 +76,23 @@ namespace cjdb_test {
 		[[nodiscard]] constexpr friend auto end(unqualified_lvalue_range_preferred const& x) noexcept
 		{ return x.data_.end(); }
 
-		[[nodiscard]] constexpr friend std::array<int, 1'000>::pointer
+		[[nodiscard]] constexpr friend range_t::pointer
 		data(unqualified_lvalue_range_preferred&) noexcept
 		{
 			return nullptr;
 		}
 
-		[[nodiscard]] constexpr friend std::array<int, 1'000>::const_pointer
+		[[nodiscard]] constexpr friend range_t::const_pointer
 		data(unqualified_lvalue_range_preferred const&) noexcept
 		{
 			return nullptr;
 		}
 
-		// NOLINTNEXTLINE(readability-magic-numbers,misc-non-private-member-variables-in-classes)
-		std::array<int, 1'000> data_{};
+		range_t data_{}; // NOLINT(misc-non-private-member-variables-in-classes)
 	};
 
 	class unqualified_lvalue_range_private_members {
+		using range_t = std::array<int, 1'000>; // NOLINT(readability-magic-numbers)
 	public:
 		[[nodiscard]] constexpr friend auto begin(unqualified_lvalue_range_private_members& x)
 		{ return x.data_.begin(); }
@@ -107,20 +108,19 @@ namespace cjdb_test {
 		auto end(unqualified_lvalue_range_private_members const& x) noexcept
 		{ return x.data_.end(); }
 
-		[[nodiscard]] constexpr friend std::array<int, 1'000>::pointer
+		[[nodiscard]] constexpr friend range_t::pointer
 		data(unqualified_lvalue_range_private_members&) noexcept
 		{
 			return nullptr;
 		}
 
-		[[nodiscard]] constexpr friend std::array<int, 1'000>::const_pointer
+		[[nodiscard]] constexpr friend range_t::const_pointer
 		data(unqualified_lvalue_range_private_members const&) noexcept
 		{
 			return nullptr;
 		}
 
-		// NOLINTNEXTLINE(readability-magic-numbers,misc-non-private-member-variables-in-classes)
-		std::array<int, 1'000> data_{};
+		range_t data_{}; // NOLINT(misc-non-private-member-variables-in-classes)
 	private:
 		[[nodiscard]] constexpr auto begin() noexcept
 		{ return data_.begin(); }
