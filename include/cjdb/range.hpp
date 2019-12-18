@@ -13,3 +13,4 @@
 
 #include "cjdb/range/concepts/range.hpp"
 #include "cjdb/range/concepts/safe_range.hpp"
+#include "cjdb/range/associated_types.hpp"
