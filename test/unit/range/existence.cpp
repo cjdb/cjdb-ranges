@@ -24,10 +24,10 @@ using ranges::cdata; // NOLINT(misc-unused-using-decls)
 
 // using ranges::size; // NOLINT(misc-unused-using-decls)
 
-// using ranges::range;       // NOLINT(misc-unused-using-decls)
+using ranges::range;       // NOLINT(misc-unused-using-decls)
 
-// using ranges::enable_safe_range; // NOLINT(misc-unused-using-decls)
-// using ranges::safe_range;        // NOLINT(misc-unused-using-decls)
+using ranges::enable_safe_range; // NOLINT(misc-unused-using-decls)
+using ranges::safe_range;        // NOLINT(misc-unused-using-decls)
 
 // using ranges::iterator_t;               // NOLINT(misc-unused-using-decls)
 // using ranges::sentinel_t;               // NOLINT(misc-unused-using-decls)
