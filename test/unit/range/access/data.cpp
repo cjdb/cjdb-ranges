@@ -40,11 +40,11 @@ int main()
 	CJDB_EVALUATE_TEST_CASE_N(cjdb_test::CJDB_TEST_CONCAT(faulty_, CPO), cjdb_test::bad_rvalue_range_preferred{});
 	CJDB_EVALUATE_TEST_CASE_N(cjdb_test::CJDB_TEST_CONCAT(faulty_, CPO), cjdb_test::bad_rvalue_range_private_members{});
 
-	/* NOLINTNEXTLINE(readability-magic-numbers) */
+	// NOLINTNEXTLINE(readability-magic-numbers)
 	CJDB_EVALUATE_TEST_CASE(cjdb_test::lvalue_array<int, 30>{});
-	/* NOLINTNEXTLINE(readability-magic-numbers) */
+	// NOLINTNEXTLINE(readability-magic-numbers)
 	CJDB_EVALUATE_TEST_CASE(cjdb_test::lvalue_array<double, 43>{});
-	// /* NOLINTNEXTLINE(readability-magic-numbers) */
+	// NOLINTNEXTLINE(readability-magic-numbers)
 	CJDB_EVALUATE_TEST_CASE(cjdb_test::lvalue_array<cjdb_test::dummy, 210>{});
 
 	cjdb_test::CJDB_TEST_CONCAT(member_, CPO)<std::vector<std::set<int>>>{}();
@@ -57,4 +57,6 @@ int main()
 	CJDB_EVALUATE_TEST_CASE(cjdb_test::unqualified<cjdb_test::unqualified_rvalue_range&&>{});
 	CJDB_EVALUATE_TEST_CASE(cjdb_test::unqualified<cjdb_test::unqualified_rvalue_range_preferred&&>{});
 	CJDB_EVALUATE_TEST_CASE(cjdb_test::unqualified<cjdb_test::unqualified_rvalue_range_private_members&&>{});
+
+	return ::test_result();
 }
