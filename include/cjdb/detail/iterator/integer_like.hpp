@@ -16,13 +16,13 @@
 
 namespace cjdb::detail_integer_like {
 	template<typename T>
-	inline constexpr bool is_integer_like = integral<T>;
+	concept is_integer_like = integral<T>;
 
 	template<typename T>
-	inline constexpr bool is_signed_integer_like = signed_integral<T>;
+	concept is_signed_integer_like = signed_integral<T>;
 
 	template<typename T>
-	inline constexpr bool is_unsigned_integer_like = unsigned_integral<T>;
+	concept is_unsigned_integer_like = unsigned_integral<T>;
 } // namespace cjdb::detail_integer_like
 
 #endif // CJDB_DETAIL_ITERATOR_CONCEPTS_INTEGER_LIKE_HPP
