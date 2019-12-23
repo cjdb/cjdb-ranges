@@ -3,3 +3,4 @@
 #
 add_cjdblib_test(FILENAME common_type.cpp INCLUDE "${CMAKE_SOURCE_DIR}/test/include")
 add_cjdblib_test(FILENAME inject_const.cpp)
+add_cjdblib_test(FILENAME maybe_const.cpp)
