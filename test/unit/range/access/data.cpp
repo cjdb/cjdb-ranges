@@ -51,12 +51,12 @@ int main()
 	cjdb_test::CJDB_TEST_CONCAT(member_, CPO)<cjdb_test::lvalue_range_with_members>{}();
 	cjdb_test::CJDB_TEST_CONCAT(member_, CPO)<cjdb_test::lvalue_range_with_members_and_unqualified_friends>{}();
 
-	CJDB_EVALUATE_TEST_CASE(cjdb_test::unqualified<cjdb_test::unqualified_lvalue_range&>{});
-	CJDB_EVALUATE_TEST_CASE(cjdb_test::unqualified<cjdb_test::unqualified_lvalue_range_preferred&>{});
-	CJDB_EVALUATE_TEST_CASE(cjdb_test::unqualified<cjdb_test::unqualified_lvalue_range_private_members&>{});
-	CJDB_EVALUATE_TEST_CASE(cjdb_test::unqualified<cjdb_test::unqualified_rvalue_range&&>{});
-	CJDB_EVALUATE_TEST_CASE(cjdb_test::unqualified<cjdb_test::unqualified_rvalue_range_preferred&&>{});
-	CJDB_EVALUATE_TEST_CASE(cjdb_test::unqualified<cjdb_test::unqualified_rvalue_range_private_members&&>{});
+	CJDB_EVALUATE_TEST_CASE(cjdb_test::unqualified<cjdb_test::unqualified_lvalue_range<>&>{});
+	CJDB_EVALUATE_TEST_CASE(cjdb_test::unqualified<cjdb_test::unqualified_lvalue_range_preferred<>&>{});
+	CJDB_EVALUATE_TEST_CASE(cjdb_test::unqualified<cjdb_test::unqualified_lvalue_range_private_members<>&>{});
+	CJDB_EVALUATE_TEST_CASE(cjdb_test::unqualified<cjdb_test::unqualified_rvalue_range<>&&>{});
+	CJDB_EVALUATE_TEST_CASE(cjdb_test::unqualified<cjdb_test::unqualified_rvalue_range_preferred<>&&>{});
+	CJDB_EVALUATE_TEST_CASE(cjdb_test::unqualified<cjdb_test::unqualified_rvalue_range_private_members<>&&>{});
 
 	return ::test_result();
 }
