@@ -8,6 +8,8 @@
 #include "cjdb/range/access/end.hpp"
 #include "cjdb/range/access/cend.hpp"
 
+#include "cjdb/range/access/size.hpp"
+
 #include "cjdb/range/access/data.hpp"
 #include "cjdb/range/access/cdata.hpp"
 

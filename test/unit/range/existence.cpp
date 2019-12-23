@@ -22,7 +22,7 @@ using ranges::cend;     // NOLINT(misc-unused-using-decls)
 using ranges::data;  // NOLINT(misc-unused-using-decls)
 using ranges::cdata; // NOLINT(misc-unused-using-decls)
 
-// using ranges::size; // NOLINT(misc-unused-using-decls)
+using ranges::size; // NOLINT(misc-unused-using-decls)
 
 using ranges::range;       // NOLINT(misc-unused-using-decls)
 
