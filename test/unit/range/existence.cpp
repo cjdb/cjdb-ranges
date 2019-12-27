@@ -36,8 +36,8 @@ using ranges::range_value_t;            // NOLINT(misc-unused-using-decls)
 using ranges::range_reference_t;        // NOLINT(misc-unused-using-decls)
 using ranges::range_rvalue_reference_t; // NOLINT(misc-unused-using-decls)
 
-// using ranges::disable_sized_range; // NOLINT(misc-unused-using-decls)
-// using ranges::sized_range;         // NOLINT(misc-unused-using-decls)
+using ranges::disable_sized_range; // NOLINT(misc-unused-using-decls)
+using ranges::sized_range;         // NOLINT(misc-unused-using-decls)
 
 // using ranges::enable_view; // NOLINT(misc-unused-using-decls)
 // using ranges::view_base;   // NOLINT(misc-unused-using-decls)

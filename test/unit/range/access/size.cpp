@@ -2,6 +2,7 @@
 // SPDX-License-Identifier: Apache-2.0 WITH LLVM-exception
 //
 #include "cjdb/range/access/size.hpp"
+#include "cjdb/range/concepts/sized_range.hpp"
 
 #include <array>
 #include "cjdb/concepts/core/integral.hpp"
@@ -23,10 +24,15 @@ namespace cjdb_test {
 	template<typename T>
 	constexpr void check_not_sizeable() noexcept
 	{
-		static_assert(not cjdb::invocable<cjdb::ranges::detail_size::size_fn, T&>);
-		static_assert(not cjdb::invocable<cjdb::ranges::detail_size::size_fn, T const&>);
-		static_assert(not cjdb::invocable<cjdb::ranges::detail_size::size_fn, T&&>);
-		static_assert(not cjdb::invocable<cjdb::ranges::detail_size::size_fn, T const&&>);
+		static_assert(not cjdb::invocable<ranges::detail_size::size_fn, T&>);
+		static_assert(not cjdb::invocable<ranges::detail_size::size_fn, T const&>);
+		static_assert(not cjdb::invocable<ranges::detail_size::size_fn, T&&>);
+		static_assert(not cjdb::invocable<ranges::detail_size::size_fn, T const&&>);
+		static_assert(not ranges::sized_range<T>);
+		static_assert(not ranges::sized_range<T&>);
+		static_assert(not ranges::sized_range<T&&>);
+		static_assert(not ranges::sized_range<T const&>);
+		static_assert(not ranges::sized_range<T const&&>);
 	}
 
 	template<std::size_t expected_size>
@@ -35,6 +41,8 @@ namespace cjdb_test {
 		using array_t = int[expected_size]; // NOLINT(modernize-avoid-c-arrays)
 
 		static_assert(cjdb::invocable<ranges::detail_size::size_fn, array_t>);
+		static_assert(ranges::sized_range<array_t>);
+
 		static_assert(std::is_nothrow_invocable_v<ranges::detail_size::size_fn, array_t>);
 		static_assert(cjdb::unsigned_integral<std::invoke_result_t<ranges::detail_size::size_fn, array_t>>);
 
@@ -54,6 +62,8 @@ namespace cjdb_test {
 		auto t3 = range_t(expected_size);
 
 		static_assert(cjdb::invocable<ranges::detail_size::size_fn, T>);
+		static_assert(ranges::sized_range<T>);
+
 		static_assert(ranges::detail_size::member_size<T>);
 		static_assert(noexcept(ranges::size(t1)) == noexcept(t1.size()));
 		static_assert(noexcept(ranges::size(std::as_const(t1))) == noexcept(std::as_const(t1).size()));
@@ -65,12 +75,20 @@ namespace cjdb_test {
 	template<typename T>
 	constexpr auto unqualified() noexcept -> void
 	{
-		using range_t = std::remove_cvref_t<T>;
+		using range_t = std::remove_reference_t<T>;
 		auto t1 = range_t{};
 		auto t2 = range_t{};
 		auto t3 = range_t{};
 
 		static_assert(cjdb::invocable<ranges::detail_size::size_fn, T>);
+		if constexpr (not cjdb::same_as<range_t&&, T>) {
+			static_assert(ranges::sized_range<range_t>);
+		}
+		else {
+			static_assert(not ranges::range<range_t>);
+			static_assert(not ranges::sized_range<range_t>);
+		}
+
 		static_assert(ranges::detail_size::unqualified_size<T>);
 		static_assert(noexcept(ranges::size(std::forward<T>(t1))) == noexcept(size(std::forward<T>(t1))));
 		CJDB_CONSTEXPR_CHECK(ranges::size(std::forward<T>(t1)) == size(std::forward<T>(t2)));
@@ -84,7 +102,10 @@ namespace cjdb_test {
 	constexpr auto disabled_size(size_type_t<R> const size) noexcept -> void
 	{
 		static_assert(not ranges::detail_size::member_size<R>);
+		static_assert(not ranges::detail_size::unqualified_size<R>);
 		static_assert(cjdb::invocable<ranges::detail_size::size_fn, R>);
+		static_assert(ranges::sized_range<R>);
+
 		static_assert(cjdb::unsigned_integral<std::invoke_result_t<ranges::detail_size::size_fn, R>>);
 
 		auto r = R(size);
