@@ -34,6 +34,7 @@
 # Directories
 .vscode/*
 .vs/*
+.conan/*
 build*/*
 out/*
 test_package/build/*

@@ -18,3 +18,8 @@
 #include "cjdb/range/concepts/sized_range.hpp"
 #include "cjdb/range/concepts/refinements.hpp"
 #include "cjdb/range/associated_types.hpp"
+
+namespace cjdb::ranges::views {} // namespace cjdb::ranges::views
+namespace cjdb {
+	namespace views = ranges::views;
+} // namespace cjdb::ranges::views

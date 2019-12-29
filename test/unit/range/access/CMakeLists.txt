@@ -26,6 +26,10 @@ add_cjdblib_test(FILENAME size.cpp
                  INCLUDE "${CMAKE_SOURCE_DIR}/test/include"
                  LINK cjdb::constexpr-contracts)
 
+add_cjdblib_test(FILENAME empty.cpp
+                 INCLUDE "${CMAKE_SOURCE_DIR}/test/include"
+                 LINK cjdb::constexpr-contracts)
+
 add_cjdblib_test(FILENAME data.cpp
                  TARGET data
                  INCLUDE "${CMAKE_SOURCE_DIR}/test/include"
