@@ -12,3 +12,4 @@ add_cjdblib_test(FILENAME iter_move.cpp INCLUDE "${CMAKE_SOURCE_DIR}/test/includ
 add_cjdblib_test(FILENAME iter_traits.cpp)
 
 add_subdirectory(concepts)
+add_subdirectory(adaptors)
